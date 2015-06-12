@@ -1,0 +1,85 @@
+// Name:            Autocomplete
+// Description:     Provides suggestions while you type into an input field
+//
+// Component:       .f-autocomplete`
+//
+// Modifier:	    (Nav) .f-nav-autocomplete`
+//
+// States:          .f-active`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+// Nav modifier
+$nav-autocomplete-color:                        #444;
+$nav-autocomplete-active-background:            #00a8e6;
+$nav-autocomplete-active-color:                 #fff;
+$nav-autocomplete-header-color:                 #999;
+$nav-autocomplete-divider-border:               #ddd;
+$nav-autocomplete-divider-border-width:         1px;
+
+
+/* ========================================================================
+   Component: Autocomplete
+ ========================================================================== */
+
+/*
+ * 1. Container width fits its content
+ * 2. Create position context
+ * 3. Prevent `inline-block` consequences
+ * 4. Remove the gap between the container and its child element
+ */
+
+.f-autocomplete {
+	/* 1 */
+	display: inline-block;
+	/* 2 */
+	position: relative;
+	/* 3 */
+	max-width: 100%;
+	/* 4 */
+	vertical-align: middle;
+}
+
+
+/* Nav modifier .f-nav-autocomplete`
+ ========================================================================== */
+
+/*
+ * Items
+ */
+
+.f-nav-autocomplete > li > a {
+	color: $nav-autocomplete-color;
+}
+
+/*
+ * Active
+ * 1. Remove default focus style
+ */
+
+.f-nav-autocomplete > li.f-active > a {
+	background: $nav-autocomplete-active-background;
+	color: $nav-autocomplete-active-color;
+	/* 1 */
+	outline: none;
+}
+
+/*
+ * Sub-object: .f-nav-header`
+ */
+
+.f-nav-autocomplete .f-nav-header {
+	color: $nav-autocomplete-header-color;
+}
+
+/*
+ * Sub-object: .f-nav-divider`
+ */
+
+.f-nav-autocomplete .f-nav-divider {
+	border-top: $nav-autocomplete-divider-border-width solid $nav-autocomplete-divider-border;
+}

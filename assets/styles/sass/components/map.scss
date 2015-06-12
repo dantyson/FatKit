@@ -1,0 +1,42 @@
+// Name:            Map
+// Description:     Defines styles for the map
+//
+// Component:       .f-map`
+//
+// Sub-objects:     .f-map-infowindow-title`
+//                  .f-map-infowindow-content`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$map-width:                 100%;
+$map-height:                500px;
+
+
+/* ========================================================================
+   Component: Accordion
+ ========================================================================== */
+
+.f-map {
+	height: $map-height;
+	width: $map-width;
+}
+
+
+/* Sub-object: .f-map-infowindow-title`
+ ========================================================================== */
+
+.f-map-infowindow-title {
+	font-size: 1.2em;
+}
+
+
+/* Sub-object: .f-map-infowindow-content`
+ ========================================================================== */
+
+.f-map-infowindow-content {
+	font-size: 1em;
+}

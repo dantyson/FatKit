@@ -1,0 +1,129 @@
+// Name:            Sortable
+// Description:     Defines styles for sortable grids and lists
+//
+// Component:       .f-sortable`
+//
+// Sub-objects:     .f-sortable-moving`
+//
+// Modifier:        .f-sortable-dragged`
+//                  .f-sortable-placeholder`
+//                  .f-sortable-over`
+//
+// Markup:
+//
+// <!--.f-sortable -->
+// <ul class=.f-sortable" data-f-sortable>
+//     <li></li>
+//     <li></li>
+// </ul>
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$sortable-dragged-z-index:                      1050;
+
+$sortable-placeholder-opacity:                  0;
+
+$sortable-over-opacity:                         0.3;
+
+$sortable-empty-height:                         30px;
+
+
+/* ========================================================================
+   Component: Sortable
+ ========================================================================== */
+
+.f-sortable {
+	position: relative;
+
+	&:empty {
+		min-height: $sortable-empty-height;
+
+		/*
+		 * Give empty lists a placeholder style to make sure drag and drop works
+		 */
+		&::after {
+			min-height: $sortable-empty-height;
+			width: 100%;
+		}
+	}
+
+	a,
+	img {
+		-webkit-touch-callout: none;
+	}
+}
+
+/*
+ * 1. Makes text unselectable
+ * 2. Deactivate browser touch actions in IE11
+ */
+
+.f-sortable > * {
+	/* 1 */
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	/* 2 */
+	touch-action: none;
+}
+
+/*
+ * Prevents images and links from being dragged (default browser behavior)
+ * Currently only works in Webkit
+ */
+
+.f-sortable > * * {
+	-webkit-user-drag: none;
+	user-drag: none;
+}
+
+
+/* Sub-modifier .f-sortable-dragged`
+ ========================================================================== */
+
+.f-sortable-dragged {
+	pointer-events: none;
+	position: absolute;
+	z-index: $sortable-dragged-z-index;
+}
+
+
+/* Sub-modifier .f-sortable-placeholder`
+ ========================================================================== */
+
+.f-sortable-placeholder {
+	opacity: $sortable-placeholder-opacity;
+}
+
+
+/* Sub-modifier .f-sortable-over`
+ * Only if `warp:true`
+ ========================================================================== */
+
+.f-sortable-over {
+	opacity: $sortable-over-opacity;
+}
+
+/* Sub-object `f-sortable-handle`
+ ========================================================================== */
+
+/*
+ * Deactivate browser touch actions in IE11
+ */
+
+.f-sortable-handle { touch-action: none; }
+
+/* Hover */
+.f-sortable-handle:hover { cursor: move; }
+
+/* Sub-object .f-sortable-moving`
+ ========================================================================== */
+
+.f-sortable-moving,
+/* Needed if moving over links or buttons */
+.f-sortable-moving * { cursor: move; }

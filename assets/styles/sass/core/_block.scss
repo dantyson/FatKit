@@ -1,0 +1,146 @@
+// Name:            Block
+// Description:     Defines styles to create horizontal layout blocks
+//
+// Component:       `f-block`
+//
+// Modifiers:       `f-list-line`
+//                  `f-list-striped`
+//                  `f-list-space`
+//                  
+// Url:				http://fatkit.fmdev02.fatoffice.co.uk/core/block.asp
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$block-padding-vertical:                         20px !default;
+$block-padding-vertical-large:                   50px !default;
+
+$block-large-padding-vertical:                   $block-padding-vertical !default;
+$block-large-padding-vertical-medium:            $block-padding-vertical-large !default;
+$block-large-padding-vertical-large:             100px !default;
+
+$block-default-background:                       #fff !default;
+$block-muted-background:                         #f9f9f9 !default;
+$block-primary-background:                       #00a8e6 !default;
+$block-secondary-background:                     #222 !default;
+
+
+/* ========================================================================
+   Component: Block
+ ========================================================================== */
+
+.f-block {
+	position: relative;
+	box-sizing: border-box;
+	padding-top: $block-padding-vertical;
+	padding-bottom: $block-padding-vertical;
+}
+
+/* Phone landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+	.f-block {
+		padding-top: $block-padding-vertical-large;
+		padding-bottom: $block-padding-vertical-large;
+	}
+
+}
+
+/*
+ * Micro clearfix to make blocks more robust
+ */
+
+.f-block:before,
+.f-block:after {
+	content: "";
+	display: table;
+}
+
+.f-block:after { clear: both; }
+
+/*
+ * Remove margin from the last-child
+ */
+
+.f-block > :last-child { margin-bottom: 0; }
+
+
+/* Padding Modifier
+ ========================================================================== */
+
+/*
+ * Large padding
+ */
+
+.f-block-large {
+	padding-top: $block-large-padding-vertical;
+	padding-bottom: $block-large-padding-vertical;
+}
+
+/* Tablets and bigger */
+@media (min-width: $breakpoint-medium) {
+
+	.f-block-large {
+		padding-top: $block-large-padding-vertical-medium;
+		padding-bottom: $block-large-padding-vertical-medium;
+	}
+
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+	.f-block-large {
+		padding-top: $block-large-padding-vertical-large;
+		padding-bottom: $block-large-padding-vertical-large;
+	}
+
+}
+
+
+/* Color Modifier
+ ========================================================================== */
+
+/*
+ * Default
+ */
+
+.f-block-default {
+	background: $block-default-background;
+}
+
+/*
+ * Muted
+ */
+
+.f-block-muted {
+	background: $block-muted-background;
+}
+
+/*
+ * Primary
+ */
+
+.f-block-primary {
+	background: $block-primary-background;
+}
+
+/*
+ * Secondary
+ */
+
+.f-block-secondary {
+	background: $block-secondary-background;
+}
+
+/*
+ * Adjust padding between equal colored blocks
+ */
+
+.f-block-default + .f-block-default,
+.f-block-muted + .f-block-muted,
+.f-block-primary + .f-block-primary,
+.f-block-secondary + .f-block-secondary { padding-top: 0; }

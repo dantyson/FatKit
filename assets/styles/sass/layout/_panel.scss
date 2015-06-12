@@ -1,0 +1,327 @@
+// Name:            Panel
+// Description:     Defines styles for reusable content areas
+//
+// Component:       .f-panel`
+//
+// Sub-objects:     .f-panel-title`
+//                  .f-panel-badge`
+//                  .f-panel-teaser`
+//
+// Modifiers:       .f-panel-box`
+//                  .f-panel-box-hover`
+//                  .f-panel-box-primary`
+//                  .f-panel-box-primary-hover`
+//                  .f-panel-box-secondary`
+//                  .f-panel-box-secondary-hover`
+//                  .f-panel-hover`
+//                  .f-panel-header`
+//                  .f-panel-space`
+//                  .f-panel-divider`
+//
+// Uses:            Nav: .f-nav-side`
+//
+// Used by:         Dropdown
+//                  Off-canvas
+//                  Grid
+//
+// Markup:
+//
+// <!--.f-panel -->
+// <div class="f-panel">
+//     <div class="f-panel-badge.f-badge"></div>
+//     <h3 class="f-panel-title"></h3>
+//     <p></p>
+// </div>
+// 
+// Url:				http://fatkit.fmdev02.fatoffice.co.uk/core/panel.asp
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$panel-title-margin-bottom:                     15px;
+$panel-title-font-size:                         18px;
+$panel-title-line-height:                       24px;
+$panel-title-font-weight:                       normal;
+$panel-title-color:                             #444;
+$panel-title-text-transform:                    none;
+
+$panel-teaser-margin-bottom:                    $panel-title-margin-bottom;
+
+$panel-box-padding:                             15px;
+$panel-box-background:                          #f5f5f5;
+$panel-box-color:                               #444;
+$panel-box-border-color:                        #f5f5f5;
+$panel-box-border-width:                        1px;
+$panel-box-hover-color:                         $panel-box-color;
+$panel-box-title-color:                         #444;
+$panel-box-badge-top:                           10px;
+$panel-box-badge-right:                         $panel-box-badge-top;
+$panel-box-teaser-margin:                       -$panel-box-padding;
+
+$panel-box-primary-background:                  #ebf7fd;
+$panel-box-primary-color:                       #2d7091;
+$panel-box-primary-border-color:                #ebf7fd;
+$panel-box-primary-hover-color:                 $panel-box-primary-color;
+$panel-box-primary-title-color:                 #2d7091;
+
+$panel-box-secondary-background:                #fff;
+$panel-box-secondary-color:                     #444;
+$panel-box-secondary-border-color:              #f5f5f5;
+$panel-box-secondary-hover-color:               $panel-box-secondary-color;
+$panel-box-secondary-title-color:               #444;
+
+$panel-hover-padding:                           15px;
+$panel-hover-color:                             #444;
+$panel-hover-hover-background:                  #f5f5f5;
+$panel-hover-hover-color:                       #444;
+$panel-hover-badge-top:                         10px;
+$panel-hover-badge-right:                       $panel-hover-badge-top;
+$panel-hover-teaser-margin:                     -$panel-hover-padding;
+
+$panel-header-title-padding:                    10px;
+$panel-header-title-border:                     #ddd;
+$panel-header-title-border-width:               1px;
+$panel-header-title-color:                      #444;
+
+$panel-space-padding:                           30px;
+
+$panel-divider-gutter:                          25px;
+$panel-divider-gutter-large:                    35px;
+$panel-divider-border:                          #ddd;
+$panel-divider-border-width:                    1px;
+
+
+/* ========================================================================
+   Component: Panel
+ ========================================================================== */
+
+/*
+ * 1. Needed for `a` elements
+ * 2. Create position context for badges
+ */
+
+.f-panel {
+	/* 1 */
+	display: block;
+	/* 2 */
+	position: relative;
+}
+
+/*
+ * Allow panels to be anchors
+ */
+
+.f-panel,
+.f-panel:hover { text-decoration: none; }
+
+/*
+ * Micro clearfix to make panels more robust
+ */
+
+.f-panel:before,
+.f-panel:after {
+	content: "";
+	display: table;
+}
+
+.f-panel:after { clear: both; }
+
+/*
+ * Remove margin from the last-child if not .f-widget-title`
+ */
+
+.f-panel > :last-child { margin-bottom: 0; }
+
+
+/* Sub-object: .f-panel-title`
+ ========================================================================== */
+
+.f-panel-title {
+	margin-top: 0;
+	margin-bottom: $panel-title-margin-bottom;
+	font-size: $panel-title-font-size;
+	line-height: $panel-title-line-height;
+	font-weight: $panel-title-font-weight;
+	text-transform: $panel-title-text-transform;
+	color: $panel-title-color;
+}
+
+
+/* Sub-object: .f-panel-badge`
+ ========================================================================== */
+
+.f-panel-badge {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+}
+
+/* Sub-object: .f-panel-teaser`
+ ========================================================================== */
+
+.f-panel-teaser { margin-bottom: $panel-teaser-margin-bottom; }
+
+
+/* Modifier: .f-panel-box`
+ ========================================================================== */
+
+.f-panel-box {
+	background: $panel-box-background;
+	border: $panel-box-border-width solid $panel-box-border-color;
+	color: $panel-box-color;
+	padding: $panel-box-padding;
+}
+
+.f-panel-box-hover:hover {
+	color: $panel-box-hover-color;
+}
+
+.f-panel-box .f-panel-title { color: $panel-box-title-color; }
+
+.f-panel-box .f-panel-badge {
+	top: $panel-box-badge-top;
+	right: $panel-box-badge-right;
+}
+
+.f-panel-box .f-panel-teaser {
+	margin-top: $panel-box-teaser-margin;
+	margin-left: $panel-box-teaser-margin;
+	margin-right: $panel-box-teaser-margin;
+}
+
+/*
+ * Nav in panel
+ */
+
+.f-panel-box > .f-nav-side { margin: 0 (-$panel-box-padding); }
+
+/*
+ * Sub-modifier: .f-panel-box-primary`
+ */
+
+.f-panel-box-primary {
+	background-color: $panel-box-primary-background;
+	border-color: $panel-box-primary-border-color;
+	color: $panel-box-primary-color;
+}
+
+.f-panel-box-primary-hover:hover {
+	color: $panel-box-primary-hover-color;
+}
+
+.f-panel-box-primary .f-panel-title { color: $panel-box-primary-title-color; }
+
+/*
+ * Sub-modifier: .f-panel-box-secondary`
+ */
+
+.f-panel-box-secondary {
+	background-color: $panel-box-secondary-background;
+	border-color: $panel-box-secondary-border-color;
+	color: $panel-box-secondary-color;
+}
+
+.f-panel-box-secondary-hover:hover {
+	color: $panel-box-secondary-hover-color;
+}
+
+.f-panel-box-secondary .f-panel-title { color: $panel-box-secondary-title-color; }
+
+
+/* Modifier: .f-panel-hover`
+ ========================================================================== */
+
+.f-panel-hover {
+	color: $panel-hover-color;
+	padding: $panel-hover-padding;
+	transition: background-color .2s linear, border-color .2s linear;
+}
+
+.f-panel-hover:hover {
+	background: $panel-hover-hover-background;
+	color: $panel-hover-hover-color;
+}
+
+.f-panel-hover .f-panel-badge {
+	top: $panel-hover-badge-top;
+	right: $panel-hover-badge-right;
+}
+
+.f-panel-hover .f-panel-teaser {
+	margin-top: $panel-hover-teaser-margin;
+	margin-left: $panel-hover-teaser-margin;
+	margin-right: $panel-hover-teaser-margin;
+}
+
+
+/* Modifier: .f-panel-header`
+ ========================================================================== */
+
+.f-panel-header .f-panel-title {
+	padding-bottom: $panel-header-title-padding;
+	border-bottom: $panel-header-title-border-width solid $panel-header-title-border;
+	color: $panel-header-title-color;
+}
+
+
+/* Modifier: .f-panel-space`
+ ========================================================================== */
+
+.f-panel-space { padding: $panel-space-padding; }
+
+.f-panel-space .f-panel-badge {
+	top: $panel-space-padding;
+	right: $panel-space-padding;
+}
+
+
+/* Modifier: .f-panel-bordered`
+ ========================================================================== */
+
+.f-panel-bordered {
+	border: 1px solid darken($panel-box-background, 15);
+
+	&.f-margin-bottom-remove + &.f-margin-top-remove {
+		border-top: 0;
+	}
+}
+
+
+/* Modifier: .f-panel-dashed`
+ ========================================================================== */
+
+.f-panel-dashed {
+	border: 1px dashed darken($panel-box-background, 15);
+
+	&.f-margin-bottom-remove + &.f-margin-top-remove {
+		border-top: 0;
+	}
+}
+
+
+/* Modifier: .f-panel-divider`
+ ========================================================================== */
+
+.f-panel + .f-panel-divider { margin-top: ($panel-divider-gutter * 2) !important; }
+
+.f-panel + .f-panel-divider:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: -($panel-divider-gutter);
+	left: 0;
+	right: 0;
+	border-top: $panel-divider-border-width solid $panel-divider-border;
+}
+
+/* Large screen and bigger */
+@media (min-width: $breakpoint-xlarge) {
+
+	.f-panel + .f-panel-divider { margin-top: ($panel-divider-gutter-large * 2) !important; }
+	.f-panel + .f-panel-divider:before { top: -($panel-divider-gutter-large); }
+
+}

@@ -1,0 +1,70 @@
+// Name:            Description list
+// Description:     Defines styles for description lists
+//
+// Component:       .f-description-list`
+//
+// Modifiers:       .f-description-list-horizontal`
+//                  .f-description-list-line`
+//                  
+// Url:				http://fatkit.fmdev02.fatoffice.co.uk/core/description-list.asp
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$description-list-horizontal-width:             160px;
+$description-list-horizontal-margin-left:       180px;
+
+$description-list-line-margin-top:              5px;
+$description-list-line-border-width:            1px;
+$description-list-line-border:                  #ddd;
+$description-list-line-color:                   #999;
+
+
+/* ========================================================================
+   Component: Description list
+ ========================================================================== */
+
+
+/* Modifier: .f-description-list-horizontal`
+ ========================================================================== */
+
+/* Tablet and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .f-description-list-horizontal {
+    	overflow: hidden;
+    }
+
+    .f-description-list-horizontal > dt {
+        width: $description-list-horizontal-width;
+        float: left;
+        clear: both;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .f-description-list-horizontal > dd {
+    	margin-left: $description-list-horizontal-margin-left;
+    }
+
+}
+
+
+/* Modifier: .f-description-list-line`
+ ========================================================================== */
+
+.f-description-list-line > dt {
+	font-weight: normal;
+}
+
+.f-description-list-line > dt:nth-child(n+2) {
+    margin-top: $description-list-line-margin-top;
+    padding-top: $description-list-line-margin-top;
+    border-top: $description-list-line-border-width solid $description-list-line-border;
+}
+
+.f-description-list-line > dd { color: $description-list-line-color; }

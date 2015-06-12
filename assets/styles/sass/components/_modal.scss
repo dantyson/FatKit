@@ -1,0 +1,292 @@
+// Name:            Modal
+// Description:     Defines styles for modal dialogs
+//
+// Component:       .f-modal`
+//
+// Sub-objects:     .f-modal-dialog`
+//                  .f-modal-close`
+//                  .f-modal-header`
+//                  .f-modal-footer`
+//                  .f-modal-caption`
+//                  .f-modal-spinner`
+//
+// Modifiers:       .f-modal-dialog-lightbox`
+//                  .f-modal-dialog-large`
+//
+// States:          .f-open`
+//
+// Uses:            Close: .f-close`
+//
+// Markup:
+//
+// <!--.f-modal -->
+// <a href="#modal" data-f-modal=""></a>
+// <div id="modal" class=.f-modal">
+//     <div class=.f-modal-dialog">
+//         <a href="" class=.f-modal-close.f-close"></a>
+//         <p></p>
+//     </div>
+// </div>
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$modal-z-index:                                 1010;
+$modal-background:                              rgba(0,0,0,0.6);
+
+$modal-dialog-margin-vertical:                  50px;
+$modal-dialog-padding:                          20px;
+$modal-dialog-width:                            600px;
+$modal-dialog-background:                       #fff;
+
+$modal-dialog-large-width:                      930px;
+$modal-dialog-large-width-large:                1130px;
+
+$modal-header-margin-bottom:                    15px;
+$modal-header-background-color:                 #e5e5e5;
+
+$modal-footer-margin-top:                       15px;
+$modal-footer-background-color:                 #e5e5e5;
+
+$modal-caption-margin-bottom:                   -10px;
+$modal-caption-color:                           #fff;
+
+
+/* ========================================================================
+   Component: Modal
+ ========================================================================== */
+
+/*
+ * This is the modal overlay and modal dialog container
+ * 1. Hide by default
+ * 2. Set fixed position
+ * 3. Allow scrolling for the modal dialog
+ * 4. Mask the background page
+ * 5. Fade-in transition
+ * 6. Deactivate browser history navigation in IE11
+ */
+
+.f-modal {
+	/* 1 */
+	display: none;
+	/* 2 */
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: $modal-z-index;
+	/* 3 */
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	/* 4 */
+	background: $modal-background;
+	/* 5 */
+	opacity: 0;
+	transition: opacity 0.15s linear;
+	/* 6 */
+	touch-action: cross-slide-y pinch-zoom double-tap-zoom;
+}
+
+/*
+ * Open state
+ */
+
+.f-modal.f-open { opacity: 1; }
+
+/*
+ * Prevents duplicated scrollbar caused by 4.
+ */
+
+.f-modal-page,
+.f-modal-page body { overflow: hidden; }
+
+
+/* Sub-object: .f-modal-dialog`
+ ========================================================================== */
+
+/*
+ * 1. Create position context for caption, spinner and close button
+ * 2. Set box sizing
+ * 3. Set style
+ * 4. Slide-in transition
+ */
+
+.f-modal-dialog {
+	/* 1 */
+	position: relative;
+	/* 2 */
+	box-sizing: border-box;
+	margin: $modal-dialog-margin-vertical auto;
+	padding: $modal-dialog-padding;
+	width: $modal-dialog-width;
+	max-width: 100%;
+	max-width: calc(100% - 20px);
+	/* 3 */
+	background: $modal-dialog-background;
+	/* 4 */
+	opacity: 0;
+	transform: translateY(-100px);
+	transition: opacity 0.3s linear, transform 0.3s ease-out;
+}
+
+/* Phone landscape and smaller */
+@media (max-width: $breakpoint-small-max) {
+
+	/*
+	 * Fit in small screen
+	 */
+
+	.f-modal-dialog {
+		width: auto;
+		margin: 10px auto;
+	}
+
+}
+
+/*
+ * Open state
+ */
+
+.f-open .f-modal-dialog {
+	/* 4 */
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.f-modal-dialog > :not([class*='f-modal-']):last-child { margin-bottom: 0; }
+
+
+/* Close in modal
+ ========================================================================== */
+
+.f-modal-dialog > .f-close:first-child {
+	margin: -10px -10px 0 0;
+	float: right;
+}
+
+/*
+ * Remove margin from adjacent element
+ */
+
+.f-modal-dialog > .f-close:first-child + *:not([class*='f-modal-']) { margin-top: 0; }
+
+
+/* Modifier: .f-modal-dialog-lightbox`
+ ========================================================================== */
+
+.f-modal-dialog-lightbox {
+	margin: 15px auto;
+	padding: 0;
+	min-height: 200px;
+	max-width: 95%;
+	max-width: calc(100% - 30px);
+}
+
+/*
+ * Close button
+ */
+
+.f-modal-dialog-lightbox > .f-close:first-child {
+	position: absolute;
+	top: -12px;
+	right: -12px;
+	margin: 0;
+	float: none;
+}
+
+/* Phone landscape and smaller */
+@media (max-width: $breakpoint-small-max) {
+
+	.f-modal-dialog-lightbox > .f-close:first-child {
+		top: -7px;
+		right: -7px;
+	}
+
+}
+
+
+/* Modifier: .f-modal-dialog-large`
+ ========================================================================== */
+
+/* Tablet and bigger */
+@media (min-width: $breakpoint-medium) {
+
+	.f-modal-dialog-large { width: $modal-dialog-large-width; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: $breakpoint-xlarge) {
+
+	.f-modal-dialog-large { width: $modal-dialog-large-width-large; }
+
+}
+
+
+/* Sub-Object: .f-modal-header` and .f-modal-footer`
+ ========================================================================== */
+
+.f-modal-header {
+	background: #fafafa;
+	border-bottom: 1px solid darken($modal-header-background-color, 5);
+	margin: (-$modal-dialog-padding) (-$modal-dialog-padding) $modal-header-margin-bottom;
+	padding: $modal-dialog-padding;
+}
+
+.f-modal-footer {
+	background: #fafafa;
+	border-top: 1px solid darken($modal-footer-background-color, 5);
+	margin: $modal-footer-margin-top (-$modal-dialog-padding) (-$modal-dialog-padding);
+	padding: $modal-dialog-padding;
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.f-modal-header  > :last-child,
+.f-modal-footer  > :last-child { margin-bottom: 0; }
+
+
+/* Sub-Object: .f-modal-caption`
+ ========================================================================== */
+
+.f-modal-caption {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: (-$modal-dialog-padding);
+	margin-bottom: $modal-caption-margin-bottom;
+	color: $modal-caption-color;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+/* Sub-Object: .f-modal-spinner`
+ ========================================================================== */
+
+.f-modal-spinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	font-size: 25px;
+	color: #ddd;
+}
+
+.f-modal-spinner:after {
+	content: "\f110";
+	font-family: FontAwesome;
+	animation: f-rotate 2s infinite linear;
+}

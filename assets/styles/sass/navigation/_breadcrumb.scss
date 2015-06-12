@@ -1,0 +1,76 @@
+// Name:            Breadcrumb
+// Description:     Defines styles for a breadcrumb navigation
+//
+// Component:       .f-breadcrumb`
+//
+// States:          .f-active`
+//
+// Markup:
+//
+// <!--.f-breadcrumb -->
+// <ul class="f-breadcrumb">
+//     <li><a href=""></a></li>
+//     <li><span></span></li>
+//     <li class="f-active"><span></span></li>
+// </ul>
+// 
+// Url:				http://fatkit.fmdev02.fatoffice.co.uk/core/breadcrumb.asp
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$breadcrumb-font-size:                          1rem;
+
+$breadcrumb-divider:                            "/";
+$breadcrumb-divider-margin:                     8px;
+$breadcrumb-disabled-color:                     #999;
+
+
+/* ========================================================================
+   Component: Breadcrumb
+ ========================================================================== */
+
+/*
+ * 1. Remove default list style
+ * 2. Remove whitespace between child elements when using `inline-block`
+ */
+
+.f-breadcrumb {
+    /* 1 */
+    padding: 0;
+    list-style: none;
+    /* 2 */
+    font-size: 0.001px;
+}
+
+
+/* Items
+ ========================================================================== */
+
+/*
+ * Reset whitespace hack
+ */
+
+.f-breadcrumb > li {
+    font-size: $breadcrumb-font-size;
+    vertical-align: top;
+}
+
+.f-breadcrumb > li,
+.f-breadcrumb > li > a,
+.f-breadcrumb > li > span { display: inline-block; }
+
+.f-breadcrumb > li:nth-child(n+2):before {
+    content: $breadcrumb-divider;
+    display: inline-block;
+    margin: 0 $breadcrumb-divider-margin;
+}
+
+/*
+ * Disabled
+ */
+
+.f-breadcrumb > li:not(.f-active) > span { color: $breadcrumb-disabled-color; }

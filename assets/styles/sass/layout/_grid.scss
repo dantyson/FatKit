@@ -1,0 +1,716 @@
+// Name:            Grid
+// Description:     Provides a responsive, fluid and nestable grid
+//
+// Component:       .f-grid`
+//                  .f-width-*`
+//                  .f-push-*`
+//                  .f-pull-*`
+//
+// Modifiers:       .f-grid-collapse`
+//                  .f-grid-small`
+//                  .f-grid-medium`
+//                  .f-grid-divider`
+//                  .f-grid-margin`
+//                  .f-grid-match`
+//                  .f-grid-width-*`
+//
+// Uses:            Panel: .f-panel`
+//
+// Used by:         Dropdown
+//
+// Markup:
+//
+// <!--.f-grid -->
+// <div class="f-grid">
+//     <div class="f-width-1-2"></div>
+//     <div class="f-width-1-2"></div>
+// </div>
+//
+// <!--.f-grid-divider -->
+// <div class="f-grid f-grid-divider">
+//     <div class="f-width-1-2"></div>
+//     <div class="f-width-1-2"></div>
+// </div>
+// <hr class="f-grid-divider">
+// <div class="f-grid f-grid-divider">
+//     <div class="f-width-medium-1-2"></div>
+//     <div class="f-width-medium-1-2"></div>
+// </div>
+// 
+// Url:				http://fatkit.fmdev02.fatoffice.co.uk/core/grid.asp
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$grid-container-max-width:                   	980px;
+$grid-container-padding-horizontal:          	25px;
+
+$grid-container-large-max-width:             	1200px;
+$grid-container-large-padding-horizontal:    	35px;
+
+$grid-gutter-horizontal:                        25px;
+$grid-gutter-vertical:                          25px;
+
+$grid-gutter-large-horizontal:                  35px;
+$grid-gutter-large-vertical:                    35px;
+
+$grid-gutter-small-horizontal:                  10px;
+$grid-gutter-small-vertical:                    10px;
+
+$grid-divider-border:                           #ddd;
+$grid-divider-border-width:                     1px;
+
+
+/* ========================================================================
+   Component: Grid
+ ========================================================================== */
+
+/* Container
+ ========================================================================== */
+
+.f-container {
+	box-sizing: border-box;
+	max-width: $grid-container-max-width;
+	padding: 0 10px;
+
+	/*
+	 * Micro clearfix
+	 */
+
+	&:before,
+	&:after {
+		content: "";
+		display: table;
+	}
+
+	&:after { clear: both; }
+}
+
+/* Large screen and bigger */
+@media (min-width: $breakpoint-xlarge) {
+
+	.f-container {
+		max-width: $grid-container-large-max-width;
+		padding: 0 $grid-container-large-padding-horizontal;
+	}
+
+}
+
+/*
+ * Center container
+ */
+.f-container-center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Grid
+ ========================================================================== */
+
+/*
+ * 1. Makes grid more robust so that it can be used with other block elements like lists
+ */
+.f-grid {
+	display: flex;
+	flex-wrap: wrap;
+	/* 1 */
+	margin: 0 0 0 (-$grid-gutter-horizontal);
+	padding: 0;
+	list-style: none;
+
+	/*
+	 * DEPRECATED
+	 * Micro clearfix
+	 * Can't use `table` because it creates a 1px gap when it becomes a flex item, only in Webkit
+	 */
+	&:before,
+	&:after {
+		content: "";
+		display: block;
+		overflow: hidden;
+	}
+
+	&:after { clear: both; }
+
+	/*
+	 * Grid cell
+	 * 1. Space is allocated solely based on content dimensions
+	 * 2. Makes grid more robust so that it can be used with other block elements
+	 * 3. DEPRECATED Using `float` to support IE9
+	 */
+	> * {
+		/* 1 */
+		flex: none;
+		/* 2 */
+		margin: 0;
+		/* 3 */
+		float: left;
+		padding-left: $grid-gutter-horizontal;
+
+		/*
+		 * Remove margin from the last-child
+		 */
+		> * > :last-child { margin-bottom: 0; }
+	}
+}
+
+
+/* Grid gutter
+ ========================================================================== */
+
+/* Vertical */
+.f-grid + .f-grid,
+.f-grid-margin,
+.f-grid > * > .f-panel + .f-panel { margin-top: $grid-gutter-vertical; }
+
+/* Large screen and bigger */
+@media (min-width: $breakpoint-xlarge) {
+
+	/* Horizontal */
+	.f-grid {
+		margin-left: -$grid-gutter-large-horizontal;
+
+		> * { padding-left: $grid-gutter-large-horizontal; }
+	}
+
+	/* Vertical */
+	.f-grid + .f-grid,
+	.f-grid-margin,
+	.f-grid > * > .f-panel + .f-panel { margin-top: $grid-gutter-large-vertical; }
+
+}
+
+/*
+ * Collapse gutter
+ */
+
+/* Horizontal */
+.f-grid-collapse {
+	margin-left: 0;
+
+	> * { padding-left: 0; }
+}
+
+/* Vertical */
+.f-grid-collapse + .f-grid-collapse,
+.f-grid-collapse > .f-grid-margin,
+.f-grid-collapse > * > .f-panel + .f-panel { margin-top: 0; }
+
+/*
+ * Small gutter
+ */
+
+/* Horizontal */
+.f-grid-small {
+	margin-left: -$grid-gutter-small-horizontal;
+
+	> * { padding-left: $grid-gutter-small-horizontal; }
+}
+
+/* Vertical */
+.f-grid-small + .f-grid-small,
+.f-grid-small > .f-grid-margin,
+.f-grid-small > * > .f-panel + .f-panel { margin-top: $grid-gutter-small-vertical; }
+
+/*
+ * Medium gutter
+ */
+
+/* Horizontal */
+.f-grid-medium {
+	margin-left: -$grid-gutter-horizontal;
+
+	> * { padding-left: $grid-gutter-horizontal; }
+}
+
+
+/* Vertical */
+.f-grid-medium + .f-grid-medium,
+.f-grid-medium > .f-grid-margin,
+.f-grid-medium > * > .f-panel + .f-panel { margin-top: $grid-gutter-vertical; }
+
+
+/* Modifier: .f-grid-divider`
+ ========================================================================== */
+
+/*
+ * Horizontal divider
+ * Only works with the default gutter. Does not work with gutter collapse, small or large.
+ * Does not work with .f-push-*`, .f-pull-*` and not if the columns float into the next row.
+ */
+
+.f-grid-divider:not(:empty) {
+	margin-left: -$grid-gutter-horizontal;
+	margin-right: -$grid-gutter-horizontal;
+}
+
+.f-grid-divider > * {
+	padding-left: $grid-gutter-horizontal;
+	padding-right: $grid-gutter-horizontal;
+}
+
+.f-grid-divider > [class*='f-width-1-']:not(.f-width-1-1):nth-child(n+2),
+.f-grid-divider > [class*='f-width-2-']:nth-child(n+2),
+.f-grid-divider > [class*='f-width-3-']:nth-child(n+2),
+.f-grid-divider > [class*='f-width-4-']:nth-child(n+2),
+.f-grid-divider > [class*='f-width-5-']:nth-child(n+2),
+.f-grid-divider > [class*='f-width-6-']:nth-child(n+2),
+.f-grid-divider > [class*='f-width-7-']:nth-child(n+2),
+.f-grid-divider > [class*='f-width-8-']:nth-child(n+2),
+.f-grid-divider > [class*='f-width-9-']:nth-child(n+2) { border-left: $grid-divider-border-width solid $grid-divider-border; }
+
+/* Tablet and bigger */
+@media (min-width: $breakpoint-medium) {
+
+	.f-grid-divider > [class*='f-width-medium-']:not(.f-width-medium-1-1):nth-child(n+2) { border-left: $grid-divider-border-width solid $grid-divider-border; }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+	.f-grid-divider > [class*='f-width-large-']:not(.f-width-large-1-1):nth-child(n+2) { border-left: $grid-divider-border-width solid $grid-divider-border; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: $breakpoint-xlarge) {
+
+	/*
+	 * Large gutter
+	 */
+	.f-grid-divider:not(:empty) {
+		margin-left: -$grid-gutter-large-horizontal;
+		margin-right: -$grid-gutter-large-horizontal;
+	}
+
+	.f-grid-divider > * {
+		padding-left: $grid-gutter-large-horizontal;
+		padding-right: $grid-gutter-large-horizontal;
+	}
+
+	.f-grid-divider:empty {
+		margin-top: $grid-gutter-large-vertical;
+		margin-bottom: $grid-gutter-large-vertical;
+	}
+
+}
+
+/*
+ * Vertical divider
+ */
+
+.f-grid-divider:empty {
+	margin-top: $grid-gutter-vertical;
+	margin-bottom: $grid-gutter-vertical;
+	border-top: $grid-divider-border-width solid $grid-divider-border;
+}
+
+/* Match panels in grids
+ ========================================================================== */
+
+.f-grid-match > * {
+	display: flex;
+
+	/*
+	 * 1. Behave like a block element
+	 */
+	> * {
+		flex: none;
+		/* 1 */
+		box-sizing: border-box;
+		width: 100%;
+	}
+}
+
+
+/* Even grid cell widths
+ ========================================================================== */
+
+[class*='f-grid-width'] > * {
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.f-grid-width-1-2 > * { width: 50%; }
+.f-grid-width-1-3 > * { width: 33.333%; }
+.f-grid-width-1-4 > * { width: 25%; }
+.f-grid-width-1-5 > * { width: 20%; }
+.f-grid-width-1-6 > * { width: 16.666%; }
+.f-grid-width-1-10 > * { width: 10%; }
+
+/* Phone landscape and bigger */
+@media (min-width: $breakpoint-small) {
+
+	.f-grid-width-small-1-2 > * { width: 50%; }
+	.f-grid-width-small-1-3 > * { width: 33.333%; }
+	.f-grid-width-small-1-4 > * { width: 25%; }
+	.f-grid-width-small-1-5 > * { width: 20%; }
+	.f-grid-width-small-1-6 > * { width: 16.666%; }
+	.f-grid-width-small-1-10 > * { width: 10%; }
+
+}
+
+/* Tablet and bigger */
+@media (min-width: $breakpoint-medium) {
+
+	.f-grid-width-medium-1-2 > * { width: 50%; }
+	.f-grid-width-medium-1-3 > * { width: 33.333%; }
+	.f-grid-width-medium-1-4 > * { width: 25%; }
+	.f-grid-width-medium-1-5 > * { width: 20%; }
+	.f-grid-width-medium-1-6 > * { width: 16.666%; }
+	.f-grid-width-medium-1-10 > * { width: 10%; }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+	.f-grid-width-large-1-2 > * { width: 50%; }
+	.f-grid-width-large-1-3 > * { width: 33.333%; }
+	.f-grid-width-large-1-4 > * { width: 25%; }
+	.f-grid-width-large-1-5 > * { width: 20%; }
+	.f-grid-width-large-1-6 > * { width: 16.666%; }
+	.f-grid-width-large-1-10 > * { width: 10%; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: $breakpoint-xlarge) {
+
+	.f-grid-width-xlarge-1-2 > * { width: 50%; }
+	.f-grid-width-xlarge-1-3 > * { width: 33.333%; }
+	.f-grid-width-xlarge-1-4 > * { width: 25%; }
+	.f-grid-width-xlarge-1-5 > * { width: 20%; }
+	.f-grid-width-xlarge-1-6 > * { width: 16.666%; }
+	.f-grid-width-xlarge-1-10 > * { width: 10%; }
+
+}
+
+
+/* Sub-objects: .f-width-*`
+ ========================================================================== */
+
+[class*='f-width'] {
+	box-sizing: border-box;
+	width: 100%;
+}
+
+/*
+ * Widths
+ */
+
+/* Whole */
+.f-width-1-1 { width: 100%; }
+
+/* Halves */
+.f-width-1-2,
+.f-width-2-4,
+.f-width-3-6,
+.f-width-5-10 { width: 50%; }
+
+/* Thirds */
+.f-width-1-3,
+.f-width-2-6 { width: 33.333%; }
+.f-width-2-3,
+.f-width-4-6 { width: 66.666%; }
+
+/* Quarters */
+.f-width-1-4 { width: 25%; }
+.f-width-3-4 { width: 75%; }
+
+/* Fifths */
+.f-width-1-5,
+.f-width-2-10 { width: 20%; }
+.f-width-2-5,
+.f-width-4-10 { width: 40%; }
+.f-width-3-5,
+.f-width-6-10 { width: 60%; }
+.f-width-4-5,
+.f-width-8-10 { width: 80%; }
+
+/* Sixths */
+.f-width-1-6 { width: 16.666%; }
+.f-width-5-6 { width: 83.333%; }
+
+/* Tenths */
+.f-width-1-10 { width: 10%; }
+.f-width-3-10 { width: 30%; }
+.f-width-7-10 { width: 70%; }
+.f-width-9-10 { width: 90%; }
+
+/* Phone landscape and bigger */
+@media (min-width: $breakpoint-small) {
+
+	/* Whole */
+	.f-width-small-1-1 { width: 100%; }
+
+	/* Halves */
+	.f-width-small-1-2,
+	.f-width-small-2-4,
+	.f-width-small-3-6,
+	.f-width-small-5-10 { width: 50%; }
+
+	/* Thirds */
+	.f-width-small-1-3,
+	.f-width-small-2-6 { width: 33.333%; }
+	.f-width-small-2-3,
+	.f-width-small-4-6 { width: 66.666%; }
+
+	/* Quarters */
+	.f-width-small-1-4 { width: 25%; }
+	.f-width-small-3-4 { width: 75%; }
+
+	/* Fifths */
+	.f-width-small-1-5,
+	.f-width-small-2-10 { width: 20%; }
+	.f-width-small-2-5,
+	.f-width-small-4-10 { width: 40%; }
+	.f-width-small-3-5,
+	.f-width-small-6-10 { width: 60%; }
+	.f-width-small-4-5,
+	.f-width-small-8-10 { width: 80%; }
+
+	/* Sixths */
+	.f-width-small-1-6 { width: 16.666%; }
+	.f-width-small-5-6 { width: 83.333%; }
+
+	/* Tenths */
+	.f-width-small-1-10 { width: 10%; }
+	.f-width-small-3-10 { width: 30%; }
+	.f-width-small-7-10 { width: 70%; }
+	.f-width-small-9-10 { width: 90%; }
+
+}
+
+/* Tablet and bigger */
+@media (min-width: $breakpoint-medium) {
+
+	/* Whole */
+	.f-width-medium-1-1 { width: 100%; }
+
+	/* Halves */
+	.f-width-medium-1-2,
+	.f-width-medium-2-4,
+	.f-width-medium-3-6,
+	.f-width-medium-5-10 { width: 50%; }
+
+	/* Thirds */
+	.f-width-medium-1-3,
+	.f-width-medium-2-6 { width: 33.333%; }
+	.f-width-medium-2-3,
+	.f-width-medium-4-6 { width: 66.666%; }
+
+	/* Quarters */
+	.f-width-medium-1-4 { width: 25%; }
+	.f-width-medium-3-4 { width: 75%; }
+
+	/* Fifths */
+	.f-width-medium-1-5,
+	.f-width-medium-2-10 { width: 20%; }
+	.f-width-medium-2-5,
+	.f-width-medium-4-10 { width: 40%; }
+	.f-width-medium-3-5,
+	.f-width-medium-6-10 { width: 60%; }
+	.f-width-medium-4-5,
+	.f-width-medium-8-10 { width: 80%; }
+
+	/* Sixths */
+	.f-width-medium-1-6 { width: 16.666%; }
+	.f-width-medium-5-6 { width: 83.333%; }
+
+	/* Tenths */
+	.f-width-medium-1-10 { width: 10%; }
+	.f-width-medium-3-10 { width: 30%; }
+	.f-width-medium-7-10 { width: 70%; }
+	.f-width-medium-9-10 { width: 90%; }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+	/* Whole */
+	.f-width-large-1-1 { width: 100%; }
+
+	/* Halves */
+	.f-width-large-1-2,
+	.f-width-large-2-4,
+	.f-width-large-3-6,
+	.f-width-large-5-10 { width: 50%; }
+
+	/* Thirds */
+	.f-width-large-1-3,
+	.f-width-large-2-6 { width: 33.333%; }
+	.f-width-large-2-3,
+	.f-width-large-4-6 { width: 66.666%; }
+
+	/* Quarters */
+	.f-width-large-1-4 { width: 25%; }
+	.f-width-large-3-4 { width: 75%; }
+
+	/* Fifths */
+	.f-width-large-1-5,
+	.f-width-large-2-10 { width: 20%; }
+	.f-width-large-2-5,
+	.f-width-large-4-10 { width: 40%; }
+	.f-width-large-3-5,
+	.f-width-large-6-10 { width: 60%; }
+	.f-width-large-4-5,
+	.f-width-large-8-10 { width: 80%; }
+
+	/* Sixths */
+	.f-width-large-1-6 { width: 16.666%; }
+	.f-width-large-5-6 { width: 83.333%; }
+
+	/* Tenths */
+	.f-width-large-1-10 { width: 10%; }
+	.f-width-large-3-10 { width: 30%; }
+	.f-width-large-7-10 { width: 70%; }
+	.f-width-large-9-10 { width: 90%; }
+
+}
+
+/* Large desktop and bigger */
+@media (min-width: $breakpoint-xlarge) {
+
+	/* Whole */
+	.f-width-xlarge-1-1 { width: 100%; }
+
+	/* Halves */
+	.f-width-xlarge-1-2,
+	.f-width-xlarge-2-4,
+	.f-width-xlarge-3-6,
+	.f-width-xlarge-5-10 { width: 50%; }
+
+	/* Thirds */
+	.f-width-xlarge-1-3,
+	.f-width-xlarge-2-6 { width: 33.333%; }
+	.f-width-xlarge-2-3,
+	.f-width-xlarge-4-6 { width: 66.666%; }
+
+	/* Quarters */
+	.f-width-xlarge-1-4 { width: 25%; }
+	.f-width-xlarge-3-4 { width: 75%; }
+
+	/* Fifths */
+	.f-width-xlarge-1-5,
+	.f-width-xlarge-2-10 { width: 20%; }
+	.f-width-xlarge-2-5,
+	.f-width-xlarge-4-10 { width: 40%; }
+	.f-width-xlarge-3-5,
+	.f-width-xlarge-6-10 { width: 60%; }
+	.f-width-xlarge-4-5,
+	.f-width-xlarge-8-10 { width: 80%; }
+
+	/* Sixths */
+	.f-width-xlarge-1-6 { width: 16.666%; }
+	.f-width-xlarge-5-6 { width: 83.333%; }
+
+	/* Tenths */
+	.f-width-xlarge-1-10 { width: 10%; }
+	.f-width-xlarge-3-10 { width: 30%; }
+	.f-width-xlarge-7-10 { width: 70%; }
+	.f-width-xlarge-9-10 { width: 90%; }
+
+}
+
+
+/* Sub-object: .f-push-*` and .f-pull-*`
+ ========================================================================== */
+
+/*
+ * Source ordering
+ * Works only with .f-width-medium-*`
+ */
+
+/* Tablet and bigger */
+@media (min-width: $breakpoint-medium) {
+
+	[class*='f-push-'],
+	[class*='f-pull-'] { position: relative; }
+
+	/*
+	 * Push
+	 */
+
+	/* Halves */
+	.f-push-1-2,
+	.f-push-2-4,
+	.f-push-3-6,
+	.f-push-5-10 { left: 50%; }
+
+	/* Thirds */
+	.f-push-1-3,
+	.f-push-2-6 { left: 33.333%; }
+	.f-push-2-3,
+	.f-push-4-6 { left: 66.666%; }
+
+	/* Quarters */
+	.f-push-1-4 { left: 25%; }
+	.f-push-3-4 { left: 75%; }
+
+	/* Fifths */
+	.f-push-1-5,
+	.f-push-2-10 { left: 20%; }
+	.f-push-2-5,
+	.f-push-4-10 { left: 40%; }
+	.f-push-3-5,
+	.f-push-6-10 { left: 60%; }
+	.f-push-4-5,
+	.f-push-8-10 { left: 80%; }
+
+	/* Sixths */
+	.f-push-1-6 { left: 16.666%; }
+	.f-push-5-6 { left: 83.333%; }
+
+	/* Tenths */
+	.f-push-1-10 { left: 10%; }
+	.f-push-3-10 { left: 30%; }
+	.f-push-7-10 { left: 70%; }
+	.f-push-9-10 { left: 90%; }
+
+	/*
+	 * Pull
+	 */
+
+	 /* Halves */
+	 .f-pull-1-2,
+	 .f-pull-2-4,
+	 .f-pull-3-6,
+	 .f-pull-5-10 { left: -50%; }
+
+	 /* Thirds */
+	 .f-pull-1-3,
+	 .f-pull-2-6 { left: -33.333%; }
+	 .f-pull-2-3,
+	 .f-pull-4-6 { left: -66.666%; }
+
+	 /* Quarters */
+	 .f-pull-1-4 { left: -25%; }
+	 .f-pull-3-4 { left: -75%; }
+
+	 /* Fifths */
+	 .f-pull-1-5,
+	 .f-pull-2-10 { left: -20%; }
+	 .f-pull-2-5,
+	 .f-pull-4-10 { left: -40%; }
+	 .f-pull-3-5,
+	 .f-pull-6-10 { left: -60%; }
+	 .f-pull-4-5,
+	 .f-pull-8-10 { left: -80%; }
+
+	 /* Sixths */
+	 .f-pull-1-6 { left: -16.666%; }
+	 .f-pull-5-6 { left: -83.333%; }
+
+	 /* Tenths */
+	 .f-pull-1-10 { left: -10%; }
+	 .f-pull-3-10 { left: -30%; }
+	 .f-pull-7-10 { left: -70%; }
+	 .f-pull-9-10 { left: -90%; }
+
+}

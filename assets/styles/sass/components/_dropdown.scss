@@ -1,0 +1,260 @@
+// Name:            Dropdown
+// Description:     Defines styles for a toggleable dropdown
+//
+// Component:       .f-dropdown`
+//
+// Modifiers:       .f-dropdown-flip`
+//                  .f-dropdown-center`
+//                  .f-dropdown-justify`
+//                  .f-dropdown-up`
+//                  .f-dropdown-grid`
+//                  .f-dropdown-width-2`
+//                  .f-dropdown-width-3`
+//                  .f-dropdown-width-4`
+//                  .f-dropdown-width-5`
+//                  .f-dropdown-stack`
+//                  .f-dropdown-small`
+//                  .f-dropdown-navbar`
+//                  .f-dropdown-scrollable`
+//
+// States:          .f-open`
+//
+// Uses:            Animation
+//                  Grid: .f-width-*`
+//                  Panel: .f-panel`
+//                  Nav: .f-nav`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$dropdown-z-index:                              970;
+$dropdown-width:                                200px;
+$dropdown-margin-top:                           5px;
+$dropdown-padding:                              15px;
+$dropdown-background:                           #fff;
+$dropdown-color:                                #444;
+$dropdown-font-size:                            1rem;
+$dropdown-animation:                            f-fade;
+$dropdown-border-width:							1px;
+$dropdown-border-color:							#e5e5e5;
+
+$dropdown-divider-border-width:                 1px;
+$dropdown-divider-border:                       #ddd;
+
+$dropdown-small-padding:                        5px;
+
+$dropdown-navbar-margin:                        0;
+$dropdown-navbar-background:                    #fff;
+$dropdown-navbar-color:                         #444;
+$dropdown-navbar-animation:                     f-slide-top-fixed;
+
+$dropdown-scrollable-height:                    200px;
+
+
+/* ========================================================================
+   Component: Dropdown
+ ========================================================================== */
+
+/*
+ * 1. Hide by default
+ * 2. Set position
+ * 3. Box-sizing is needed for .f-dropdown-justify`
+ * 4. Set style
+ * 5. Reset button group whitespace hack
+ */
+
+.f-dropdown {
+	/* 1 */
+	display: none;
+	/* 2 */
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: $dropdown-z-index;
+	/* 3 */
+	box-sizing: border-box;
+	/* 4 */
+	width: $dropdown-width;
+	margin-top: $dropdown-margin-top;
+	padding: $dropdown-padding;
+	background: $dropdown-background;
+	color: $dropdown-color;
+	/* 5 */
+	font-size: $dropdown-font-size;
+	vertical-align: top;
+	border: $dropdown-border-width solid $dropdown-border-color;
+}
+
+/*
+ * 1. Show dropdown
+ * 2. Set animation
+ * 3. Needed for scale animation
+ */
+
+.f-open > .f-dropdown {
+	/* 1 */
+	display: block;
+	/* 2 */
+	animation: $dropdown-animation 0.2s ease-in-out;
+	/* 3 */
+	transform-origin: 0 0;
+}
+
+/* Alignment modifiers
+ ========================================================================== */
+
+/*
+ * Modifier .f-dropdown-flip`
+ */
+
+.f-dropdown-flip {
+	left: auto;
+	right: 0;
+}
+
+/*
+ * Modifier .f-dropdown-up`
+ */
+
+.f-dropdown-up {
+	top: auto;
+	bottom: 100%;
+	margin-top: auto;
+	margin-bottom: $dropdown-margin-top;
+}
+
+
+/* Nav in dropdown
+ ========================================================================== */
+
+.f-dropdown .f-nav { margin: 0 (-$dropdown-padding); }
+
+
+/* Grid and panel in dropdown
+ ========================================================================== */
+
+/*
+* Vertical gutter
+*/
+
+/*
+ * Grid
+ * Higher specificity to override large gutter
+ */
+
+.f-grid .f-dropdown-grid + .f-dropdown-grid { margin-top: $dropdown-padding; }
+
+/* Panels */
+.f-dropdown-grid > [class*='f-width-'] > .f-panel + .f-panel { margin-top: $dropdown-padding; }
+
+/* Tablet and bigger */
+@media (min-width: $breakpoint-medium) {
+
+	/*
+	 * Horizontal gutter
+	 */
+
+	.f-dropdown:not(.f-dropdown-stack) > .f-dropdown-grid {
+		margin-left: -$dropdown-padding ;
+		margin-right: -$dropdown-padding;
+	}
+
+	.f-dropdown:not(.f-dropdown-stack) > .f-dropdown-grid > [class*='f-width-'] {
+		padding-left: $dropdown-padding;
+		padding-right: $dropdown-padding;
+	}
+
+	/*
+	 * Column divider
+	 */
+
+	.f-dropdown:not(.f-dropdown-stack) > .f-dropdown-grid > [class*='f-width-']:nth-child(n+2) { border-left: $dropdown-divider-border-width solid $dropdown-divider-border; }
+
+	/*
+	 * Width multiplier for dropdown columns
+	 */
+
+	.f-dropdown-width-2:not(.f-dropdown-stack) { width: ($dropdown-width * 2); }
+	.f-dropdown-width-3:not(.f-dropdown-stack) { width: ($dropdown-width * 3); }
+	.f-dropdown-width-4:not(.f-dropdown-stack) { width: ($dropdown-width * 4); }
+	.f-dropdown-width-5:not(.f-dropdown-stack) { width: ($dropdown-width * 5); }
+
+}
+
+/* Phone landscape and smaller */
+@media (max-width: $breakpoint-small-max) {
+
+	/*
+	 * Stack columns and take full width
+	 */
+
+	.f-dropdown-grid > [class*='f-width-'] { width: 100%; }
+
+	/*
+	 * Vertical gutter
+	 */
+
+	.f-dropdown-grid > [class*='f-width-']:nth-child(n+2) { margin-top: $dropdown-padding; }
+
+}
+
+/*
+* Stack grid columns
+*/
+
+.f-dropdown-stack > .f-dropdown-grid > [class*='f-width-'] { width: 100%; }
+
+.f-dropdown-stack > .f-dropdown-grid > [class*='f-width-']:nth-child(n+2) { margin-top: $dropdown-padding; }
+
+
+
+/* Modifier .f-dropdown-small`
+ ========================================================================== */
+
+/*
+ * Set min-width and text expands dropdown if needed
+ */
+
+.f-dropdown-small {
+	min-width: 150px;
+	width: auto;
+	padding: $dropdown-small-padding;
+	white-space: nowrap;
+}
+
+/*
+ * Nav in dropdown
+ */
+
+.f-dropdown-small .f-nav { margin: 0 (-$dropdown-small-padding); }
+
+
+/* Modifier: .f-dropdown-navbar`
+ ========================================================================== */
+
+.f-dropdown-navbar {
+	margin-top: $dropdown-navbar-margin;
+	background: $dropdown-navbar-background;
+	color: $dropdown-navbar-color;
+	border-top: 0;
+}
+
+.f-open > .f-dropdown-navbar {
+	animation: $dropdown-navbar-animation 0.2s ease-in-out;
+}
+
+
+/* Modifier .f-dropdown-scrollable`
+ ========================================================================== */
+
+/*
+ * Usefull for long lists
+ */
+
+.f-dropdown-scrollable {
+	overflow-y: auto;
+	max-height: $dropdown-scrollable-height;
+}

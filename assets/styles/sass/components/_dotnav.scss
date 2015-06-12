@@ -1,0 +1,170 @@
+// Name:            Dotnav
+// Description:     Defines styles for a dot navigation
+//
+// Component:       .f-dotnav`
+//
+// Modifier:        .f-dotnav-contrast`
+//                  .f-dotnav-vertical`
+//
+// States:          .f-active`
+//
+// Markup:
+//
+// <!--.f-dotnav -->
+// <ul class=.f-dotnav">
+//     <li class=.f-active"><a href=""></a></li>
+//     <li><a href=""></a></li>
+// </ul>
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$dotnav-margin-horizontal:                      15px;
+$dotnav-margin-vertical:                        $dotnav-margin-horizontal;
+
+$dotnav-width:                                  20px;
+$dotnav-height:                                 $dotnav-width;
+$dotnav-background:                             rgba(50,50,50,0.1);
+
+$dotnav-hover-background:                       rgba(50,50,50,0.4);
+$dotnav-onclick-background:                     rgba(50,50,50,0.6);
+$dotnav-active-background:                      rgba(50,50,50,0.4);
+
+$dotnav-contrast-background:                    rgba(255,255,255,0.4);
+$dotnav-contrast-hover-background:              rgba(255,255,255,0.7);
+$dotnav-contrast-onclick-background:            rgba(255,255,255,0.9);
+$dotnav-contrast-active-background:             rgba(255,255,255,0.9);
+
+
+/* ========================================================================
+   Component: Dotnav
+ ========================================================================== */
+
+/*
+ * 1. Gutter
+ * 2. Remove default list style
+ */
+.f-dotnav {
+	display: flex;
+	flex-wrap: wrap;
+	/* 1 */
+	margin-left: -$dotnav-margin-horizontal;
+	margin-top: -$dotnav-margin-vertical;
+	/* 2 */
+	padding: 0;
+	list-style: none;
+
+	/*
+	 * DEPRECATED IE9 Support
+	 */
+	&:before,
+	&:after {
+		content: "";
+		display: block;
+		overflow: hidden;
+	}
+
+	&:after { clear: both; }
+}
+
+/*
+ * 1. Space is allocated solely based on content dimensions
+ * 2. Horizontal gutter is using `padding` so .f-width-*` classes can be applied
+ */
+.f-dotnav > * {
+	/* 1 */
+	flex: none;
+	float: left;
+	/* 2 */
+	padding-left: $dotnav-margin-horizontal;
+	margin-top: $dotnav-margin-vertical;
+}
+
+
+/* Items
+ ========================================================================== */
+
+/*
+ * Items
+ * 1. Hide text if present
+ */
+.f-dotnav > * > * {
+	display: block;
+	box-sizing: content-box;
+	width: $dotnav-width;
+	height: $dotnav-height;
+	border-radius: 50%;
+	background: $dotnav-background;
+	/* 1 */
+	text-indent: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+
+	/*
+	 * Hover
+	 * 1. Apply hover style also to focus state
+	 * 2. Remove default focus style
+	 */
+	&:hover,
+	&:focus { // 1
+		background: $dotnav-hover-background;
+		/* 2 */
+		outline: none;
+	}
+
+	/* OnClick */
+	&:active {
+		background: $dotnav-onclick-background;
+	}
+}
+
+/* Active */
+.f-dotnav > *.f-active > * {
+	background: $dotnav-active-background;
+}
+
+
+/* Modifier: .f-dotnav-contrast`
+ ========================================================================== */
+
+.f-dotnav-contrast > * > * {
+	background: $dotnav-contrast-background;
+
+	/*
+	 * Hover
+	 * 1. Apply hover style also to focus state
+	 */
+	&:hover,
+	&:focus { // 1
+		background: $dotnav-contrast-hover-background;
+	}
+
+	/* OnClick */
+	&:active {
+		background: $dotnav-contrast-onclick-background;
+	}
+}
+
+/* Active */
+.f-dotnav-contrast > *.f-active > * {
+	background: $dotnav-contrast-active-background;
+}
+
+
+/* Modifier: .f-dotnav-vertical'
+ ========================================================================== */
+
+/*
+ * DEPRECATED
+ */
+.f-dotnav-vertical {
+	flex-direction: column;
+}
+
+/*
+ * DEPRECATED IE9 Support
+ */
+.f-dotnav-vertical > * { float: none; }

@@ -1,0 +1,883 @@
+<!doctype html>
+<!--[if lt IE 8]><html class="no-js lt-ie9 lt-ie8"lang="en"> <![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9"lang="en"><![endif]-->
+<!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9"lang="en"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Prefetch the DNS for externally hosted files - http://goo.gl/TOCXgm -->
+		<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+		<link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+		<title></title>
+
+		<link rel="stylesheet" href="/assets/styles/css/style.css">
+
+		<!-- Viewport Meta-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- SEO Meta -->
+		<meta name="description" content="">
+		<meta name="robots" content="INDEX,FOLLOW">
+
+		<!-- Favicons -->
+		<link rel="shortcut icon" type="image/ico" href="http://fatkit.fmdev02.fatoffice.co.uk/favicon.ico">
+		<link rel="apple-touch-icon" href="http://fatkit.fmdev02.fatoffice.co.uk/apple-touch-icon-precomposed.png">
+		<meta name="apple-mobile-web-app-title" content="">
+
+		<!-- Windows 8 Pin app to start screen -->
+		<meta name="msapplication-TileColor" content="">
+		<meta name="msapplication-TileImage" content="/apple-touch-icon-precomposed.png">
+	</head>
+	<body>
+		<nav class="f-navbar f-navbar-attached f-navbar-padded">
+			<div class="f-container f-container-center">
+				<a class="f-navbar-brand f-hidden-small" href="">YourSite</a>
+				<ul class="f-navbar-nav f-hidden-small">
+					<li class="f-active"><a href="">Active</a></li>
+					<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/core/">Documentation</a></li>
+					<li class="f-parent" data-f-dropdown="">
+						<a href="">Parent</a>
+						<div class="f-dropdown f-dropdown-navbar">
+							<ul class="f-nav f-nav-navbar">
+								<li><a href="#">Item</a></li>
+								<li><a href="#">Another item</a></li>
+								<li class="f-nav-header">Header</li>
+								<li><a href="#">Item</a></li>
+								<li><a href="#">Another item</a></li>
+								<li class="f-nav-divider"></li>
+								<li><a href="#">Separated item</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+				<a href="#test-offcanvas" class="f-navbar-toggle f-visible-small" data-f-offcanvas></a>
+				<div class="f-navbar-flip">
+					<a href="" class="f-navbar-toggle f-navbar-toggle-alt f-visible-small"></a>
+					<ul class="f-navbar-nav f-hidden-small">
+						<li class="f-parent" data-f-dropdown>
+							<a href="">Parent</a>
+							<div class="f-dropdown f-dropdown-navbar">
+								<ul class="f-nav f-nav-navbar">
+									<li><a href="#">Item</a></li>
+									<li><a href="#">Another item</a></li>
+									<li class="f-nav-header">Header</li>
+									<li><a href="#">Item</a></li>
+									<li><a href="#">Another item</a></li>
+									<li class="f-nav-divider"></li>
+									<li><a href="#">Separated item</a></li>
+								</ul>
+							</div>
+						</li>
+						<li><a href="">Item</a></li>
+						<li class="f-active"><a href="">Active</a></li>
+					</ul>
+				</div>
+				<div class="f-navbar-brand f-navbar-center f-visible-small">YourSite</div>
+			</div>
+		</nav>
+		<header>
+			<figure class="f-overlay f-overlay-hover">
+				<img src="http://placehold.it/1920x650" alt="Image">
+				<figcaption class="f-overlay-panel f-overlay-fade f-overlay-background f-flex f-flex-center f-flex-middle f-text-center">
+					<div>
+						<h2>FatKit is here</h2>
+						<p>Lorem ipsum dolor sit amet.</p>
+						<p><span class="f-btn f-btn-large f-btn-primary">A modal</span></p>
+					</div>
+				</figcaption>
+				<a class="f-position-cover" href="#test-modal" data-f-modal></a>
+			</figure>
+		</header>
+		<main role="main">
+			<div class="f-container f-container-center">
+				<div class="f-grid" data-f-grid-margin>
+					<div class="f-width-medium-1-4 f-hidden-small">
+						<ul class="f-nav f-nav-side" data-f-scrollspy-nav="{ closest : 'li', smoothscroll : { offset : 20 } }" data-f-sticky="{ top : 20 }">
+							<li class="f-nav-header">Navigation</li>
+							<li><a href="#base">Base</a></li>
+							<li><a href="#helpers">Helpers</a></li>
+							<li><a href="#mixins">Mixins</a></li>
+							<li><a href="#print">Print</a></li>
+							<li><a href="#variables">Variables</a></li>
+						</ul>
+					</div>
+					<div class="tm-main f-width-medium-3-4">
+
+						<article class="f-article" id="base">
+
+							<h1 class="f-article-title">Welcome To FatKit</h1>
+
+							<p class="f-article-lead">Here's the <strong>base</strong> providing the default style for all HTML elements.</p>
+
+							<p>This component defines the base look of your page. It offers great typography by setting the default colors, margins, font-sizes and more for each HTML element. This page is a short guide on how to use basic HTML elements and how FatKit styles them.</p>
+
+							<p><span class="f-badge">Note</span> Basically FatKit utilizes the famous <a href="http://necolas.github.com/normalize.css">Normalize.css</a>, but distributed it among all components. Only the necessary parts are adopted into the Base component to keep the unprefixed CSS as small as possible. Most of the normalization related CSS is moved into the <a href="http://fatkit.fmdev02.fatoffice.co.uk/core/form.asp">Form</a>, <a href="http://fatkit.fmdev02.fatoffice.co.uk/core/button.asp" data-f-modal="{ selector : 'article' }">Button</a> and <a href="http://fatkit.fmdev02.fatoffice.co.uk/core/table.asp">Table</a> components. This makes FatKit and its components very robust against conflicts with other CSS frameworks so that you don't have to worry about browser inconsistencies in your projects.</p>
+
+							<hr class="f-article-divider">
+
+							<h2 id="headings"><a href="#headings" class="f-link-reset">Headings</a></h2>
+
+							<p>Use the <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> elements to define your headings.</p>
+
+							<h3 class="tm-article-subtitle">Example</h3>
+
+							<h1>h1 Heading 1</h1>
+							<h2>h2 Heading 2</h2>
+							<h3>h3 Heading 3</h3>
+							<h4>h4 Heading 4</h4>
+							<h5>h5 Heading 5</h5>
+							<h6>h6 Heading 6</h6>
+
+							<p>You can add the <code>.f-h1</code>, <code>.f-h2</code>, <code>.f-h3</code>, <code>.f-h4</code>, <code>.f-h5</code> or <code>.f-h6</code> class to alter the size of your headings, for example have a <code>h1</code> look like a <code>h3</code>.</p>
+
+							<hr class="f-article-divider">
+
+							<h2 id="paragraphs"><a href="#paragraphs" class="f-link-reset">Paragraphs</a></h2>
+
+							<p>The global font-size, line-height and regular margins between elements are set through variables, which can be customized. Paragraphs and other block elements stick to these values.</p>
+
+							<hr class="f-article-divider">
+
+							<h2 id="text-level-semantics"><a href="#text-level-semantics" class="f-link-reset">Text-level semantics</a></h2>
+
+							<p>The following list gives you a short overview of the most commonly used text-level semantics and how to utilize them.</p>
+
+							<div class="f-overflow-container">
+								<table class="f-table f-table-hover f-table-condensed f-text-nowrap">
+									<thead>
+										<tr>
+											<th class="f-width-1-4">Element</th>
+											<th class="f-width-3-4">Description</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><code>&lt;a&gt;</code></td>
+											<td>Turn text into hypertext using the <a href="#">a element</a>.</td>
+										</tr>
+										<tr>
+											<td><code>&lt;em&gt;</code></td>
+											<td>Emphasize text using the <em>em element</em>.</td>
+										</tr>
+										<tr>
+											<td><code>&lt;strong&gt;</code></td>
+											<td>Imply any extra importance using the <strong>strong element</strong>.</td>
+										</tr>
+										<tr>
+											<td><code>&lt;code&gt;</code></td>
+											<td>Define inline code snippets using the <code>code element</code>.</td>
+										</tr>
+										<tr>
+											<td><code>&lt;del&gt;</code></td>
+											<td>Mark document changes as deleted text using the <del>del element</del>.</td>
+										</tr>
+										<tr>
+											<td><code>&lt;ins&gt;</code></td>
+											<td>Mark document changes as inserted text using the <ins>ins element</ins>.</td>
+										</tr>
+										<tr>
+											<td><code>&lt;mark&gt;</code></td>
+											<td>Highlight text with no semantic meaning using the <mark>mark element</mark>.</td>
+										</tr>
+										<tr>
+											<td><code>&lt;q&gt;</code></td>
+											<td>Define inline quotations using <q>q element <q>inside</q> a q element</q>.</td>
+										</tr>
+										<tr>
+											<td><code>&lt;abbr&gt;</code></td>
+											<td>Define an abbreviation using the <abbr title="Abbreviation Element">abbr element</abbr> with a title.</td>
+										</tr>
+										<tr>
+											<td><code>&lt;dfn&gt;</code></td>
+											<td>Define a definition term using the <dfn title="Defines a definition term">dfn element</dfn> with a title.</td>
+										</tr>
+										<tr>
+											<td><code>&lt;small&gt;</code></td>
+											<td>De-emphasize text for small print using the <small>small element</small>.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<hr class="f-article-divider">
+
+							<h2 id="horizontal-rule"><a href="#horizontal-rule" class="f-link-reset">Horizontal rule</a></h2>
+
+							<p>Create a horizontal rule by using the <code>&lt;hr&gt;</code> element.</p>
+
+							<h3 class="tm-article-subtitle">Example</h3>
+
+							<hr>
+
+							<hr class="f-article-divider">
+
+							<h2 id="blockquotes"><a href="#blockquotes" class="f-link-reset">Blockquotes</a></h2>
+
+							<p>For quoting multiple lines of content from another source within your document, use the <code>&lt;blockquote&gt;</code> element.</p>
+
+							<h3 class="tm-article-subtitle">Example</h3>
+
+							<blockquote>
+								<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+								<small>Someone famous</small>
+							</blockquote>
+
+							<h3 class="tm-article-subtitle">Markup</h3>
+
+<pre><code>&lt;blockquote&gt;
+	&lt;p&gt;Quotation&lt;/p&gt;
+	&lt;small&gt;Source&lt;/small&gt;
+&lt;/blockquote&gt;</code></pre>
+
+							<hr class="f-article-divider">
+
+							<h2 id="code-blocks"><a href="#code-blocks" class="f-link-reset">Code blocks</a></h2>
+
+							<p>For multiple lines of code, use the <code>&lt;pre&gt;</code> element which defines preformatted text. It creates a new text block that preserves spaces, tabs and line breaks. Nest a <code>&lt;code&gt;</code> element inside to define the code block.</p>
+
+							<p><span class="f-badge f-badge-danger">IMPORTANT</span> Be sure to escape any angle brackets in the code for proper rendering.</p>
+
+							<h3 class="tm-article-subtitle">Example</h3>
+
+<pre><code>&lt;pre&gt;
+	&lt;code&gt;...&lt;/code&gt;
+&lt;/pre&gt;</code></pre>
+
+							<p><span class="f-badge">NOTE</span> Optionally, you can add the <code>.f-scrollable-text</code> class from the <a href="http://fatkit.fmdev02.fatoffice.co.uk/core/utility.asp">Utility component</a>, which will set a max-height of 300px and provide a y-axis scrollbar.</p>
+
+							<hr class="f-article-divider">
+
+							<h2 id="lists"><a href="#lists" class="f-link-reset">Lists</a></h2>
+
+							<p>Create an unordered list using the <code>&lt;ul&gt;</code> element and the <code>&lt;ol&gt;</code> element for ordered lists. The <code>&lt;li&gt;</code> element defines the list item.</p>
+
+							<h3 class="tm-article-subtitle">Example</h3>
+
+							<div class="f-grid" data-f-grid-margin>
+								<div class="f-width-medium-1-2">
+									<div class="f-panel">
+
+										<ul>
+											<li>Item 1</li>
+											<li>Item 2
+												<ul>
+													<li>Item 1</li>
+													<li>Item 2
+														<ul>
+															<li>Item 1</li>
+															<li>Item 2</li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+											<li>Item 3</li>
+											<li>Item 4</li>
+										</ul>
+									</div>
+								</div>
+								<div class="f-width-medium-1-2">
+									<div class="f-panel">
+
+										<ol>
+											<li>Item 1</li>
+											<li>Item 2
+												<ol>
+													<li>Item 1</li>
+													<li>Item 2
+														<ol>
+															<li>Item 1</li>
+															<li>Item 2</li>
+														</ol>
+													</li>
+												</ol>
+											</li>
+											<li>Item 3</li>
+											<li>Item 4</li>
+										</ol>
+									</div>
+								</div>
+							</div>
+
+							<h3 class="tm-article-subtitle">Markup</h3>
+
+							<div class="f-grid" data-f-grid-margin>
+								<div class="f-width-medium-1-2">
+									<div class="f-panel">
+
+<pre><code>&lt;ul&gt;
+	&lt;li&gt;...&lt;/li&gt;
+	&lt;li&gt;...
+		&lt;ul&gt;
+			&lt;li&gt;...&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+									</div>
+								</div>
+								<div class="f-width-medium-1-2">
+									<div class="f-panel">
+
+<pre><code>&lt;ol&gt;
+	&lt;li&gt;...&lt;/li&gt;
+	&lt;li&gt;...
+		&lt;ol&gt;
+			&lt;li&gt;...&lt;/li&gt;
+		&lt;/ol&gt;
+	&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+									</div>
+								</div>
+							</div>
+
+							<hr class="f-article-divider">
+
+							<h2 id="description-lists"><a href="#description-lists" class="f-link-reset">Description lists</a></h2>
+
+							<p>Create a description list using the <code>&lt;dl&gt;</code> element. Use <code>&lt;dt&gt;</code> to define the term and <code>&lt;dd&gt;</code> for the description.</p>
+
+							<h3 class="tm-article-subtitle">Example</h3>
+
+							<dl>
+								<dt>Description lists</dt>
+								<dd>A description list defines terms and their corresponding descriptions.</dd>
+								<dt>This is a term</dt>
+								<dd>This is a description.</dd>
+								<dt>This is a term</dt>
+								<dd>This is a description.</dd>
+							</dl>
+
+							<h3 class="tm-article-subtitle">Markup</h3>
+
+<pre><code>&lt;dl&gt;
+	&lt;dt&gt;...&lt;/dt&gt;
+	&lt;dd&gt;...&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+
+							<hr class="f-article-divider">
+
+							<h2 id="responsive-images"><a href="#responsive-images" class="f-link-reset">Responsive images</a></h2>
+
+							<p>All images in FatKit are responsive by default. If the layout is narrowed, images adjust their size and keep their proportions.</p>
+
+							<h3 class="tm-article-subtitle">Example</h3>
+
+							<p>Resize the browser window to see the responsive behavior of the image.</p>
+
+							<p><img width="480" height="260" src="http://fatkit.fmdev02.fatoffice.co.uk/images/placeholder_480x260.svg" alt=""></p>
+
+							<p><span class="f-badge">NOTE</span> To avoid the responsive behavior and preserve the original image dimensions, add the <code>.f-img-preserve</code> class to one of your single images. If you have more than one image, you can also add the class to the parent container. This is not required for Google Maps.</p>
+
+						</article>
+
+						<hr class="f-article-divider">
+
+						<article class="f-article" id="helpers">
+
+							<h1 class="f-article-title">Helpers</h1>
+
+							<p class="f-article-lead">Your own stash of helpful styles/methods/functions.</p>
+
+							<p>This file is left intentionally blank. If you need something time and time again this is the place to put it.</p>
+
+						</article>
+
+						<hr class="f-article-divider">
+
+						<article class="f-article" id="mixins">
+
+							<h1 class="f-article-title">Mixins</h1>
+
+							<p class="f-article-lead">Some handy mixins that you may find useful.</p>
+
+							<p>FatKit currently has 7 handy mixins for you to use on your projects.</p>
+
+							<div class="f-grid" data-f-grid-margin>
+
+								<div class="f-width-medium-1-3">
+									<div class="f-panel">
+										<h2 class="f-panel-title"><a href="#breakpoints" class="f-link-reset" data-f-smooth-scroll>Breakpoints</a></h2>
+										<p>A handy mixin for quick and easy breakpoints anywhere in your CSS. See below for the options available.</p>
+									</div>
+								</div>
+								<div class="f-width-medium-1-3">
+									<div class="f-panel">
+										<h2 class="f-panel-title"><a href="#opacity" class="f-link-reset" data-f-smooth-scroll>Opacity</a></h2>
+										<p>Normalize the opacity property all the way down to IE6. Hopefully not required, but handy if you need it.</p>
+									</div>
+								</div>
+								<div class="f-width-medium-1-3">
+									<div class="f-panel">
+										<h2 class="f-panel-title"><a href="#fluid-image-ratio" class="f-link-reset" data-f-smooth-scroll>Fluid Image Ratio</a></h2>
+										<p>Probably too under-used. This handy mixin can be used with background images to create a responsive container for images.</p>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="f-grid" data-f-grid-margin>
+
+								<div class="f-width-medium-1-3">
+									<div class="f-panel">
+										<h2 class="f-panel-title"><a href="#font-face" class="f-link-reset" data-f-smooth-scroll>Font Face</a></h2>
+										<p>If you need to add in a custom font you can use this to normalize the CSS required. Just pass it a name and path.</p>
+									</div>
+								</div>
+								<div class="f-width-medium-1-3">
+									<div class="f-panel">
+										<h2 class="f-panel-title"><a href="#font-size" class="f-link-reset" data-f-smooth-scroll>Font Size</a></h2>
+										<p>Enter your desired font-size in pixels and the mixin will do the rest as long as you have a base font size set.</p>
+									</div>
+								</div>
+								<div class="f-width-medium-1-3">
+									<div class="f-panel">
+										<h2 class="f-panel-title"><a href="#line-height" class="f-link-reset" data-f-smooth-scroll>Line Height</a></h2>
+										<p>Enter your desired line-height in pixels and the mixin will do the rest as long as you have a base font size set.</p>
+									</div>
+								</div>
+
+							</div>
+
+							<hr class="f-article-divider">
+
+							<h2 id="breakpoints"><a href="#breakpoints" class="f-link-reset">Breakpoints</a></h2>
+
+							<p>FatKit includes a number of responsive classes to style your content for different viewport widths. This table gives you an overview of the available breakpoints and the associated devices. These breakpoints can be edited in the variables Sass file in the base folder.</p>
+
+							<p>The default breakpoints are:</p>
+
+							<div class="f-overflow-container">
+								<table class="f-table f-table-striped f-text-nowrap">
+								<thead>
+									<tr>
+										<th>Size</th>
+										<th>Breakpoints</th>
+										<th>Device</th>
+									</tr>
+								</thead>
+									<tbody>
+										<tr>
+											<td>Mini</td>
+											<td>up to 479px</td>
+											<td>Phones portrait</td>
+										</tr>
+										<tr>
+											<td>Small</td>
+											<td>480px to 767px</td>
+											<td>Phones landscape</td>
+										</tr>
+										<tr>
+											<td>Medium</td>
+											<td>768px to 959px</td>
+											<td>Tablets portrait</td>
+										</tr>
+										<tr>
+											<td>Large</td>
+											<td>960px to 1199px</td>
+											<td>Desktops &amp; tablets landscape</td>
+										</tr>
+										<tr>
+											<td>Xlarge</td>
+											<td>1200px and larger</td>
+											<td>Large Desktops</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<h3 class="tm-article-subtitle">Example</h3>
+
+							<pre><code>@include bp-at-least($breakpoint-medium) {
+	/* Matches "small" breakpoint and above */
+}
+
+@include bp-until($breakpoint-large) {
+	/* Matches up to "large" breakpoint */
+}
+
+@include bp-between($breakpoint-medium, $breakpoint-large) {
+	/* Matches anything between the "medium" and "large" breakpoints */
+}</code></pre>
+
+							<hr class="f-article-divider">
+
+							<h2 id="opacity"><a href="#opacity" class="f-link-reset">Opacity</a></h2>
+
+							<p>FatKit supports IE9 and up and because of this you shouldn't need to use this mixin as the standard preoprty <code>opacity</code> will work for IE9 upwards. However, the mixin is there in case you do need to support IE8, but it's highly recommended that you don't use FatKit in this circumstance.</p>
+
+							<h3 class="tm-article-subtitle">Example</h3>
+
+							<pre><code>.selector {
+	@include opacity(0.5);
+}</code></pre>
+
+							<hr class="f-article-divider">
+
+							<h2 id="fluid-image-ratio"><a href="#fluid-image-ratio" class="f-link-reset">Fluid Image Ratio</a></h2>
+
+							<p>Sometimes you need a background-image to be responsive. This mixin can be used to do just that using padding to create the responsive space for the background image. See <a href="http://goo.gl/Wl694" title="Voormedia Responsive Background Images">voormedia's article</a> for more information.</p>
+
+							<h3 class="tm-article-subtitle">Example</h3>
+
+							<pre><code>.fluidratio {
+	/* This element will have fluid ratio from 4:1 at 800px to 2:1 at 300px. */
+	@include fluid-ratio(800px 200px, 300px 150px);
+
+	background-image: url(http://placehold.it/800x200);
+}</code></pre>
+
+							<hr class="f-article-divider">
+
+							<h2 id="font-face"><a href="#font-face" class="f-link-reset">Font Face</a></h2>
+
+							<p>Quickly include a font-face declaration. The only required parameters as the font name: the way you refer to the font in your CSS, and font filename: the name of the font file. The path to the font is declared in the variables file in the base directory and defaults to /assets/fonts.</p>
+
+							<h3 class="tm-article-subtitle">Example</h3>
+
+							<pre><code>@include font-face('FontFamily', 'Font Filename', 'Font Weight', 'Font Style', 'Font Stretch');</code></pre>
+
+							<hr class="f-article-divider">
+
+							<h2 id="font-size"><a href="#font-size" class="f-link-reset">Font Size</a></h2>
+
+							<p><a href="http://snook.ca/archives/html_and_css/font-size-with-rem">rems are awesome</a>. If you still like to declare your fonts by pixel size (and let's face it, it is still the easiest way from a PSD) you can and should use this mixin to automatically include the rem font size based on the base font size and passed value.</p>
+
+							<h3 class="tm-article-subtitle">Example</h3>
+
+							<pre><code>p {
+	@include font-size(24);
+}</code></pre>
+
+							<hr class="f-article-divider">
+
+							<h2 id="line-height"><a href="#line-height" class="f-link-reset">Line Height</a></h2>
+
+							<p>My personal preference with line-height is to use a value without a unit of meaurement because it then becomes based off the font size. However, there are cases where you need to specifiy a pixel value for the line height. But, we're using rems now (see above) and should specify line-height using the same unit. Use this mixin in the same way as the font-size one above.</p>
+
+							<h3 class="tm-article-subtitle">Example</h3>
+
+							<pre><code>p {
+	@include line-height(24);
+}</code></pre>
+
+						</article>
+
+						<hr class="f-article-divider">
+
+						<article class="f-article" id="print">
+
+							<h1 class="f-article-title">Print</h1>
+
+							<p class="f-article-lead">Optimize your pages for economic printing.</p>
+
+							<p>This component is based on the print styles from <a href="http://github.com/h5bp/html5-boilerplate">HTML5 Boilerplate</a>. It strips your document from background colors and changes font colors to black to save printer ink. Pictures will be scaled down to fit the page and anchors are underlined to distinguish them from regular text.</p>
+
+							<hr class="f-article-divider">
+
+							<h2 id="modifications"><a href="#modifications" class="f-link-reset">Modifications</a></h2>
+
+							<p>For FatKit, we removed the link <code>href</code> and <code>title</code> related rules.</p>
+
+						</article>
+
+						<hr class="f-article-divider">
+
+						<article class="f-article" id="variables">
+
+							<h1 class="f-article-title">Variables</h1>
+
+							<p class="f-article-lead">Handy variables to keep things consistent.</p>
+
+							<p>Variables work slightly differently in FatKit compared to the old Fat Boilerplate. There is a standard variables file as there always has been to define global variables used throughout the Sass files. But each component (where required) will have it's own set of variables defined at the top of the Sass file. To make changes to a single component that is where you need to look.</p>
+
+							<p>The global variables file looks like:</p>
+
+							<pre>//
+// Component:       Variables
+// Description:     Defines all color and style related values as variables
+//                  to allow easy customization for the most common cases.
+//
+// ========================================================================
+
+
+// Global variables
+// ========================================================================
+
+//
+// Breakpoints
+//
+$breakpoint-small:				480px;
+$breakpoint-medium:				768px;
+$breakpoint-large:				960px;
+$breakpoint-xlarge:				1220px;
+
+$breakpoint-mini-max:			($breakpoint-small - 1);
+$breakpoint-small-max:			($breakpoint-medium - 1);
+$breakpoint-medium-max:			($breakpoint-large - 1);
+$breakpoint-large-max:			($breakpoint-xlarge - 1);
+
+//
+// Sizes
+// 
+$basefontsize:					16; // Note, no units
+
+/* filepaths
+---------------------------------------------------------
+
+  Variables for controlling files and their paths
+
+--------------------------------------------------------- */
+
+$imgPath: '/assets/images';
+$fontPath: '/assets/fonts';
+
+
+/* Colours
+---------------------------------------------------------
+
+  Define your colour variables here. Try not to use names
+  that correspond to the colour because when they change
+  the name might not make sense.
+
+--------------------------------------------------------- */
+
+$palette1 :		#123456;
+
+
+/* Text colours
+---------------------------------------------------------
+
+  Use this loop to create colour classes based on the
+  colours above
+
+  e.g. $text-colours: (name #000 #fff) (name2 #fff #000);
+
+  would produce:
+
+  .name {
+	color: #000;
+  }
+
+  .name-bg {
+	background-color: #000;
+	color: #fff;
+  }
+
+  .name2 {
+	color: #000;
+  }
+
+  .name2-bg {
+	background-color: #000;
+	color: #fff;
+  }
+
+--------------------------------------------------------- */
+
+$text-colours: false !default;
+
+
+/*
+ * If a colours array as been provided in the variables file this will loop through
+ * and create colour variables
+ */
+
+@if $text-colours {
+
+	@each $colour in $text-colours {
+		$name: nth($colour, 1);
+		$hex: nth($colour, 2);
+		$color: nth($colour, 3);
+
+		.#{$name} {
+			color: $hex;
+		}
+
+		.#{$name}-bg {
+			background-color: $hex;
+			color: $color;
+		}
+
+	}
+
+}
+
+/* @global spacing unit
+---------------------------------------------------------
+
+  Define an em value for $unit.  $unit is a helpful little
+  variable that serves to keep your spacing consistent.
+
+  Most often, 1 $unit is equal to your baseline height.  So
+  if your baseline height is 1.125ems (which is 18px), that's
+  the value of 1 $unit.
+
+--------------------------------------------------------- */
+
+$modifier: 1.125;
+$unit: 1.125em;
+
+
+// Custom font declarations
+// ========================================================================
+
+// @include font-face('FontName', '/path/to/font', 'FontWeight');
+
+
+// Variables
+// ========================================================================
+
+$base-body-background:                          #fff;
+$base-body-font-family:                         "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-body-font-weight:                         normal;
+$base-body-font-size:                           14px;
+$base-body-line-height:                         1.8;
+$base-body-color:                               #444;
+
+$base-link-color:                               #07D;
+$base-link-text-decoration:                     none;
+$base-link-hover-color:                         #059;
+$base-link-hover-text-decoration:               underline;
+
+$base-code-color:                               #D05;
+$base-code-font-size:                           12px;
+$base-code-font-family:                         Consolas, monospace, serif;
+$base-em-color:                                 #D05;
+$base-ins-background:                           #ffa;
+$base-ins-color:                                #444;
+$base-mark-background:                          #ffa;
+$base-mark-color:                               #444;
+$base-quote-font-style:                         italic;
+
+$base-margin:                                   15px;
+$base-margin-vertical:                          15px;
+
+$base-heading-font-family:                      "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-heading-font-weight:                      normal;
+$base-heading-color:                            #444;
+$base-heading-text-transform:                   none;
+$base-heading-margin-top:                       25px;
+$base-h1-font-size:                             36px;
+$base-h1-line-height:                           42px;
+$base-h2-font-size:                             24px;
+$base-h2-line-height:                           30px;
+$base-h3-font-size:                             18px;
+$base-h3-line-height:                           24px;
+$base-h4-font-size:                             16px;
+$base-h4-line-height:                           22px;
+$base-h5-font-size:                             14px;
+$base-h5-line-height:                           20px;
+$base-h6-font-size:                             12px;
+$base-h6-line-height:                           18px;
+
+$base-list-padding-left:                        30px;
+
+$base-hr-margin-vertical:                       $base-margin-vertical;
+$base-hr-border:                                #ddd;
+$base-hr-border-width:                          1px;
+
+$base-blockquote-padding-left:                  15px;
+$base-blockquote-border:                        #ddd;
+$base-blockquote-border-width:                  5px;
+$base-blockquote-font-size:                     16px;
+$base-blockquote-line-height:                   22px;
+$base-blockquote-font-style:                    italic;
+
+$base-pre-padding:                              10px;
+$base-pre-background:                           #f5f5f5;
+$base-pre-color:                                #444;
+$base-pre-font-size:                            12px;
+$base-pre-line-height:                          18px;
+$base-pre-font-family:                          $base-code-font-family;
+
+$base-selection-background:                     #39f;
+$base-selection-color:                          #fff;</pre>
+
+						</article>
+
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer>
+			<div class="f-container f-container-center f-text-center">
+				<ul class="f-subnav f-subnav-line f-flex-center">
+					<li><a href="http://github.com/FatMedia/FatKit">GitHub</a></li>
+					<li><a href="http://github.com/FatMedia/FatKit/issues">Issues</a></li>
+					<li><a href="http://github.com/FatMedia/FatKit/blob/master/CHANGELOG.md">Changelog</a></li>
+					<li><a href="https://twitter.com/FatMedia">Twitter</a></li>
+				</ul>
+				<div class="f-panel">
+					<p>Made by <a href="http://www.yootheme.com">YOOtheme</a> with love and caffeine.<br>Rewritten for purpose in Fat Media by Alex Hall<br>Licensed under <a href="http://opensource.org/licenses/MIT">MIT license</a>.</p>
+					<a href="http://fatkit.fmdev02.fatoffice.co.uk/"><img src="http://fatkit.fmdev02.fatoffice.co.uk/images/logo-text.svg" width="150" height="29" title="FatKit" alt="FatKit"></a>
+				</div>
+			</div>
+		</footer>
+
+		<div id="test-offcanvas" class="f-offcanvas">
+			<div class="f-offcanvas-bar">
+				<ul class="f-nav f-nav-offcanvas f-nav-parent-icon" data-f-nav="{ multiple : true }">
+					<li class="f-parent f-active"><a href="#">Getting Started</a>
+						<ul class="f-nav-sub" data-f-nav>
+							<li class="f-nav-header">Beginners</li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/documentation/get-started.asp">Get started</a></li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/documentation/layouts.asp">Layout examples</a></li>
+							<li class="f-nav-header">Developers</li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/documentation/project-structure.asp">Project structure</a></li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/documentation/javascript.asp">JavaScript</a></li>
+						</ul>
+					</li>
+					<li class="f-parent f-active"><a href="#">Core</a>
+						<ul class="f-nav-sub" data-f-nav>
+							<li class="f-nav-header">Base</li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/core/panel.asp">Panel</a></li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/core/article.asp">Article</a></li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/core/comment.asp">Comment</a></li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/core/flex.asp">Flex</a></li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/core/cover.asp">Cover</a></li>
+							<li class="f-nav-header">Navigation</li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/core/nav.asp">Nav</a></li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/core/navbar.asp">Navbar</a></li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/core/subnav.asp">Subnav</a></li>
+						</ul>
+					</li>
+					<li class="f-parent f-active"><a href="#">Third Title Link</a>
+						<ul class="f-nav-sub" data-f-nav>
+							<li class="f-nav-header">Layout</li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/components/grid-js.asp">Dynamic Grid</a></li>
+							<li class="f-nav-header">Navigations</li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/components/dotnav.asp">Dotnav</a></li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/components/slidenav.asp">Slidenav</a></li>
+							<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/components/pagination-js.asp">Dynamic Pagination</a></li>
+						</ul>
+					</li>
+					<li class="f-nav-divider"></li>
+					<li><a href="http://fatkit.fmdev02.fatoffice.co.uk/layouts/">Layouts</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="test-modal" class="f-modal">
+			<div class="f-modal-dialog">
+				<a href="" class="f-modal-close f-close"></a>
+				<h1>A Modal</h1>
+				<p>This is a modal</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae laudantium autem veritatis, minima ullam obcaecati adipisci vel amet omnis eligendi ex soluta, totam aspernatur culpa earum commodi, dolorem iste est odit dignissimos dolores. Omnis aspernatur eligendi, expedita, odio magni aliquid.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae laudantium autem veritatis, minima ullam obcaecati adipisci vel amet omnis eligendi ex soluta, totam aspernatur culpa earum commodi, dolorem iste est odit dignissimos dolores. Omnis aspernatur eligendi, expedita, odio magni aliquid.</p>
+			</div>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="/assets/scripts/min/fatkit.min.js"></script>
+
+		<!-- For the demo sticky navigation component -->
+		<script src="/assets/scripts/components/min/sticky.min.js"></script>
+
+	</body>
+</html>

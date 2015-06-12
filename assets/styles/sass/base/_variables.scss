@@ -1,0 +1,168 @@
+//
+// Component:       Variables
+// Description:     Defines all color and style related values as variables
+//                  to allow easy customization for the most common cases.
+//                  
+// Url:				http://fatkit.fmdev02.fatoffice.co.uk/core/variables.asp
+//
+// ========================================================================
+
+
+// Global variables
+// ========================================================================
+
+//
+// Breakpoints
+//
+$breakpoint-small:				480px;
+$breakpoint-medium:				768px;
+$breakpoint-large:				960px;
+$breakpoint-xlarge:				1220px;
+
+$breakpoint-mini-max:			($breakpoint-small - 1);
+$breakpoint-small-max:			($breakpoint-medium - 1);
+$breakpoint-medium-max:			($breakpoint-large - 1);
+$breakpoint-large-max:			($breakpoint-xlarge - 1);
+
+//
+// Sizes
+// 
+$basefontsize:					16;
+
+/* @filepaths
+--------------------------------------------------------
+  Variables for controlling files and their paths
+
+-------------------------------------------------------*/
+
+$imgPath: '/assets/images';
+$fontPath: '/assets/fonts';
+
+// Colours
+//
+
+// Colours list
+//
+
+$text-colours: false !default;
+
+/* Colours
+ ========================================================================== */
+
+/*
+ * If a colours array as been provided in the variables file this will loop through
+ * and create colour variables
+ */
+
+@if $text-colours {
+
+	@each $colour in $text-colours {
+		$name: nth($colour, 1);
+		$hex: nth($colour, 2);
+		$color: nth($colour, 3);
+
+		.#{$name} {
+			color: $hex;
+		}
+
+		.#{$name}-bg {
+			background-color: $hex;
+			color: $color;
+		}
+
+	}
+
+}
+
+/* @global spacing unit
+---------------------------------------------------------
+
+  Define an em value for $unit.  $unit is a helpful little
+  variable that serves to keep your spacing consistent.
+
+  Most often, 1 $unit is equal to your baseline height.  So
+  if your baseline height is 1.125ems (which is 18px), that's
+  the value of 1 $unit.
+
+--------------------------------------------------------- */
+
+$modifier: 1.125;
+$unit: 1.125em;
+
+// Custom font declarations
+// ========================================================================
+
+// @include font-face('FontName', '/path/to/font', 'FontWeight');
+
+
+// Variables
+// ========================================================================
+
+$base-body-background:                          #fff;
+$base-body-font-family:                         "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-body-font-weight:                         normal;
+$base-body-font-size:                           14px;
+$base-body-line-height:                         1.8;
+$base-body-color:                               #444;
+
+$base-link-color:                               #07D;
+$base-link-text-decoration:                     none;
+$base-link-hover-color:                         darken($base-link-color, 10);
+$base-link-hover-text-decoration:               underline;
+$base-link-visited-color:						darken($base-link-color, 20);
+$base-link-visited-text-decoration:             none;
+$base-link-visited-after-color:					#e5e5e5; // Styles the little check mark (if required)
+
+$base-code-color:                               #D05;
+$base-code-font-size:                           12px;
+$base-code-font-family:                         Consolas, monospace, serif;
+$base-em-color:                                 #D05;
+$base-ins-background:                           #ffa;
+$base-ins-color:                                #444;
+$base-mark-background:                          #ffa;
+$base-mark-color:                               #444;
+$base-quote-font-style:                         italic;
+
+$base-margin:                                   15px;
+$base-margin-vertical:                          15px;
+
+$base-heading-font-family:                      "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-heading-font-weight:                      normal;
+$base-heading-color:                            #444;
+$base-heading-text-transform:                   none;
+$base-heading-margin-top:                       25px;
+$base-h1-font-size:                             36px;
+$base-h1-line-height:                           42px;
+$base-h2-font-size:                             24px;
+$base-h2-line-height:                           30px;
+$base-h3-font-size:                             18px;
+$base-h3-line-height:                           24px;
+$base-h4-font-size:                             16px;
+$base-h4-line-height:                           22px;
+$base-h5-font-size:                             14px;
+$base-h5-line-height:                           20px;
+$base-h6-font-size:                             12px;
+$base-h6-line-height:                           18px;
+
+$base-list-padding-left:                        30px;
+
+$base-hr-margin-vertical:                       $base-margin-vertical;
+$base-hr-border:                                #ddd;
+$base-hr-border-width:                          1px;
+
+$base-blockquote-padding-left:                  15px;
+$base-blockquote-border:                        #ddd;
+$base-blockquote-border-width:                  5px;
+$base-blockquote-font-size:                     16px;
+$base-blockquote-line-height:                   22px;
+$base-blockquote-font-style:                    italic;
+
+$base-pre-padding:                              10px;
+$base-pre-background:                           #f5f5f5;
+$base-pre-color:                                #444;
+$base-pre-font-size:                            12px;
+$base-pre-line-height:                          18px;
+$base-pre-font-family:                          $base-code-font-family;
+
+$base-selection-background:                     #39f;
+$base-selection-color:                          #fff;

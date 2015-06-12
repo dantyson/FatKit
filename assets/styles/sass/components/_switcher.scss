@@ -1,0 +1,30 @@
+// Name:            Switcher
+// Description:     Defines styles for the switcher
+//
+// Component:       .f-switcher`
+//
+// States:          .f-active`
+//
+// ========================================================================
+
+
+/* ========================================================================
+   Component: Switcher
+ ========================================================================== */
+
+/*
+ * 1. Deactivate browser history navigation in IE11
+ */
+.f-switcher {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    /* 1 */
+    touch-action: cross-slide-y pinch-zoom double-tap-zoom;
+}
+
+/*
+ * Items
+ */
+
+.f-switcher > *:not(.f-active) { display: none; }

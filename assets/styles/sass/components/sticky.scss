@@ -1,0 +1,52 @@
+// Name:            Sticky
+// Description:     Make elements remain at the top of the viewport
+//
+// Component:       `data-f-sticky`
+//
+// States:          `f-active`
+// 
+// Url				http://fatkit.fmdev02.fatoffice.co.uk/components/sticky.asp
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$sticky-z-index:                                980;
+
+
+/* ========================================================================
+   Component: Sticky
+ ========================================================================== */
+
+/*
+ * 1. More robust if padding and border are used
+ */
+
+[data-f-sticky].f-active {
+   z-index: $sticky-z-index;
+   /* 1 */
+   box-sizing: border-box;
+}
+
+/*
+ * 1. Resolve frame-rate issues on devices with lower frame-rates. Forces hardware acceleration
+ */
+
+.f-sticky-placeholder > * {
+	/* 1 */
+	backface-visibility: hidden;
+}
+
+/*
+ * Faster animations
+ */
+
+[data-f-sticky][class*='f-animation-'] {
+	animation-duration: 0.15s;
+}
+
+[data-f-sticky].f-animation-reverse {
+	animation-duration: 0.04s;
+}

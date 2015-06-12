@@ -1,0 +1,146 @@
+// Name:            Article
+// Description:     Defines styles for articles within your page
+//
+// Component:       .f-article`
+//
+// Sub-objects:     .f-article-title`
+//                  .f-article-meta`
+//                  .f-article-lead`
+//                  .f-article-divider`
+//
+// Markup:
+//
+// <!--.f-article -->
+// <div class="f-article">
+//     <h1 class="f-article-title"></h1>
+//     <p class="f-article-meta"></p>
+//     <p class="f-article-lead"></p>
+//     <p></p>
+//     <hr class="f-article-divider">
+//     <p></p>
+// </div>
+//                  
+// Url:				http://fatkit.fmdev02.fatoffice.co.uk/core/article.asp
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$article-margin-top:                            25px;
+
+$article-title-font-size:                       36px;
+$article-title-line-height:                     42px;
+$article-title-font-weight:                     normal;
+$article-title-text-transform:                  none;
+
+$article-meta-font-size:                        12px;
+$article-meta-line-height:                      18px;
+$article-meta-color:                            #999;
+
+$article-lead-color:                            #444;
+$article-lead-font-size:                        18px;
+$article-lead-line-height:                      24px;
+$article-lead-font-weight:                      normal;
+
+$article-divider-margin:                        25px;
+$article-divider-border:                        #ddd;
+
+
+/* ========================================================================
+   Component: Article
+ ========================================================================== */
+
+/**
+ * Proper visited links
+ * http://joelcalifa.com/blog/revisiting-visited
+ */
+
+.f-article a[data-visited] {
+	color: $base-link-visited-color;
+	text-decoration: $base-link-visited-text-decoration;
+
+	&:hover {
+		text-decoration: $base-link-hover-text-decoration;		
+	}
+
+	&:after {
+		color: $base-link-visited-after-color;
+		content: " \f00c " attr(data-visited);
+		font-family: FontAwesome;
+		font-size: 12px;
+	}
+}
+
+/*
+ * Micro clearfix to make articles more robust
+ */
+
+.f-article:before,
+.f-article:after {
+	content: "";
+	display: table;
+}
+
+.f-article:after { clear: both; }
+
+/*
+ * Remove margin from the last-child
+ */
+
+.f-article > :last-child { margin-bottom: 0; }
+
+/*
+ * Vertical gutter for articles
+ */
+
+.f-article + .f-article { margin-top: $article-margin-top; }
+
+
+/* Sub-object .f-article-title`
+ ========================================================================== */
+
+.f-article-title {
+	font-size: $article-title-font-size;
+	line-height: $article-title-line-height;
+	font-weight: $article-title-font-weight;
+	text-transform: $article-title-text-transform;
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+}
+
+
+/* Sub-object .f-article-meta`
+ ========================================================================== */
+
+.f-article-meta {
+	font-size: $article-meta-font-size;
+	line-height: $article-meta-line-height;
+	color: $article-meta-color;
+}
+
+
+/* Sub-object .f-article-lead`
+ ========================================================================== */
+
+.f-article-lead {
+	color: $article-lead-color;
+	font-size: $article-lead-font-size;
+	line-height: $article-lead-line-height;
+	font-weight: $article-lead-font-weight;
+}
+
+
+/* Sub-object .f-article-divider`
+ ========================================================================== */
+
+.f-article-divider {
+	margin-bottom: $article-divider-margin;
+	border-color: $article-divider-border;
+}
+
+* + .f-article-divider { margin-top: $article-divider-margin; }

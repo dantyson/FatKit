@@ -1,0 +1,422 @@
+// Name:            Animation
+// Description:     Provides a useful set of keyframe animations
+//
+// Component:       .f-animation-*`
+//
+// Modifiers:       .f-animation-fade`
+//                  .f-animation-scale-up`
+//                  .f-animation-scale-down`
+//                  .f-animation-slide-top`
+//                  .f-animation-slide-bottom`
+//                  .f-animation-slide-left`
+//                  .f-animation-slide-right`
+//                  .f-animation-scale`
+//                  .f-animation-shake`
+//                  .f-animation-reverse`
+//                  .f-animation-15`
+//                  .f-animation-top-left`
+//                  .f-animation-top-center`
+//                  .f-animation-top-right`
+//                  .f-animation-middle-left`
+//                  .f-animation-middle-right`
+//                  .f-animation-bottom-left`
+//                  .f-animation-bottom-center`
+//                  .f-animation-bottom-right`
+//
+// Sub-objects:     .f-animation-hover`
+//
+// Uses:            Scrollspy
+//
+// Used by:         Dropdown
+//                  Icon
+//                  Search
+//                  Datepicker
+//                  Slideshow
+//
+// ========================================================================
+
+
+/* ========================================================================
+   Component: Animation
+ ========================================================================== */
+
+[class*='f-animation-'] {
+	animation-duration: 0.5s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: both;
+}
+
+/* Hide animated element if scrollspy is used */
+@media screen {
+
+	[data-f-scrollspy*='f-animation-']:not([data-f-scrollspy*='target']) { opacity: 0; }
+
+}
+
+/*
+ * Fade
+ * Higher specificity (!important) needed because of reverse modifier
+ */
+
+.f-animation-fade {
+	animation-name: f-fade;
+	animation-duration: 0.8s;
+	animation-timing-function: linear !important;
+}
+
+/*
+ * Fade with scale
+ */
+
+.f-animation-scale-up {
+	animation-name: f-fade-scale-02;
+}
+
+.f-animation-scale-down {
+	animation-name: f-fade-scale-18;
+}
+
+/*
+ * Fade with slide
+ */
+
+.f-animation-slide-top {
+	animation-name: f-fade-top;
+}
+
+.f-animation-slide-bottom {
+	animation-name: f-fade-bottom;
+}
+
+.f-animation-slide-left {
+	animation-name: f-fade-left;
+}
+
+.f-animation-slide-right {
+	animation-name: f-fade-right;
+}
+
+/*
+ * Scale
+ */
+
+.f-animation-scale {
+	animation-name: f-scale-12;
+}
+
+/*
+ * Shake
+ */
+
+.f-animation-shake {
+	animation-name: f-shake;
+}
+
+
+/* Direction modifiers
+ ========================================================================== */
+
+.f-animation-reverse {
+	animation-direction: reverse;
+	animation-timing-function: ease-in;
+}
+
+
+/* Duration modifiers
+========================================================================== */
+
+.f-animation-10 {
+	animation-duration: 10s;
+}
+
+.f-animation-15 {
+	animation-duration: 15s;
+}
+
+
+/* Origin modifiers
+========================================================================== */
+
+.f-animation-top-left {
+	 transform-origin: 0 0;
+}
+
+.f-animation-top-center {
+	 transform-origin: 50% 0;
+}
+
+.f-animation-top-right {
+	 transform-origin: 100% 0;
+}
+
+.f-animation-middle-left {
+	 transform-origin: 0 50%;
+}
+
+.f-animation-middle-right {
+	 transform-origin: 100% 50%;
+}
+
+.f-animation-bottom-left {
+	 transform-origin: 0 100%;
+}
+
+.f-animation-bottom-center {
+	 transform-origin: 50% 100%;
+}
+
+.f-animation-bottom-right {
+	 transform-origin: 100% 100%;
+}
+
+
+/* Sub-object: .f-animation-hover`
+========================================================================== */
+
+/*
+ * Enable animation only on hover
+ * Note: Firefox also needs this because animations are not triggered when switching between display `hidden` and `block`
+ */
+
+.f-animation-hover:not(:hover),
+.f-animation-hover:not(:hover) [class*='f-animation-'],
+.f-touch .f-animation-hover:not(.f-hover),
+.f-touch .f-animation-hover:not(.f-hover) [class*='f-animation-'] {
+	animation-name: none;
+}
+
+
+/* Keyframes: Fade
+ * Used by dropdown, datepicker and slideshow component
+ ========================================================================== */
+
+@keyframes f-fade {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+
+/* Keyframes: Fade with slide
+ ========================================================================== */
+
+/*
+ * Top
+ */
+
+@keyframes f-fade-top {
+	0% {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/*
+ * Bottom
+ */
+
+@keyframes f-fade-bottom {
+	0% {
+		opacity: 0;
+		transform: translateY(100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/*
+ * Left
+ */
+
+@keyframes f-fade-left {
+	0% {
+		opacity: 0;
+		transform: translateX(-100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+/*
+ * Right
+ */
+
+@keyframes f-fade-right {
+	0% {
+		opacity: 0;
+		transform: translateX(100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+
+/* Keyframes: Fade with scale
+ ========================================================================== */
+
+/*
+ * Scale by 0.2
+ */
+
+@keyframes f-fade-scale-02 {
+	0% {
+		opacity: 0;
+		transform: scale(.2);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+/*
+ * Scale by 1.5
+ * Used by slideshow component
+ */
+
+@keyframes f-fade-scale-15 {
+	0% {
+		opacity: 0;
+		transform: scale(1.5);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+/*
+ * Scale by 1.8
+ */
+
+@keyframes f-fade-scale-18 {
+	0% {
+		opacity: 0;
+		transform: scale(1.8);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+
+/* Keyframes: Slide
+ * Used by slideshow component
+ ========================================================================== */
+
+/*
+ * Left
+ */
+
+@keyframes f-slide-left {
+	0% { transform: translateX(-100%); }
+	100% { transform: translateX(0); }
+}
+
+/*
+ * Right
+ */
+
+@keyframes f-slide-right {
+	0% { transform: translateX(100%); }
+	100% { transform: translateX(0); }
+}
+
+/*
+ * Left third
+ */
+
+@keyframes f-slide-left-33 {
+	0% { transform: translateX(33%); }
+	100% { transform: translateX(0); }
+}
+
+/*
+ * Right third
+ */
+
+@keyframes f-slide-right-33 {
+	0% { transform: translateX(-33%); }
+	100% { transform: translateX(0); }
+}
+
+
+/* Keyframes: Scale
+ ========================================================================== */
+
+@keyframes f-scale-12 {
+	0% { transform: scale(1.2); }
+	100% { transform: scale(1); }
+}
+
+
+/* Keyframes: Rotate
+ * Used by icon component
+ ========================================================================== */
+
+@keyframes f-rotate {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(359deg); }
+}
+
+
+/* Keyframes: Shake
+ ========================================================================== */
+
+@keyframes f-shake {
+	0%, 100% { transform: translateX(0); }
+	10% { transform: translateX(-9px); }
+	20% { transform: translateX(8px); }
+	30% { transform: translateX(-7px); }
+	40% { transform: translateX(6px); }
+	50% { transform: translateX(-5px); }
+	60% { transform: translateX(4px); }
+	70% { transform: translateX(-3px); }
+	80% { transform: translateX(2px); }
+	90% { transform: translateX(-1px); }
+}
+
+
+/* Keyframes: Fade with slide fixed
+ * Used by dropdown and search component
+ ========================================================================== */
+
+/*
+ * Top fixed
+ */
+
+@keyframes f-slide-top-fixed {
+	0% {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/*
+ * Bottom fixed
+ */
+
+@keyframes f-slide-bottom-fixed {
+	0% {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

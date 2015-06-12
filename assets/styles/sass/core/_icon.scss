@@ -1,0 +1,115 @@
+
+// Name:            Icon
+// Description:     Defines styles for icons
+//
+// Adapted from http://fortawesome.github.com/Font-Awesome (Version 4.2.0)
+//
+// Component:       `f-icon-*`
+//
+// Sub-objects:     `f-icon-hover`
+//                  `f-icon-button`
+//
+// Modifiers:       `f-icon-small`
+//                  `f-icon-medium`
+//                  `f-icon-large`
+//                  `f-icon-spin`
+//
+// Uses:            Animation
+//                  
+// Url:				http://fatkit.fmdev02.fatoffice.co.uk/core/icon.asp
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$icon-small-font-size:                           150% !default;
+$icon-medium-font-size:                          200% !default;
+$icon-large-font-size:                           250% !default;
+
+$icon-small-vertical-align:                      -10% !default;
+$icon-medium-vertical-align:                     -16% !default;
+$icon-large-vertical-align:                      -22% !default;
+
+$icon-hover-color:                               #999 !default;
+$icon-hover-hover-color:                         #444 !default;
+
+$icon-button-width:                              35px !default;
+$icon-button-height:                             $icon-button-width !default;
+$icon-button-border-radius:                      100% !default;
+$icon-button-background:                         #eee !default;
+$icon-button-font-size:                          round(($icon-button-width * 0.5)) !default;
+$icon-button-color:                              #444 !default;
+
+$icon-button-hover-background:                   #f5f5f5 !default;
+$icon-button-hover-color:                        #444 !default;
+
+$icon-button-active-background:                  #ddd !default;
+$icon-button-active-color:                       #444 !default;
+
+
+[class*='fa-'],
+[class*='fa-']:hover,
+[class*='fa-']:focus { text-decoration: none; }
+
+
+/* Size modifiers
+ ========================================================================== */
+
+.f-icon-small:before { font-size: $icon-small-font-size; vertical-align: $icon-small-vertical-align; }
+.f-icon-medium:before { font-size: $icon-medium-font-size; vertical-align: $icon-medium-vertical-align; }
+.f-icon-large:before { font-size: $icon-large-font-size; vertical-align: $icon-large-vertical-align; }
+
+
+/* Modifier: `f-icon-hover`
+ ========================================================================== */
+
+.f-icon-hover {
+	color: $icon-hover-color;
+}
+
+/*
+ * Hover
+ */
+
+.f-icon-hover:hover {
+	color: $icon-hover-hover-color;
+}
+
+
+/* Modifier: `f-icon-button`
+ ========================================================================== */
+
+.f-icon-button {
+	box-sizing: border-box;
+	display: inline-block;
+	width: $icon-button-width;
+	height: $icon-button-height;
+	border-radius: $icon-button-border-radius;
+	background: $icon-button-background;
+	line-height: $icon-button-height;
+	color: $icon-button-color;
+	font-size: $icon-button-font-size;
+	text-align: center;
+}
+
+/*
+ * Hover
+ * 1. Apply hover style also to focus state
+ * 2. Remove default focus style
+ */
+
+.f-icon-button:hover,
+.f-icon-button:focus { // 1
+	background-color: $icon-button-hover-background;
+	color: $icon-button-hover-color;
+	/* 2 */
+	outline: none;
+}
+
+/* Active */
+.f-icon-button:active {
+	background-color: $icon-button-active-background;
+	color: $icon-button-active-color;
+}

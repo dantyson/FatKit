@@ -1,0 +1,201 @@
+// Name:            Slider
+// Description:     Defines styles for a horizontal slider
+//
+// Component:       `f-slider`
+//
+// Sub-objects:     `f-slider-container`
+//
+// Modifier:        `f-slider-fullscreen`
+//
+// States:          `f-drag`
+//
+// Markup:
+//
+// <!-- f-slider -->
+// <div data-f-slider>
+//     <div class="f-slider-container">
+//         <ul class="f-slider">
+//             <li></li>
+//             <li></li>
+//         </ul>
+//     </div>
+// </div>
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$slider-drag-bar-height					: 5px;
+$slider-drag-bar-color					: #ebf7fd;
+
+$slider-drag-handle-height				: 20px;
+$slider-drag-handle-color				: #2d7091;
+$slider-drag-handle-border-width		: 1px;
+$slider-drag-handle-border-color		: darken($slider-drag-handle-color,10);
+
+$slider-drag-handle-hover-color			: darken($slider-drag-handle-color,10);
+$slider-drag-handle-hover-border-color	: darken($slider-drag-handle-color,20);
+
+/* ========================================================================
+   Component: Slider
+ ========================================================================== */
+
+/*
+ * 1. Create position context
+ * 2. Create stacking context to prevent z-index issues with other components
+ * 3. Deactivate browser history navigation in IE11
+ */
+.f-slider {
+	/* 1 */
+	position: relative;
+	/* 2 */
+	z-index: 0;
+	/* 3 */
+	touch-action: pan-y;
+
+	@media only screen and (min-width: 960px) {
+
+		&.f-slider-fancy {		
+			> li {
+				> div {
+					transform: scale(0.95);
+					transform-origin: center;
+					transition: transform 0.1s linear;
+				}
+
+				&.f-next,
+				&.f-previous {
+					> div {
+						transform: scale(1.05);
+						z-index: 1;
+					}
+				}
+
+				&.f-active {
+					> div {
+						transform: scale(1.15);
+						z-index: 2;
+					}
+				}
+			}
+		}
+
+	}
+
+}
+
+/*
+ * 1. Reset list style without interfering with grid
+ */
+.f-slider:not(.f-grid) {
+	/* 1 */
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/*
+ * Sub-object item
+ * 1. Position items above each other
+ */
+.f-slider > * {
+	/* 1 */
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/*
+ * Clip child elements
+ */
+.f-slider-container {
+	overflow: hidden;
+
+	& + .f-slide-handle {
+		background-color: $slider-drag-bar-color;
+		display: none;
+		height: $slider-drag-bar-height;
+		margin: 0 auto;
+		position: relative;
+		width: 100%;
+		z-index: 2;
+
+		.f-drag-handle {
+			background-color: $slider-drag-handle-color;
+			border: $slider-drag-handle-border-width solid $slider-drag-handle-border-color;
+			cursor: pointer;
+			display: block;
+			height: $slider-drag-handle-height;
+			position: absolute;
+			top: - (($slider-drag-handle-height/2) - ($slider-drag-bar-height/2));
+			transform: translateX(0);
+			transition: transform .1s linear;
+			width: 120px; // This will be overriden by the JavaScript
+			z-index: 1;
+
+			&:hover {
+				background-color: $slider-drag-handle-hover-color;
+				border-color: $slider-drag-handle-hover-border-color;
+			}
+		}
+
+		.f-slide-step {
+			float: left;
+			height: $slider-drag-bar-height;
+		}
+	}
+
+	@media only screen and (min-width: 960px) {
+
+		& + .f-slide-handle {
+			display: block;
+		}
+
+	}
+}
+
+/*
+ * Dragged
+ */
+.f-slider:not(.f-drag) {
+	transition: transform 200ms linear;
+}
+
+/*
+ * 1. Makes text unselectable
+ */
+.f-slider.f-drag {
+	cursor: col-resize;
+	/* 1 */
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/*
+ * 1. Prevents images and links from being dragged (default browser behavior)
+ * 2. Disables the default callout shown when you touch and hold a touch target
+ * Currently only works in Webkit
+ */
+.f-slider a,
+.f-slider img {
+	/* 1 */
+	-webkit-user-drag: none;
+	user-drag: none;
+	/* 2 */
+	-webkit-touch-callout: none;
+}
+
+/*
+ * 1. Prevents images and links from being dragged in Firefox
+ */
+.f-slider img { pointer-events: none; }
+
+/* Modifier: `f-slider-fullscreen`
+ ========================================================================== */
+
+.f-slider-fullscreen,
+.f-slider-fullscreen > li { height: 100vh; }

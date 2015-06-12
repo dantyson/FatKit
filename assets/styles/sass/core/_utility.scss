@@ -1,0 +1,595 @@
+// Name:            Utility
+// Description:     Collection of useful utility classes to style your content
+//
+// Component:       .f-container-*`
+//                  .f-clearfix`
+//                  .f-nbfc-*`
+//                  .f-float-*`
+//                  .f-align-*`
+//                  .f-vertical-align-*`
+//                  .f-height-*`
+//                  .f-responsive-*`
+//                  .f-margin-*`
+//                  .f-border-*`
+//                  .f-heading-*`
+//                  .f-link-*`
+//                  .f-scrollable-*`
+//                  .f-overflow-container`
+//                  .f-position-*`
+//                  .f-display-*`
+//                  .f-visible-*`
+//                  .f-hidden-*`
+//                  .f-invisible`
+//
+// Used by:         Overlay
+//                  
+// Url:				http://fatkit.fmdev02.fatoffice.co.uk/core/utility.asp
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$utility-align-horizontal:                      15px;
+$utility-align-vertical:                        15px;
+
+$utility-height-viewport-min-height:            600px;
+
+$utility-margin:                                20px;
+$utility-margin-small:                          5px;
+$utility-margin-large:                          50px;
+
+$utility-border-rounded:                        5px;
+
+$utility-heading-large-small-font-size:         36px;
+$utility-heading-large-small-line-height:       42px;
+$utility-heading-large-font-size:               52px;
+$utility-heading-large-line-height:             64px;
+
+$utility-link-muted-color:                      #444;
+$utility-link-muted-hover-color:                #444;
+
+$utility-scrollable-text-height:                300px;
+
+$utility-scrollable-box-height:                 170px;
+$utility-scrollable-box-padding:                10px;
+$utility-scrollable-box-border:                 #ddd;
+$utility-scrollable-box-border-width:           1px;
+
+
+/* ========================================================================
+   Component: Utility
+ ========================================================================== */
+
+/* Clearing
+ ========================================================================== */
+
+/*
+ * Micro clearfix
+* `table-cell` is used with `:before` because `table` creates a 1px gap when it becomes a flex item, only in Webkit
+ * `table` is used again with `:after` because `clear` only works with block elements.
+ * Note: `display: block` with `overflow: hidden` is currently not working in the latest Safari
+ */
+
+.f-clearfix {
+	&:before {
+		content: "";
+		display: table-cell;
+	}
+
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+
+/*
+ *  Create a new block formatting context
+ */
+
+.f-nbfc {
+	overflow: hidden;
+	
+	&-alt {
+		display: table-cell;
+		width: 10000px;
+	}
+}
+
+
+/* Alignment of block elements
+ ========================================================================== */
+
+/*
+ * Float blocks
+ * 1. Prevent content overflow on small devices
+ */
+
+.f-float-left { float: left; }
+.f-float-right { float: right; }
+
+/* 1 */
+[class*='f-float-'] { max-width: 100%; }
+
+
+/* Alignment of images and objects
+ ========================================================================== */
+
+/*
+ * Alignment
+ */
+
+[class*='f-align-'] {
+	display: block;
+	margin-bottom: $utility-align-vertical;
+}
+
+.f-align-left {
+	margin-right: $utility-align-horizontal;
+	float: left;
+}
+
+.f-align-right {
+	margin-left: $utility-align-horizontal;
+	float: right;
+}
+
+/* Tablet and bigger */
+@media (min-width: $breakpoint-medium) {
+
+	.f-align-medium-left {
+		margin-right: $utility-align-horizontal;
+		margin-bottom: $utility-align-vertical;
+		float: left;
+	}
+
+	.f-align-medium-right {
+		margin-left: $utility-align-horizontal;
+		margin-bottom: $utility-align-vertical;
+		float: right;
+	}
+
+}
+
+.f-align-center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/* Vertical alignment
+ ========================================================================== */
+
+/*
+ * Remove whitespace between child elements when using `inline-block`
+ */
+
+.f-vertical-align {
+	font-size: 0.001px;
+
+	/*
+	 *  The .f-vertical-align` container needs a specific height
+	 */
+	&:before {
+		content: '';
+		display: inline-block;
+		height: 100%;
+		vertical-align: middle;
+	}
+}
+
+
+
+/*
+ * Sub-object which can have any height
+ * 1. Reset whitespace hack
+ */
+
+.f-vertical-align-middle,
+.f-vertical-align-bottom {
+	display: inline-block;
+	max-width: 100%;
+	/* 1 */
+	font-size: 1rem;
+}
+
+.f-vertical-align-middle { vertical-align: middle; }
+
+.f-vertical-align-bottom { vertical-align: bottom; }
+
+
+/* Height
+ ========================================================================== */
+
+/*
+ * More robust if padding and border are used
+ */
+[class*='f-height'] {
+	box-sizing: border-box;
+}
+
+/*
+ * Useful to extend the `html` and `body` element to the full height of the page.
+ */
+.f-height-1-1 { height: 100%; }
+
+/*
+ * Useful to create image teasers
+ */
+.f-height-viewport {
+	height: 100vh;
+	min-height: $utility-height-viewport-min-height;
+}
+
+
+/* Responsive objects
+ * Note: Images are already responsive by default, see Base component
+ ========================================================================== */
+
+/*
+ * 1. Corrects `max-width` and `max-height` behavior if padding and border are used
+ */
+.f-responsive-width,
+.f-responsive-height {
+	box-sizing: border-box;
+}
+
+/*
+ * Responsiveness: Sets a maximum width relative to the parent and auto scales the height
+ * `important` needed to override .f-img-preserve img`
+ */
+.f-responsive-width {
+	max-width: 100% !important;
+	height: auto;
+}
+
+/*
+ * Responsiveness: Sets a maximum height relative to the parent and auto scales the width
+ * Only works if the parent element has a fixed height.
+ */
+.f-responsive-height {
+	max-height: 100%;
+	width: auto;
+}
+
+
+/* Margin
+ ========================================================================== */
+
+/*
+ * Create a block with the same margin of a paragraph
+ * Add margin if adjacent element
+ */
+.f-margin {
+	margin-bottom: $utility-margin;
+
+	& + & { margin-top: $utility-margin; }
+
+	&-top { margin-top: $utility-margin !important; }
+
+	&-bottom { margin-bottom: $utility-margin !important; }
+
+	&-left { margin-left: $utility-margin !important; }
+
+	&-right { margin-right: $utility-margin !important; }
+}
+
+* + .f-margin {	margin-top: $utility-margin; }
+
+/*
+ * Larger margins
+ */
+.f-margin-large {
+	margin-bottom: $utility-margin-large;
+
+	& + & { margin-top: $utility-margin-large; }
+
+	&-top { margin-top: $utility-margin-large !important; }
+
+	&-bottom { margin-bottom: $utility-margin-large !important; }
+
+	&-left { margin-left: $utility-margin-large !important; }
+
+	&-right { margin-right: $utility-margin-large !important; }
+}
+
+* + .f-margin-large { margin-top: $utility-margin-large; }
+
+/*
+ * Smaller margins
+ */
+.f-margin-small {
+	margin-bottom: $utility-margin-small;
+
+	& + & { margin-top: $utility-margin-small; }
+
+	&-top { margin-top: $utility-margin-small !important; }
+
+	&-bottom { margin-bottom: $utility-margin-small !important; }
+
+	&-left { margin-left: $utility-margin-small !important; }
+
+	&-right { margin-right: $utility-margin-small !important; }
+}
+
+* + .f-margin-small { margin-top: $utility-margin-small; }
+
+/*
+ * Remove margins
+ */
+.f-margin-remove { margin: 0 !important; }
+
+.f-margin-top-remove { margin-top: 0 !important; }
+
+.f-margin-bottom-remove { margin-bottom: 0 !important; }
+
+
+/* Padding
+ ========================================================================== */
+
+.f-padding-remove { padding: 0 !important; }
+.f-padding-top-remove { padding-top: 0 !important; }
+.f-padding-bottom-remove { padding-bottom: 0 !important; }
+
+.f-padding-vertical-remove {
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+
+/* Border
+ ========================================================================== */
+
+.f-border-circle { border-radius: 50%; }
+
+.f-border-rounded { border-radius: $utility-border-rounded; }
+
+
+/* Headings
+ ========================================================================== */
+
+.f-heading-large {
+	font-size: $utility-heading-large-small-font-size;
+	line-height: $utility-heading-large-small-line-height;
+}
+
+/* Tablet and bigger */
+@media (min-width: $breakpoint-medium) {
+
+	.f-heading-large {
+		font-size: $utility-heading-large-font-size;
+		line-height: $utility-heading-large-line-height;
+	}
+
+}
+
+
+/* Link
+ ========================================================================== */
+
+/*
+ * Let links appear in default text color
+ */
+.f-link-muted,
+.f-link-muted a {
+	color: $utility-link-muted-color;
+
+	&:hover { color: $utility-link-muted-hover-color; }
+}
+
+/*
+ * Reset link style
+ */
+.f-link-reset,
+.f-link-reset a,
+.f-link-reset:hover,
+.f-link-reset a:hover,
+.f-link-reset:focus,
+.f-link-reset a:focus {
+	color: inherit;
+	text-decoration: none;
+}
+
+
+/* Scrollable
+ ========================================================================== */
+
+/*
+ * Enable scrolling for preformatted text
+ */
+.f-scrollable-text {
+	height: $utility-scrollable-text-height;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+	resize: both;
+}
+
+/*
+ * Box with scrolling enabled
+ */
+.f-scrollable-box {
+	box-sizing: border-box;
+	height: $utility-scrollable-box-height;
+	padding: $utility-scrollable-box-padding;
+	border: $utility-scrollable-box-border-width solid $utility-scrollable-box-border;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	resize: both;
+
+	> :last-child { margin-bottom: 0; }
+}
+
+
+/* Overflow
+ ========================================================================== */
+
+ .f-overflow-hidden { overflow: hidden; }
+
+/*
+ * Enable scrollbars if content is clipped
+ */
+.f-overflow-container {
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+
+	> :last-child { margin-bottom: 0; }
+}
+
+
+/* Position
+ ========================================================================== */
+
+.f-position-absolute,
+[class*='f-position-top'],
+[class*='f-position-bottom'] { position: absolute !important; }
+
+.f-position {
+	&-top {
+		top: 0;
+		width: 100%;
+	}
+
+	&-bottom {
+		bottom: 0;
+		width: 100%;
+	}
+
+	&-top-left {
+		top: 0;
+		left: 0;
+	}
+
+	&-top-right {
+		top: 0;
+		right: 0;
+	}
+
+	&-bottom-left {
+		bottom: 0;
+		left: 0;
+	}
+
+	&-bottom-right {
+		bottom: 0;
+		right: 0;
+	}
+}
+
+/*
+ * Cover
+ */
+.f-position-cover {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+/*
+ * Relative
+ */
+.f-position-relative { position: relative !important; }
+
+/*
+ * Z-index
+ */
+
+.f-position-z-index { z-index: 1; }
+
+
+/* Display
+ ========================================================================== */
+
+/*
+ * Display
+ */
+.f-display-block { display: block !important; }
+
+.f-display-inline { display: inline !important; }
+
+.f-display-inline-block { display: inline-block !important; }
+
+/*
+ * Visibility
+ * Avoids setting display to `block` so it works also with `inline-block` and `table`
+ */
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+	.f-visible-small { display: none !important; }
+	.f-visible-medium { display: none !important; }
+	.f-hidden-large { display: none !important; }
+
+}
+
+/* Tablets portrait */
+@media (min-width: $breakpoint-medium) and (max-width: $breakpoint-medium-max) {
+
+	.f-visible-small { display: none !important; }
+	.f-visible-large { display: none !important ; }
+	.f-hidden-medium { display: none !important; }
+
+}
+
+/* Phone landscape and smaller*/
+@media (max-width: $breakpoint-small-max) {
+
+	.f-visible-medium { display: none !important; }
+	.f-visible-large { display: none !important; }
+	.f-hidden-small { display: none !important; }
+
+}
+
+/* Remove from the flow and screen readers on any device */
+.f-hidden {
+	display: none !important;
+	visibility: hidden !important;
+}
+
+/* It's hidden, but still affects layout */
+.f-invisible { visibility: hidden !important; }
+
+/* Show on hover */
+.f-visible-hover:hover .f-hidden,
+.f-visible-hover:hover .f-invisible {
+	display: block !important;
+	visibility: visible !important;
+}
+
+.f-visible-hover-inline:hover .f-hidden,
+.f-visible-hover-inline:hover .f-invisible {
+	display: inline-block !important;
+	visibility: visible !important;
+}
+
+/* Hide on touch */
+.f-touch .f-hidden-touch,
+.f-notouch .f-hidden-notouch { display: none !important; }
+
+
+/* Colours
+ ========================================================================== */
+
+/*
+ * If a colours array as been provided in the variables file this will loop through
+ * and create colour variables
+ */
+
+@if $text-colours {
+
+	@each $colour in $text-colours {
+		$name: nth($colour, 1);
+		$hex: nth($colour, 2);
+
+		.#{$name} {
+			color: $hex;
+		}
+
+	}
+
+}

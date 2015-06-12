@@ -1,0 +1,429 @@
+// Name:            Tab
+// Description:     Defines styles for a tabbed navigation
+//
+// Component:       .f-tab`
+//
+// Modifiers:       .f-tab-flip`
+//                  .f-tab-center`
+//                  .f-tab-grid`
+//                  .f-tab-bottom`
+//                  .f-tab-left`
+//                  .f-tab-right`
+//                  .f-tab-responsive`
+//
+// States:          .f-active`
+//                  .f-disabled`
+//
+// Markup:
+//
+// <!--.f-tab -->
+// <ul class="f-tab" data-f-tab>
+//     <li class="f-active"><a href=""></a></li>
+//     <li><a href=""></a></li>
+// </ul>
+// 
+// Url:				http://fatkit.fmdev02.fatoffice.co.uk/core/tab.asp
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$tab-border:                                    #ddd;
+$tab-border-width:                              1px;
+$tab-padding-horizontal:                        12px;
+$tab-padding-vertical:                          8px;
+$tab-padding-top:                               $tab-padding-vertical;
+$tab-padding-bottom:                            $tab-padding-vertical;
+$tab-margin-horizontal:                         5px;
+$tab-margin-vertical:                           5px;
+$tab-color:                                     #07D;
+$tab-hover-border:                              #f5f5f5;
+$tab-hover-background:                          #f5f5f5;
+$tab-hover-color:                               #059;
+$tab-active-border:                             #ddd;
+$tab-active-background:                         #fff;
+$tab-active-color:                              #444;
+$tab-disabled-color:                            #999;
+
+
+/* ========================================================================
+   Component: Tab
+ ========================================================================== */
+
+.f-tab {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border-bottom: $tab-border-width solid $tab-border;
+}
+
+/*
+ * Micro clearfix on the deepest container
+ */
+
+.f-tab:before,
+.f-tab:after {
+	content: "";
+	display: table;
+}
+
+.f-tab:after { clear: both; }
+
+/*
+ * Items
+ * 1. Create position context for dropdowns
+ */
+
+.f-tab > li {
+	margin-bottom: -$tab-border-width;
+	float: left;
+	/* 1 */
+	position: relative;
+}
+
+.f-tab > li > a {
+	border-bottom-width: 0;
+	border: $tab-border-width solid transparent;
+	color: $tab-color;
+	display: block;
+	padding: $tab-padding-top $tab-padding-horizontal $tab-padding-bottom $tab-padding-horizontal;
+	text-decoration: none;
+}
+
+.f-tab > li:nth-child(n+2) > a { margin-left: $tab-margin-horizontal; }
+
+/*
+ * Hover
+ * 1. Apply hover style also to focus state
+ * 2. Also apply if dropdown is opened
+ * 3. Remove default focus style
+ */
+
+.f-tab > li > a:hover,
+.f-tab > li > a:focus, // 1
+.f-tab > li.f-open > a { // 2
+	border-color: $tab-hover-border;
+	background: $tab-hover-background;
+	color: $tab-hover-color;
+	/* 2 */
+	outline: none;
+}
+
+.f-tab > li:not(.f-active) > a:hover,
+.f-tab > li:not(.f-active) > a:focus,
+.f-tab > li.f-open:not(.f-active) > a {
+	margin-bottom: $tab-border-width;
+	padding-bottom: $tab-padding-bottom - $tab-border-width;
+}
+
+/* Active */
+.f-tab > li.f-active > a {
+	border-color: $tab-active-border;
+	border-bottom-color: transparent;
+	background: $tab-active-background;
+	color: $tab-active-color;
+}
+
+/* Disabled */
+.f-tab > li.f-disabled > a {
+	color: $tab-disabled-color;
+	cursor: text;
+}
+
+.f-tab > li.f-disabled > a:hover,
+.f-tab > li.f-disabled > a:focus,
+.f-tab > li.f-disabled.f-active > a {
+	background: none;
+	border-color: transparent;
+}
+
+
+/* Modifier: 'tab-flip'
+ ========================================================================== */
+
+.f-tab-flip > li { float: right; }
+
+.f-tab-flip > li:nth-child(n+2) > a {
+	margin-left: 0;
+	margin-right: $tab-margin-horizontal;
+}
+
+
+/* Modifier: 'tab-responsive'
+ ========================================================================== */
+
+.f-tab > li.f-tab-responsive > a {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+/*
+ * Icon
+ */
+
+.f-tab-responsive > a:before {
+	content: "\f0c9\00a0";
+	font-family: FontAwesome;
+}
+
+
+/* Modifier: 'tab-center'
+ ========================================================================== */
+
+.f-tab-center { border-bottom: $tab-border-width solid $tab-border; }
+
+.f-tab-center-bottom {
+	border-bottom: none;
+	border-top: $tab-border-width solid $tab-border;
+}
+
+.f-tab-center:before,
+.f-tab-center:after {
+	content: "";
+	display: table;
+}
+
+.f-tab-center:after { clear: both; }
+
+
+/*
+ * 1. Using `right` to prevent vertical scrollbar caused by centering if to many tabs
+ */
+
+.f-tab-center .f-tab {
+	position: relative;
+	right: 50%;
+	border: none;
+	float: right;
+}
+
+.f-tab-center .f-tab > li {
+	position: relative;
+	right: -50%;
+}
+
+.f-tab-center .f-tab > li > a { text-align: center; }
+
+
+/* Modifier: 'tab-bottom'
+ ========================================================================== */
+
+.f-tab-bottom {
+	border-top: $tab-border-width solid $tab-border;
+	border-bottom: none;
+}
+
+.f-tab-bottom > li {
+	margin-top: -$tab-border-width;
+	margin-bottom: 0;
+}
+
+.f-tab-bottom > li > a {
+	padding-top: $tab-padding-bottom;
+	padding-bottom: $tab-padding-top;
+	border-bottom-width: $tab-border-width;
+	border-top-width: 0;
+}
+
+.f-tab-bottom > li:not(.f-active) > a:hover,
+.f-tab-bottom > li:not(.f-active) > a:focus,
+.f-tab-bottom > li.f-open:not(.f-active) > a {
+	margin-bottom: 0;
+	margin-top: $tab-border-width;
+	padding-bottom: $tab-padding-top;
+	padding-top: $tab-padding-bottom - $tab-border-width;
+}
+
+.f-tab-bottom > li.f-active > a {
+	border-top-color: transparent;
+	border-bottom-color: $tab-active-border;
+}
+
+
+/* Modifier: 'tab-grid'
+ ========================================================================== */
+
+/*
+ * 1. Create position context to prevent hidden border because of negative `z-index`
+ */
+
+.f-tab-grid {
+	margin-left: -$tab-margin-horizontal;
+	border-bottom: none;
+	/* 1 */
+	position: relative;
+	z-index: 0;
+}
+
+.f-tab-grid:before {
+	display: block;
+	position: absolute;
+	left: $tab-margin-horizontal;
+	right: 0;
+	bottom: -$tab-border-width;
+	border-top: $tab-border-width solid $tab-border;
+	/* 1 */
+	z-index: -1;
+}
+
+.f-tab-grid > li:first-child > a { margin-left: $tab-margin-horizontal; }
+
+.f-tab-grid > li > a { text-align: center; }
+
+/*
+ * If .f-tab-bottom`
+ */
+.f-tab-grid.f-tab-bottom { border-top: none; }
+.f-tab-grid.f-tab-bottom:before {
+	top: -$tab-border-width;
+	bottom: auto;
+}
+
+/**
+ * Modifier: 'tab-large'
+ */
+.f-tab-large {
+	> li {
+		> a {
+			background-color: #efefef;
+			border-color: $tab-border;
+			border-bottom-color: $tab-border;
+			padding: 15px 10px 10px;
+		}
+
+		&:nth-child(n+2) > a {
+			margin-left: -1px;
+		}
+	}
+
+	> li:not(.f-active) > a {
+		margin-top: 5px;
+		padding: 10px;
+	}
+
+	> li:not(.f-active) > a:hover,
+	> li:not(.f-active) > a:focus,
+	> li.f-open:not(.f-active) > a {
+		border-color: $tab-border;
+		border-bottom-color: transparent;
+		padding-bottom: 9px;
+	}
+
+	> li.f-tab-responsive {
+		margin-bottom: -1px;
+
+		a {
+			margin-left: 0;
+		}
+	}
+
+	& + .f-switcher {
+		border: solid $tab-border;
+		border-width: 0 1px 1px;
+		padding: 20px;
+	}
+}
+
+/* Modifier: 'tab-left', 'tab-right'
+ ========================================================================== */
+
+/* Tablet and bigger */
+@include bp-at-least($breakpoint-medium) {
+
+	.f-tab-left,
+	.f-tab-right { border-bottom: none; }
+
+	.f-tab-left > li,
+	.f-tab-right > li {
+		margin-bottom: 0;
+		float: none;
+	}
+
+	.f-tab-left > li > a,
+	.f-tab-right > li > a {
+		padding-top: $tab-padding-vertical;
+		padding-bottom: $tab-padding-vertical;
+	}
+
+	.f-tab-left > li:nth-child(n+2) > a,
+	.f-tab-right > li:nth-child(n+2) > a {
+		margin-left: 0;
+		margin-top: $tab-margin-vertical;
+	}
+
+	.f-tab-left > li.f-active > a,
+	.f-tab-right > li.f-active > a { border-color: $tab-active-border; }
+
+	/*
+	 * Modifier: 'tab-left'
+	 */
+
+	.f-tab-left { border-right: $tab-border-width solid $tab-border; }
+	.f-tab-left > li { margin-right: -$tab-border-width; }
+	.f-tab-left > li > a {
+		border-bottom-width: $tab-border-width;
+		border-right-width: 0;
+	}
+
+	.f-tab-left > li:not(.f-active) > a:hover,
+	.f-tab-left > li:not(.f-active) > a:focus {
+		margin-bottom: 0;
+		margin-right: $tab-border-width;
+		padding-bottom: $tab-padding-vertical;
+		padding-right: $tab-padding-horizontal - $tab-border-width;
+	}
+
+	.f-tab-left > li.f-active > a { border-right-color: transparent; }
+
+	/*
+	 * Modifier: 'tab-right'
+	 */
+
+	.f-tab-right { border-left: $tab-border-width solid $tab-border; }
+	.f-tab-right > li { margin-left: -$tab-border-width; }
+	.f-tab-right > li > a {
+		border-bottom-width: $tab-border-width;
+		border-left-width: 0;
+	}
+
+	.f-tab-right > li:not(.f-active) > a:hover,
+	.f-tab-right > li:not(.f-active) > a:focus {
+		margin-bottom: 0;
+		margin-left: $tab-border-width;
+		padding-bottom: $tab-padding-vertical;
+		padding-left: $tab-padding-horizontal - $tab-border-width;
+	}
+	
+	.f-tab-right > li.f-active > a { border-left-color: transparent; }
+
+	/**
+	 * Modifier: 'tab-large'
+	 */
+	.f-tab-large {
+		> li {
+			> a {
+				@include font-size(18);
+
+				padding: 25px 40px 15px;
+			}
+		}
+
+		> li:not(.f-active) > a {
+			margin-top: 10px;
+			padding: 15px 40px;
+		}
+
+		> li:not(.f-active) > a:hover,
+		> li:not(.f-active) > a:focus,
+		> li.f-open:not(.f-active) > a {
+			padding-bottom: 14px;
+		}
+
+		& + .f-switcher {
+			padding: 40px;
+		}
+	}
+
+}

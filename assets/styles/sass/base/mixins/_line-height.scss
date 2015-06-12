@@ -1,0 +1,17 @@
+/* =============================================================================
+    Line height using rem's
+    ========================================================================= */
+
+// Enter your desired line-height in pixels and the mixin will do the rest
+@mixin line-height($pxValue) {
+    line-height: $pxValue+px;
+    line-height: ($pxValue/$basefontsize) + rem;
+}
+
+/* Example
+
+p {
+    @include line-height(24);
+}
+
+*/

@@ -1,0 +1,165 @@
+/****
+
+  MAIN STYLESHEET for ** SITE NAME **
+
+---------------------------------------------------------
+
+  BUILT WITH FatKit
+
+  TABLE OF CONTENTS
+  @toc
+
+  - Base ............ foundations, mixins, functions, vars
+  - Layout .......... layout objects like grids, containers
+  - Navigation....... navigation elements like navbar, pagination
+  - Elements ........ single elements
+  - Core ............ everything else a growing site needs
+  - Components ...... JavaScript-based components
+  - Modules ......... sections of a website like header, footer
+  - Print ........... the print stylesheet
+
+---------------------------------------------------------  */
+
+
+/***
+
+  @base
+---------------------------------------------------------
+
+  Your CSS begins with some global variables, a reset which
+  is basically Normalize, some mixins, and a print stylesheet.
+
+-----------------------------------------------------  */
+
+// Mixins
+@import 'base/functions';
+@import 'base/mixins';
+
+// Variables
+@import 'base/variables';
+
+// Font awesome (enable if required (download FA first))
+@import 'font-awesome/font-awesome';
+
+// Defaults
+@import 'base/base';
+@import 'base/helpers';
+
+
+/***
+
+  @layout
+---------------------------------------------------------
+
+  A large portion of CSS is structural layout. You will use
+  these helpers to create the scaffolding that will support
+  the elements and modules that make up your site.
+
+---------------------------------------------------------  */
+@import 'layout/article';
+@import 'layout/comment';
+@import 'layout/cover';
+@import 'layout/flex';
+@import 'layout/grid';
+@import 'layout/panel';
+
+
+/***
+
+  @navigation
+---------------------------------------------------------
+
+  A large portion of CSS is structural layout. You will use
+  these helpers to create the scaffolding that will support
+  the elements and modules that make up your site.
+
+---------------------------------------------------------  */
+@import 'navigation/breadcrumb';
+@import 'navigation/nav';
+@import 'navigation/navbar';
+@import 'navigation/pagination';
+@import 'navigation/subnav';
+@import 'navigation/tab';
+@import 'navigation/thumbnav';
+
+
+/***
+
+  @elements
+---------------------------------------------------------
+
+  Global styling of elements.
+
+---------------------------------------------------------  */
+@import 'elements/description-list';
+@import 'elements/form';
+@import 'elements/list';
+@import 'elements/table';
+
+
+/***
+
+  @core
+---------------------------------------------------------
+
+  Stuff that is generally used around and about the place
+  like alerts, badges and buttons
+
+---------------------------------------------------------  */
+@import 'core/alert';
+@import 'core/animation';
+@import 'core/badge';
+@import 'core/block';
+@import 'core/button';
+@import 'core/close';
+@import 'core/icon';
+@import 'core/overlay';
+@import 'core/text';
+@import 'core/thumbnail';
+@import 'core/utility';
+@import 'core/contrast';
+
+
+/***
+
+  @components
+---------------------------------------------------------
+
+  Default JavaScript components included for all projects
+
+---------------------------------------------------------  */
+@import 'components/dotnav';
+@import 'components/dropdown';
+@import 'components/modal';
+@import 'components/offcanvas';
+@import 'components/switcher';
+
+
+/***
+
+  @modules
+---------------------------------------------------------
+
+  Reusable objects that are combinations
+  of elements and other modules.
+
+  When you create a new module, make sure the partial is
+  in the modules directory, and you import it below.
+
+  Comment out any partial you don't need for this site.
+
+---------------------------------------------------------  */
+@import 'modules/header';
+@import 'modules/navigation';
+@import 'modules/footer';
+
+
+/***
+
+  @print
+---------------------------------------------------------
+
+  Print CSS!
+
+---------------------------------------------------------  */
+@import 'base/print';

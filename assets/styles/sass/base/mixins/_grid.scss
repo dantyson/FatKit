@@ -1,0 +1,42 @@
+/* =============================================================================
+    Column width calculator
+    ========================================================================= */
+
+@function column($totalcols, $span, $gridgutter: $gutter) {
+	// the % width of one column in this grid
+	$oneCol: 100/$totalcols;
+	// the % width of an element that spans the specified number of columns
+	$thisCol: $oneCol * $span;
+	// now we work out the margin
+	// we need to get the total gutter width as a percentage of the whole grid
+	// minus one for the first item, as it has no margin
+	$gutterPerc: (100 / $thisCol) - 1;
+	// multiply by how big our actual guttering is
+	$actualGutter: $gutterPerc * $gridgutter;
+	// now divide by the total size of this column
+	$thisGutter: $actualGutter / ( $totalcols / $span );
+	// finally, we remove it from the col width, so col + gutter = total
+	// using "0% + " to make sure we're getting a percentage
+	@return (0% + $thisCol - $thisGutter);
+	//phew!
+}
+
+/* Example:
+
+.margin-element {
+    margin-left: column(12, 6);
+}
+
+*/
+
+@mixin col($totalcols, $span, $gridgutter: $gutter) {
+	width: column($totalcols, $span, $gridgutter);
+}
+
+/* Example:
+
+.col-2of6 {
+    @include col(6, 2);
+}
+
+*/

@@ -1,0 +1,217 @@
+// Name:            Table
+// Description:     Defines styles for tables
+//
+// Component:       .f-table`
+//
+// Modifiers:       .f-table-middle`
+//                  .f-table-striped`
+//                  .f-table-condensed`
+//                  .f-table-hover`
+//                  
+// Url:				http://fatkit.fmdev02.fatoffice.co.uk/core/table.asp
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$table-margin-vertical:                         15px;
+$table-padding-vertical:                        8px;
+$table-padding-horizontal:                      8px;
+
+$table-caption-color:                           #999;
+$table-caption-font-size:                       12px;
+
+$table-striped-background:                      #f5f5f5;
+
+$table-condensed-padding-vertical:              4px;
+$table-condensed-padding-horizontal:            8px;
+
+$table-large-padding-vertical:					16px;
+$table-large-padding-horizontal:				16px;
+
+$table-border-colour:							#e5e5e5;
+$table-border-width:							1px;
+
+$table-hover-background:                        #EEE;
+
+
+/* ========================================================================
+   Component: Table
+ ========================================================================== */
+
+/*
+ * 1. Remove most spacing between table cells.
+ * 2. Block element behavior
+ * 3. Style
+ */
+.f-table {
+	/* 1 */
+	border-collapse: collapse;
+	border-spacing: 0;
+	display: table;
+	/* 2 */
+	width: 100%;
+	/* 3 */
+	margin-bottom: $table-margin-vertical;
+
+	/*
+	 * Add margin if adjacent element
+	 */
+	& + .f-table { margin-top: $table-margin-vertical; }
+
+	.f-tr { display: table-row; }
+	.f-th { display: table-head; }
+	.f-td { display: table-cell; }
+
+	th,
+	td,
+	.f-th,
+	.f-td {
+		border-bottom: $table-border-width solid $table-border-colour;
+		padding: $table-padding-vertical $table-padding-horizontal;
+	}
+
+	&.f-table-plain {
+		th,
+		td,
+		.f-th,
+		.f-td { border: 0; }
+	}
+
+	/*
+	 * Set alignment
+	 */
+	th, .f-th { text-align: left; }
+	td, .f-td { vertical-align: top; }
+
+	thead th, .f-thead .f-th { vertical-align: bottom; }
+
+	/*
+	 * Caption and footer
+	 */
+	caption,
+	tfoot,
+	.f-caption,
+	.f-tfoot {
+		font-size: $table-caption-font-size;
+		font-style: italic;
+	}
+
+	caption,
+	.f-caption {
+		text-align: left;
+		color: $table-caption-color;
+	}
+}
+
+/* Sub-modifier: .f-table-middle`
+ ========================================================================== */
+
+.f-table-middle,
+.f-table-middle td,
+.f-table-middle .f-td { vertical-align: middle !important; }
+
+
+/* Sub-modifier: .f-table-bottom`
+ ========================================================================== */
+
+.f-table-bottom,
+.f-table-bottom td,
+.f-table-bottom .f-td { vertical-align: bottom !important; }
+
+
+/* Modifier: .f-table-striped`
+ ========================================================================== */
+
+.f-table-striped tbody tr:nth-of-type(odd) {
+	background: $table-striped-background;
+}
+
+
+/* Modifier: .f-table-large`
+ ========================================================================== */
+
+.f-table-large td { padding: $table-large-padding-vertical $table-large-padding-horizontal; }
+
+
+/* Modifier: .f-table-condensed`
+ ========================================================================== */
+
+.f-table-condensed td { padding: $table-condensed-padding-vertical $table-condensed-padding-horizontal; }
+
+
+/* Modifier: .f-table-bordered`
+ ========================================================================== */
+
+.f-table-bordered th,
+.f-table-bordered td { border: $table-border-width solid $table-border-colour; }
+
+
+/* Modifier: .f-table-hover`
+ ========================================================================== */
+
+.f-table-hover tbody tr:hover { background: $table-hover-background; }
+
+@include bp-until ($breakpoint-medium) {
+
+	/* Modifier: .f-table-responsive
+	 *
+	 * See https://techblog.livingsocial.com/blog/2015/04/06/responsive-tables-in-pure-css/ for the
+	 * example of why. Note I've added a modifier if you want the tables inline as in the example
+	 * above. Just add .f-table-response and .f-table-responsive-inline to the table.
+	 ========================================================================== */
+
+	.f-table-responsive {
+		> thead {
+			display: none;
+		}
+
+		> tbody > tr {
+			border: $table-border-width solid $table-border-colour;
+			display: block;
+			margin-bottom: $base-margin;
+
+			> td {
+				border-bottom: $table-border-width dotted $table-border-colour;
+				display: block;
+				font-size: 13px;
+
+				&:last-child {
+					border-bottom: 0;
+				}
+
+				&:before {
+					content: attr(data-label);
+					display: block;
+					margin-bottom: $base-margin;
+					font-weight: 700;
+				}
+
+				&.f-td-responsive-inline:before {
+					float: left;
+					margin-bottom: 0;
+					margin-right: $base-margin;
+				}
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		&.f-table-responsive-inline {
+			> tbody > tr > td {
+				text-align: right;
+
+				&:before {
+					float: left;
+					margin-bottom: 0;
+					margin-right: $base-margin;
+				}
+			}
+		}
+	}
+
+ }

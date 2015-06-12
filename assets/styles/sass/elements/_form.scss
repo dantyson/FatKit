@@ -1,0 +1,649 @@
+// Name:            Form
+// Description:     Defines styles for forms
+//
+// Component:       .f-form`
+//
+// Sub-objects:     .f-form-row`
+//                  .f-form-help-inline`
+//                  .f-form-help-block`
+//                  .f-form-label`
+//                  .f-form-controls`
+//                  .f-form-controls-condensed`
+//                  .f-form-icon`
+//
+// Modifiers:       .f-form-stacked`
+//                  .f-form-horizontal`
+//
+// Sub-modifiers:   .f-form-danger`
+//                  .f-form-success`
+//                  .f-form-small`
+//                  .f-form-large`
+//                  .f-form-blank`
+//                  .f-form-width-mini`
+//                  .f-form-width-small`
+//                  .f-form-width-medium`
+//                  .f-form-width-large`
+//                  .f-form-controls-text`
+//
+// Markup:
+//
+// <!--.f-form -->
+// <form class="f-form">
+//     <div class="f-form-row">
+//         <label class="f-form-label" for="form-input-1"></label>
+//         <div class="f-form-controls">
+//             <input type="text" id="form-input-1" placeholder="Text">
+//         </div>
+//     </div>
+// </form>
+//                  
+// Url:				http://fatkit.fmdev02.fatoffice.co.uk/core/form.asp
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$form-height:                                   30px;
+$form-padding:                                  4px 6px;
+$form-border:                                   #ddd;
+$form-border-width:                             1px;
+$form-background:                               #fff;
+$form-color:                                    #444;
+
+$form-focus-border:                             #99baca;
+$form-focus-background:                         #f5fbfe;
+$form-focus-color:                              #444;
+
+$form-disabled-border:                          #ddd;
+$form-disabled-background:                      #f5f5f5;
+$form-disabled-color:                           #999;
+
+$form-placeholder-color:                        #999;
+
+$form-gutter:                                   20px;
+
+$form-legend-border:                            #ddd;
+$form-legend-border-width:                      1px;
+$form-legend-font-size:                         18px;
+$form-legend-line-height:                       30px;
+
+$form-small-height:                             25px;
+$form-large-height:                             40px;
+$form-small-padding:                            3px 3px;
+$form-large-padding:                            8px 6px;
+$form-small-font-size:                          12px;
+$form-large-font-size:                          16px;
+
+$form-danger-border:                            #dc8d99;
+$form-danger-background:                        #fff7f8;
+$form-danger-color:                             #d85030;
+
+$form-success-border:                           #8ec73b;
+$form-success-background:                       #fafff2;
+$form-success-color:                            #659f13;
+
+$form-blank-border:                             #ddd;
+$form-blank-border-style:                       dashed;
+
+$form-mini-width:                               40px;
+$form-small-width:                              130px;
+$form-medium-width:                             200px;
+$form-large-width:                              500px;
+
+$form-help-inline-margin-left:                  10px;
+$form-help-block-margin-top:                    5px;
+
+$form-controls-condensed-margin-vertical:       5px;
+
+$form-stacked-margin-bottom:                    5px;
+$form-stacked-font-weight:                      700;
+
+$form-horizontal-label-width:                   200px;
+$form-horizontal-label-margin-top:              5px;
+$form-horizontal-controls-margin-left:          215px;
+$form-horizontal-controls-text-padding-top:     5px;
+
+$form-icon-width:                               30px;
+$form-icon-font-size:                           14px;
+$form-icon-color:                               #999;
+
+
+/* ========================================================================
+   Component: Form
+ ========================================================================== */
+
+/*
+ * 1. Define consistent box sizing.
+ *    Default is `content-box` with following exceptions set to `border-box`
+ *    `button`, `select`, `input[type="checkbox"]` and `input[type="radio"]`
+ *    `input[type="search"]` in Chrome, Safari and Opera
+ *    `input[type="color"]` in Firefox
+ * 2. Address margins set differently in Firefox/IE and Chrome/Safari/Opera.
+ * 3. Remove `border-radius` in iOS.
+ * 4. Correct `font` properties and `color` not being inherited.
+ */
+
+.f-form input,
+.f-form select,
+.f-form textarea {
+	/* 1 */
+	box-sizing: border-box;
+	/* 2 */
+	margin: 0;
+	/* 3 */
+	border-radius: 0;
+	/* 4 */
+	/*
+	font: inherit;
+	color: inherit;
+	*/
+}
+
+/*
+ * Address inconsistent `text-transform` inheritance which is only inherit in Firefox
+ */
+
+.f-form select {
+	-webkit-appearance: none;
+	appearance: none;
+	cursor: pointer;
+	text-transform: none;
+}
+
+/*
+ * 1. Correct `font` properties not being inherited.
+ * 2. Don't inherit the `font-weight` and use `bold` instead.
+ * NOTE: Both declarations don't work in Chrome, Safari and Opera.
+ */
+
+.f-form optgroup {
+	/* 1 */
+	font: inherit;
+	/* 2 */
+	font-weight: 700;
+}
+
+/*
+ * Removes inner padding and border in Firefox 4+.
+ */
+
+.f-form input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+/*
+ * Removes excess padding in IE 8/9/10.
+ */
+
+.f-form input[type="checkbox"],
+.f-form input[type="radio"] {
+	padding: 0;
+}
+
+/*
+ * Improves consistency of cursor style for clickable elements
+ */
+
+.f-form input[type="checkbox"]:not(:disabled),
+.f-form input[type="radio"]:not(:disabled) {
+	cursor: pointer;
+}
+
+/*
+ * Remove default style in iOS
+ */
+.f-form textarea,
+.f-form input:not([type]),
+.f-form input[type="text"],
+.f-form input[type="password"],
+.f-form input[type="email"],
+.f-form input[type="url"],
+.f-form input[type="search"],
+.f-form input[type="tel"],
+.f-form input[type="number"],
+.f-form input[type="datetime"] { -webkit-appearance: none; }
+
+/*
+ * Remove inner padding and search cancel button in Chrome, Safari and Opera on OS X.
+ */
+
+.f-form input[type="search"]::-webkit-search-cancel-button,
+.f-form input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+/*
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+
+.f-form input[type="number"]::-webkit-inner-spin-button,
+.f-form input[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+
+/*
+ * Define consistent border, margin, and padding.
+ */
+
+.f-form fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+/*
+ * 1. Remove default vertical scrollbar in IE 8/9/10/11.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+.f-form textarea {
+	/* 1 */
+	overflow: auto;
+	/* 2 */
+	vertical-align: top;
+}
+
+/*
+ * Removes placeholder transparency in Firefox.
+ */
+
+.f-form ::-moz-placeholder {
+	opacity: 1;
+}
+
+/*
+ * Removes `box-shadow` for invalid controls in Firefox.
+ */
+
+.f-form :invalid {
+	box-shadow: none;
+}
+
+/*
+ * Vertical alignment
+ */
+
+.f-form input:not([type="radio"]):not([type="checkbox"]),
+.f-form select {
+	vertical-align: middle;
+}
+
+
+/* Style
+ ========================================================================== */
+
+/*
+ * Remove margin from the last-child
+ */
+
+.f-form > :last-child { margin-bottom: 0; }
+
+/*
+ * Controls
+ * Except for `range`, `radio`, `checkbox`, `file`, `submit`, `reset`, `button` and `image`
+ * 1. Must be `height` because `min-height` is not working in OSX
+ * 2. Responsiveness: Sets a maximum width relative to the parent to scale on narrower viewports
+ * 3. Vertical `padding` needed for `select` elements in Firefox
+ * 4. Style
+ */
+.f-form select,
+.f-form textarea,
+.f-form input:not([type]),
+.f-form input[type="text"],
+.f-form input[type="password"],
+.f-form input[type="datetime"],
+.f-form input[type="datetime-local"],
+.f-form input[type="date"],
+.f-form input[type="month"],
+.f-form input[type="time"],
+.f-form input[type="week"],
+.f-form input[type="number"],
+.f-form input[type="email"],
+.f-form input[type="url"],
+.f-form input[type="search"],
+.f-form input[type="tel"],
+.f-form input[type="color"] {
+	/* 1 */
+	height: $form-height;
+	/* 2 */
+	max-width: 100%;
+	/* 3 */
+	padding: $form-padding;
+	/* 4 */
+	border: $form-border-width solid $form-border;
+	background-color: $form-background;
+	color: $form-color;
+	transition: all linear 0.2s;
+
+	// Focus state
+	&:focus {
+		background-color: $form-focus-background;
+		border-color: $form-focus-border;
+		color: $form-focus-color;
+		outline: 0;
+	}
+
+	// Disabled state
+	&:disabled {
+		border-color: $form-disabled-border;
+		background-color: $form-disabled-background;
+		color: $form-disabled-color;
+	}
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+
+	.f-form select {
+		background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4IiB3aWR0aD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE0LjgzIDE2LjQybDkuMTcgOS4xNyA5LjE3LTkuMTcgMi44MyAyLjgzLTEyIDEyLTEyLTEyeiIvPjxwYXRoIGQ9Ik0wLS43NWg0OHY0OGgtNDh6IiBmaWxsPSJub25lIi8+PC9zdmc+);
+		background-position: right 0 top 50%; // better way to background-position
+		background-repeat: no-repeat;
+		background-size: $form-height;
+		padding-right: $form-height;
+	}
+
+}
+
+/*
+ * Placeholder
+ */
+
+.f-form :-ms-input-placeholder { color: $form-placeholder-color !important; }
+.f-form ::-moz-placeholder { color: $form-placeholder-color; }
+.f-form ::-webkit-input-placeholder { color: $form-placeholder-color; }
+
+.f-form :disabled:-ms-input-placeholder { color: $form-disabled-color !important; }
+.f-form :disabled::-moz-placeholder { color: $form-disabled-color; }
+.f-form :disabled::-webkit-input-placeholder { color: $form-disabled-color; }
+
+/*
+ * Legend
+ * 1. Behave like block element
+ * 2. Correct `color` not being inherited in IE 8/9/10/11.
+ * 3. Remove padding
+ * 4. `margin-bottom` is not working in Safari and Opera.
+ *    Using `padding` and :after instead to create the border
+ * 5. Style
+ */
+
+.f-form legend {
+	/* 1 */
+	width: 100%;
+	/* 2 */
+	border: 0;
+	/* 3 */
+	padding: 0;
+	/* 4 */
+	padding-bottom: $form-gutter;
+	/* 5 */
+	font-size: $form-legend-font-size;
+	line-height: $form-legend-line-height;
+}
+
+/*
+ * 1. Fixes IE9
+ */
+
+.f-form legend:after {
+	content: "";
+	display: block;
+	border-bottom: $form-legend-border-width solid $form-legend-border;
+	/* 1 */
+	width: 100%;
+}
+
+
+/* Size modifiers
+ * Higher specificity needed to override defaults
+ ========================================================================== */
+
+select.f-form-small,
+.f-form-small select,
+textarea.f-form-small,
+.f-form-small textarea,
+input[type].f-form-small,
+.f-form-small input[type]:not([type="submit"]),
+input:not([type]).f-form-small,
+.f-form-small input:not([type]) {
+	height: $form-small-height;
+	padding: $form-small-padding;
+	font-size: $form-small-font-size;
+}
+
+select.f-form-large,
+.f-form-large select,
+textarea.f-form-large,
+.f-form-large textarea,
+input[type].f-form-large,
+.f-form-large input[type]:not([type="submit"]):not([type="radio"]):not([type="checkbox"]),
+input:not([type]).f-form-large,
+.f-form-large input:not([type]) {
+	height: $form-large-height;
+	padding: $form-large-padding;
+	font-size: $form-large-font-size;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+
+	select.f-form-small,
+	.f-form-small select,
+	select.f-form-large,
+	.f-form-large select {
+		padding-right: $form-height;
+	}
+
+}
+
+
+/* Reset height
+ * Must be after size modifiers
+ ========================================================================== */
+
+.f-form textarea,
+.f-form select[multiple],
+.f-form select[size] { height: auto; }
+
+
+/* Validation states
+ * Using !important to keep the selector simple
+ ========================================================================== */
+
+/*
+ * Error state
+ */
+.f-form-danger {
+	border-color: $form-danger-border !important;
+	background-color: $form-danger-background !important;
+	color: $form-danger-color !important;
+}
+
+/*
+ * Success state
+ */
+.f-form-success  {
+	border-color: $form-success-border !important;
+	background-color: $form-success-background !important;
+	color: $form-success-color !important;
+}
+
+
+/* Style modifiers
+ * Using !important to keep the selector simple
+ ========================================================================== */
+
+/*
+ * Blank form
+ */
+.f-form-blank {
+	border-color: transparent !important;
+	border-style: $form-blank-border-style !important;
+	background-color: transparent !important;
+}
+
+.f-form-blank:focus {
+	border-color: $form-blank-border !important;
+}
+
+
+/* Size sub-modifiers
+ ========================================================================== */
+
+/*
+ * Fixed widths
+ * Different widths for mini sized `input` and `select` elements
+ */
+input.f-form-width-mini { width: $form-mini-width; }
+select.f-form-width-mini { width: ($form-mini-width + 25px); }
+.f-form-width-small { width: $form-small-width; }
+.f-form-width-medium { width: $form-medium-width; }
+.f-form-width-large { width: $form-large-width; }
+
+
+/* Sub-objects: .f-form-row`
+ * Groups labels and controls in rows
+ ========================================================================== */
+
+/*
+ * Micro clearfix
+ * Needed for .f-form-horizontal` modifier
+ */
+.f-form-row:before,
+.f-form-row:after {
+	content: "";
+	display: table;
+}
+
+.f-form-row:after { clear: both; }
+
+/*
+ * Vertical gutter
+ */
+.f-form-row + .f-form-row { margin-top: $form-gutter; }
+
+
+/* Help text
+ * Sub-object: .f-form-help-inline`, .f-form-help-block`
+ ========================================================================== */
+
+.f-form-help-inline {
+	display: inline-block;
+	margin: 0 0 0 $form-help-inline-margin-left;
+}
+
+.f-form-help-block { margin: $form-help-block-margin-top 0 0 0; }
+
+
+/* Controls content
+ * Sub-object: .f-form-controls`, .f-form-controls-condensed`
+ ========================================================================== */
+
+/*
+ * Remove margins
+ */
+.f-form-controls > :first-child { margin-top: 0; }
+.f-form-controls > :last-child { margin-bottom: 0; }
+
+/*
+ * Group controls and text into blocks with a small spacing between blocks
+ */
+.f-form-controls-condensed { margin: $form-controls-condensed-margin-vertical 0; }
+
+
+/* Modifier: .f-form-stacked`
+ * Requires sub-object: .f-form-label`
+ ========================================================================== */
+
+.f-form-stacked .f-form-label {
+	display: block;
+	margin-bottom: $form-stacked-margin-bottom;
+	font-weight: $form-stacked-font-weight;
+}
+
+
+/* Modifier: .f-form-horizontal`
+ * Requires sub-objects: .f-form-label`, .f-form-controls`
+ ========================================================================== */
+
+/* Tablet portrait and smaller */
+@media (max-width: $breakpoint-medium-max) {
+
+	/* Behave like .f-form-stacked` */
+	.f-form-horizontal .f-form-label {
+		display: block;
+		margin-bottom: $form-stacked-margin-bottom;
+		font-weight: $form-stacked-font-weight;
+	}
+
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+	.f-form-horizontal .f-form-label {
+		width: $form-horizontal-label-width;
+		margin-top: $form-horizontal-label-margin-top;
+		float: left;
+	}
+
+	.f-form-horizontal .f-form-controls { margin-left: $form-horizontal-controls-margin-left; }
+
+	/* Better vertical alignment if controls are checkboxes and radio buttons with text */
+	.f-form-horizontal .f-form-controls-text { padding-top: $form-horizontal-controls-text-padding-top; }
+
+}
+
+
+/* Sub-object: .f-form-icon`
+ ========================================================================== */
+
+/*
+ * 1. Container width fits its content
+ * 2. Create position context
+ * 3. Prevent `inline-block` consequences
+ */
+
+.f-form-icon {
+	/* 1 */
+	display: inline-block;
+	/* 2 */
+	position: relative;
+	/* 3 */
+	max-width: 100%;
+}
+
+/*
+ * 1. Make form element clickable through icon
+ */
+.f-form-icon > [class*='fa fa-'] {
+	position: absolute;
+	top: 50%;
+	width: $form-icon-width;
+	margin-top: round($form-icon-font-size / -2);
+	font-size: $form-icon-font-size;
+	color: $form-icon-color;
+	text-align: center;
+	/* 1 */
+	pointer-events: none;
+}
+
+.f-form-icon:not(.f-form-icon-flip) > input { padding-left: $form-icon-width !important; }
+
+/*
+ * Sub-modifier: .f-form-icon-flip`
+ */
+
+.f-form-icon-flip > [class*='fa fa-'] { right: 0; }
+.f-form-icon-flip > input { padding-right: $form-icon-width !important; }
+
+/**
+ * If advanced features are required uncomment as necessary
+ * the following
+ */
+@import 'form-advanced';
+@import 'form-file';
+@import 'form-password';
+@import 'form-select';

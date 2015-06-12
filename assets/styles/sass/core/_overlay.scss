@@ -1,0 +1,505 @@
+// Name:            Overlay
+// Description:     Defines styles for image overlays
+//
+// Component:       `f-overlay`
+//
+// Sub-objects:     `f-overlay-panel`
+//                  `f-overlay-hover`
+//                  `f-overlay-active`
+//                  `f-overlay-icon`
+//
+// Modifier:        `f-overlay-background`
+//                  `f-overlay-image`
+//                  `f-overlay-top`
+//                  `f-overlay-bottom`
+//                  `f-overlay-left`
+//                  `f-overlay-right`
+//                  `f-overlay-fade`
+//                  `f-overlay-scale`
+//                  `f-overlay-spin`
+//                  `f-overlay-grayscale`
+//                  `f-overlay-slide-top`
+//                  `f-overlay-slide-bottom`
+//                  `f-overlay-slide-left`
+//                  `f-overlay-slide-right`
+//
+// DEPRECATED:      `f-overlay-area`
+//                  `f-overlay-area-content`
+//                  `f-overlay-caption`
+//                  `f-overlay-toggle`
+//
+// States:          `f-hover`
+//                  `f-active`
+//                  `f-ignore`
+//
+// Uses:            Icon: `[class*='f-icon-']`
+//                  `f-border-circle`
+//
+// Markup:
+//
+// <!-- f-overlay -->
+// <a class="f-overlay" href="">
+//     <img src="" alt="">
+//     <div class="f-overlay-panel"></div>
+// </a>
+//                  
+// Url:				http://fatkit.fmdev02.fatoffice.co.uk/core/overlay.asp
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$overlay-panel-padding:                          20px !default;
+$overlay-panel-color:                            #fff !default;
+
+$overlay-panel-background:                       rgba(0,0,0,0.5) !default;
+
+$overlay-icon:                                   "\f002" !default;
+$overlay-icon-size:                              50px !default;
+$overlay-icon-color:                             #fff !default;
+
+$overlay-fade-in-opacity:                        1 !default;
+$overlay-fade-out-opacity:                       0.7 !default;
+
+$overlay-scale-in-scale:                         1.1 !default;
+$overlay-scale-out-scale:                        1 !default;
+
+$overlay-spin-in-scale:                          1.1 !default;
+$overlay-spin-out-scale:                         1 !default;
+$overlay-spin-in-rotate:                         3deg !default;
+$overlay-spin-out-rotate:                        0deg !default;
+
+$overlay-panel-link-color:                       inherit !default;
+$overlay-panel-link-text-decoration:             underline !default;
+
+// DEPRECATED
+$overlay-area-background:                        rgba(0,0,0,0.3) !default;
+
+$overlay-area-icon:                              "\f002" !default;
+$overlay-area-icon-size:                         50px !default;
+$overlay-area-icon-color:                        #fff !default;
+
+$overlay-area-content-font-size:                 1rem !default;
+$overlay-area-content-padding-horizontal:        15px !default;
+$overlay-area-content-color:                     #fff !default;
+$overlay-area-content-link-color:                inherit !default;
+
+$overlay-caption-background:                     rgba(0,0,0,0.5) !default;
+$overlay-caption-padding:                        15px !default;
+$overlay-caption-color:                          #fff !default;
+
+
+/* ========================================================================
+   Component: Overlay
+ ========================================================================== */
+
+/*
+ * 1. Container width fits its content
+ * 2. Create position context
+ * 3. Set max-width for responsive images to prevent `inline-block` consequences
+ * 4. Remove the gap between the container and its child element
+ * 5. Needed for transitions and to fixed wrong scaling calculation for images in Chrome
+ * 6. Fixed `overflow: hidden` to be ignored with border-radius and CSS transforms in Webkit
+ * 7. Reset margin
+ */
+
+.f-overlay {
+	/* 1 */
+	display: inline-block;
+	/* 2 */
+	position: relative;
+	/* 3 */
+	max-width: 100%;
+	/* 4 */
+	vertical-align: middle;
+	/* 5 */
+	overflow: hidden;
+	/* 6 */
+	-webkit-transform: translateZ(0);
+	/* 7 */
+	margin: 0;
+}
+
+/* 6 for Safari */
+.f-overlay.f-border-circle { -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%); }
+
+/*
+ * Remove margin from content
+ */
+
+.f-overlay > :first-child { margin-bottom: 0; }
+
+
+/* Sub-object `f-overlay-panel`
+ ========================================================================== */
+
+/*
+ * 1. Position cover
+ * 2. Style
+ */
+
+.f-overlay-panel {
+	/* 1 */
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	/* 2 */
+	padding: $overlay-panel-padding;
+	color: $overlay-panel-color;
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.f-overlay-panel > :last-child,
+.f-overlay-panel.f-flex > * > :last-child { margin-bottom: 0; }
+
+/*
+ * Keep color for headings if the default heading color is changed
+ */
+
+.f-overlay-panel h1,
+.f-overlay-panel h2,
+.f-overlay-panel h3,
+.f-overlay-panel h4,
+.f-overlay-panel h5,
+.f-overlay-panel h6 { color: inherit; }
+
+.f-overlay-panel a:not([class]) {
+	color: $overlay-panel-link-color;
+	text-decoration: $overlay-panel-link-text-decoration;
+}
+
+.f-overlay-panel a[class*='f-icon-']:not(.f-icon-button) { color: $overlay-panel-link-color; }
+
+
+/* Sub-object `f-overlay-hover` and `f-overlay-active`
+ ========================================================================== */
+
+.f-overlay-hover:not(:hover):not(.f-hover) .f-overlay-panel:not(.f-ignore) { opacity: 0; }
+
+.f-overlay-active :not(.f-active) > .f-overlay-panel:not(.f-ignore) { opacity: 0; }
+
+
+/* Modifier `f-overlay-background`
+ ========================================================================== */
+
+.f-overlay-background {
+	background: $overlay-panel-background;
+}
+
+
+/* Modifier `f-overlay-image`
+ ========================================================================== */
+
+/*
+ * Reset panel
+ */
+
+.f-overlay-image {
+	padding: 0;
+}
+
+
+/* Position modifiers
+ ========================================================================== */
+
+.f-overlay-top { bottom: auto; }
+
+.f-overlay-bottom { top: auto; }
+
+.f-overlay-left { right: auto; }
+
+.f-overlay-right { left: auto; }
+
+
+/* Sub-object `f-overlay-icon`
+ ========================================================================== */
+
+.f-overlay-icon:before {
+	content: $overlay-icon;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: $overlay-icon-size;
+	height: $overlay-icon-size;
+	margin-top: -($overlay-icon-size / 2);
+	margin-left: -($overlay-icon-size / 2);
+	font-size: $overlay-icon-size;
+	line-height: 1;
+	font-family: FontAwesome;
+	text-align: center;
+	color: $overlay-icon-color;
+}
+
+
+/* Transitions
+ ========================================================================== */
+
+.f-overlay-fade,
+.f-overlay-scale,
+.f-overlay-spin,
+.f-overlay-grayscale,
+.f-overlay-blur,
+[class*='f-overlay-slide'] {
+	transition-duration: 0.3s;
+	transition-timing-function: ease-out;
+	transition-property: opacity transform filter;
+}
+
+.f-overlay-active .f-overlay-fade,
+.f-overlay-active .f-overlay-scale,
+.f-overlay-active .f-overlay-spin,
+.f-overlay-active [class*='f-overlay-slide'] { transition-duration: 0.8s; }
+
+/*
+ * Fade
+ */
+
+.f-overlay-fade { opacity: $overlay-fade-out-opacity; }
+
+.f-overlay-hover:hover .f-overlay-fade,
+.f-overlay-active .f-active > .f-overlay-fade { opacity: $overlay-fade-in-opacity; }
+
+/*
+ * Scale
+ */
+
+.f-overlay-scale {
+	-webkit-transform: scale($overlay-scale-out-scale);
+	transform: scale($overlay-scale-out-scale);
+}
+
+.f-overlay-hover:hover .f-overlay-scale,
+.f-overlay-active .f-active > .f-overlay-scale {
+	-webkit-transform: scale($overlay-scale-in-scale);
+	transform: scale($overlay-scale-in-scale);
+}
+
+/*
+ * Spin
+ */
+
+.f-overlay-spin {
+	-webkit-transform: scale($overlay-spin-out-scale) rotate($overlay-spin-out-rotate);
+	transform: scale($overlay-spin-out-scale) rotate($overlay-spin-out-rotate);
+}
+
+.f-overlay-hover:hover .f-overlay-spin,
+.f-overlay-active .f-active > .f-overlay-spin {
+	-webkit-transform: scale($overlay-spin-in-scale) rotate($overlay-spin-in-rotate);
+	transform: scale($overlay-spin-in-scale) rotate($overlay-spin-in-rotate);
+}
+
+/*
+ * Grayscale
+ */
+
+.f-overlay-grayscale {
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+}
+
+.f-overlay-hover:hover .f-overlay-grayscale,
+.f-overlay-active .f-active > .f-overlay-grayscale {
+	-webkit-filter: grayscale(0%);
+	filter: grayscale(0%);
+}
+
+/*
+ * Slide
+ */
+
+[class*='f-overlay-slide'] { opacity: 0; }
+
+/* Top */
+.f-overlay-slide-top {
+	-webkit-transform: translateY(-100%);
+	transform: translateY(-100%);
+}
+
+/* Bottom */
+.f-overlay-slide-bottom {
+	-webkit-transform: translateY(100%);
+	transform: translateY(100%);
+}
+
+/* Left */
+.f-overlay-slide-left {
+	-webkit-transform: translateX(-100%);
+	transform: translateX(-100%);
+}
+
+/* Right */
+.f-overlay-slide-right {
+	-webkit-transform: translateX(100%);
+	transform: translateX(100%);
+}
+
+/* Hover */
+.f-overlay-hover:hover [class*='f-overlay-slide'],
+.f-overlay-active .f-active > [class*='f-overlay-slide'] {
+	opacity: 1;
+	-webkit-transform: translateX(0) translateY(0);
+	transform: translateX(0) translateY(0);
+}
+
+
+/* DEPRECATED
+ * Sub-object `f-overlay-area`
+ ========================================================================== */
+
+/*
+ * 1. Set position
+ * 2. Set style
+ * 3. Fade-in transition
+ */
+
+.f-overlay-area {
+	/* 1 */
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	/* 2 */
+	background: $overlay-area-background;
+	/* 3 */
+	opacity: 0;
+	-webkit-transition: opacity 0.15s linear;
+	transition: opacity 0.15s linear;
+	-webkit-transform: translate3d(0,0,0);
+}
+
+/*
+ * Hover
+ * 1. `f-hover` to support touch devices
+ * 2. Use optional `f-overlay-toggle` to trigger the overlay earlier
+ */
+
+.f-overlay:hover .f-overlay-area,
+.f-overlay.f-hover .f-overlay-area, // 1
+.f-overlay-toggle:hover .f-overlay-area, // 2
+.f-overlay-toggle.f-hover .f-overlay-area { opacity: 1; }
+
+/*
+ * Icon
+ */
+
+.f-overlay-area:empty:before {
+	content: $overlay-area-icon;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: $overlay-area-icon-size;
+	height: $overlay-area-icon-size;
+	margin-top: -($overlay-area-icon-size / 2);
+	margin-left: -($overlay-area-icon-size / 2);
+	font-size: $overlay-area-icon-size;
+	line-height: 1;
+	font-family: FontAwesome;
+	text-align: center;
+	color: $overlay-area-icon-color;
+}
+
+
+/* DEPRECATED
+ * Sub-object `f-overlay-area-content`
+ ========================================================================== */
+
+/*
+ * Remove whitespace between child elements when using `inline-block`
+ * Needed for Firefox
+ */
+
+.f-overlay-area:not(:empty) { font-size: 0.001px; }
+
+/*
+ * 1. Needed for vertical alignment
+ */
+
+.f-overlay-area:not(:empty):before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
+/*
+ * 1. Set vertical alignment
+ * 2. Reset whitespace hack
+ * 3. Set horizontal alignment
+ * 4. Set style
+ */
+
+.f-overlay-area-content {
+	/* 1 */
+	display: inline-block;
+	box-sizing: border-box;
+	width: 100%;
+	vertical-align: middle;
+	/* 2 */
+	font-size: $overlay-area-content-font-size;
+	/* 3 */
+	text-align: center;
+	/* 4 */
+	padding: 0 $overlay-area-content-padding-horizontal;
+	color: $overlay-area-content-color;
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.f-overlay-area-content > :last-child { margin-bottom: 0; }
+
+/*
+ * Links in overlay area
+ */
+
+.f-overlay-area-content a:not([class]),
+.f-overlay-area-content a:not([class]):hover { color: $overlay-area-content-link-color; }
+
+
+/* DEPRECATED
+ * Sub-object `f-overlay-caption`
+ ========================================================================== */
+
+/*
+ * 1. Set position
+ * 2. Set style
+ * 3. Fade-in transition
+ */
+
+.f-overlay-caption {
+	/* 1 */
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	/* 2 */
+	padding: $overlay-caption-padding;
+	background: $overlay-caption-background;
+	color: $overlay-caption-color;
+	/* 3 */
+	opacity: 0;
+	-webkit-transition: opacity 0.15s linear;
+	transition: opacity 0.15s linear;
+	-webkit-transform: translate3d(0,0,0);
+}
+
+/*
+ * Hover
+ * 1. `f-hover` to support touch devices
+ * 2. Use optional `f-overlay-toggle` to trigger the overlay earlier
+ */
+
+.f-overlay:hover .f-overlay-caption,
+.f-overlay.f-hover .f-overlay-caption, // 1
+.f-overlay-toggle:hover .f-overlay-caption, // 2
+.f-overlay-toggle.f-hover .f-overlay-caption { opacity: 1; }

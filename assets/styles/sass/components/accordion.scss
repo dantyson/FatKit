@@ -1,0 +1,68 @@
+// Name:            Accordion
+// Description:     Defines styles for the accodion
+//
+// Component:       .f-accodion`
+//
+// Sub-objects:     .f-accodion-title`
+//                  .f-accodion-content`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$accordion-title-margin-bottom:                 15px;
+$accordion-title-padding-vertical:              5px;
+$accordion-title-padding-horizontal:            15px;
+$accordion-title-font-size:                     18px;
+$accordion-title-line-height:                   24px;
+$accordion-title-background:                    #eee;
+
+$accordion-content-padding-horizontal:          $accordion-title-padding-horizontal;
+$accordion-content-padding-bottom:              $accordion-title-padding-horizontal;
+
+
+/* ========================================================================
+   Component: Accordion
+ ========================================================================== */
+
+.f-accordion {
+}
+
+/* Sub-object: .f-accordion-title`
+ ========================================================================== */
+
+.f-accordion-title {
+	background: $accordion-title-background;
+	cursor: pointer;
+	font-size: $accordion-title-font-size;
+	line-height: $accordion-title-line-height;
+	margin-bottom: $accordion-title-margin-bottom;
+	margin-top: 0;
+	padding: $accordion-title-padding-vertical $accordion-title-padding-horizontal;
+}
+
+
+/* Sub-object: .f-accordion-content`
+ ========================================================================== */
+
+.f-accordion-content {
+	padding: 0 $accordion-content-padding-horizontal $accordion-content-padding-bottom $accordion-content-padding-horizontal;
+}
+
+/*
+ * Micro clearfix to make panels more robust
+ */
+.f-accordion-content:before,
+.f-accordion-content:after {
+	content: "";
+	display: table;
+}
+
+.f-accordion-content:after { clear: both; }
+
+/*
+ * Remove margin from the last-child
+ */
+.f-accordion-content > :last-child { margin-bottom: 0; }

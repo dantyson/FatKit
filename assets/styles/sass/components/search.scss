@@ -1,0 +1,277 @@
+// Name:            Search
+// Description:     Defines a search component
+//
+// Component:       .f-search`
+//
+// Sub-objects:     .f-search-field`
+//
+// Modifier:        (Nav) .f-nav-search`
+//                  (Dropdown) .f-dropdown-search`
+//
+// States:          .f-active`
+//                  .f-loading`
+//
+// Uses:            Animation
+//                  Icon: FontAwesome
+//                  Navbar: .f-navbar-flip`
+//
+// Used by:         Off-canvas
+//
+// Markup:
+//
+// <!--.f-search -->
+// <form class=.f-search" data-f-search>
+//     <input class=.f-search-field" type="search" placeholder="">
+// </form>
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$search-width:                                  120px;
+$search-focus-width:                            180px;
+$search-height:                                 30px;
+$search-padding:                                30px;
+$search-border:                                 rgba(0,0,0,0);
+$search-border-width:                           1px;
+$search-background:                             rgba(0,0,0,0);
+$search-color:                                  #444;
+$search-placeholder-color:                      #999;
+
+$search-icon:                                   "\f002";
+$search-icon-size:                              14px;
+$search-icon-color:                             rgba(0,0,0,0.2);
+
+// Dropdown modifier
+$dropdown-search-width:                         300px;
+$dropdown-search-margin-top:                    0;
+$dropdown-search-background:                    #f5f5f5;
+$dropdown-search-color:                         #444;
+$dropdown-search-animation:                     f-slide-top-fixed;
+$dropdown-search-navbar-margin-top:             5px;
+$dropdown-search-navbar-margin-right:           -15px;
+
+// Nav modifier
+$nav-search-color:                              #444;
+$nav-search-active-background:                  #00a8e6;
+$nav-search-active-color:                       #fff;
+$nav-search-header-color:                       #999;
+$nav-search-divider-border:                     #ddd;
+$nav-search-divider-border-width:               1px;
+$nav-search-nested-color:                       #07D;
+$nav-search-nested-hover-color:                 #059;
+
+// Search in offcanvas
+$offcanvas-search-margin:                       20px 15px;
+$offcanvas-search-background:                   #1a1a1a;
+$offcanvas-search-border:                       rgba(0,0,0,0);
+$offcanvas-search-color:                        #ccc;
+$offcanvas-search-placeholder-color:            #777;
+$offcanvas-search-icon-color:                   #777;
+
+
+/* ========================================================================
+   Component: Search
+ ========================================================================== */
+
+/*
+ * 1. Create position context for dropdowns
+ * 2. Needed for `form` element
+ */
+
+.f-search {
+	display: inline-block;
+	/* 1 */
+	position: relative;
+	/* 2 */
+	margin: 0;
+}
+
+/*
+ * Icon
+ */
+
+.f-search:before {
+	content: $search-icon;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: $search-padding;
+	line-height: $search-height;
+	text-align: center;
+	font-family: FontAwesome;
+	font-size: $search-icon-size;
+	color: $search-icon-color;
+}
+
+
+/* Sub-object .f-search-field`
+ ========================================================================== */
+
+/*
+ * Removes inner padding and border in Firefox 4+.
+ */
+
+.f-search-field::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+/*
+ * Remove inner padding and search cancel button in Chrome, Safari and Opera on OS X.
+ */
+
+.f-search-field::-webkit-search-cancel-button,
+.f-search-field::-webkit-search-decoration { -webkit-appearance: none; }
+
+/*
+ * Removes cancel button in IE10
+ */
+
+.f-search-field::-ms-clear { display: none; }
+
+/*
+ * Removes placeholder transparency in Firefox.
+ */
+
+.f-search-field::-moz-placeholder { opacity: 1; }
+
+/*
+ * 1. Define consistent box sizing.
+ * 2. Address margins set differently in Firefox/IE and Chrome/Safari/Opera.
+ * 3. Remove `border-radius` in iOS.
+ * 4. Correct `font` properties and `color` not being inherited.
+ * 5. Remove default style in iOS.
+ * 6. Style
+ */
+
+.f-search-field {
+	/* 1 */
+	box-sizing: border-box;
+	/* 2 */
+	margin: 0;
+	/* 3 */
+	border-radius: 0;
+	/* 4 */
+	font: inherit;
+	color: $search-color;
+	/* 5 */
+	-webkit-appearance: none;
+	/* 6 */
+	width: $search-width;
+	height: $search-height;
+	padding: 0 0 0 $search-padding;
+	border: $search-border-width solid $search-border;
+	background: $search-background;
+	transition: all linear 0.2s;
+	vertical-align: middle;
+}
+
+/* Placeholder */
+.f-search-field:-ms-input-placeholder { color: $search-placeholder-color !important; }
+.f-search-field::-moz-placeholder { color: $search-placeholder-color; }
+.f-search-field::-webkit-input-placeholder { color: $search-placeholder-color; }
+
+/* Focus */
+.f-search-field:focus {
+	outline: 0;
+}
+
+/* Focus + Active */
+.f-search-field:focus,
+.f-search.f-active .f-search-field { width: $search-focus-width; }
+
+
+/* Dropdown modifier: .f-dropdown-search`
+ ========================================================================== */
+
+.f-dropdown-search {
+	width: $dropdown-search-width;
+	margin-top: $dropdown-search-margin-top;
+	background: $dropdown-search-background;
+	color: $dropdown-search-color;
+}
+
+.f-open > .f-dropdown-search {
+	animation: $dropdown-search-animation 0.2s ease-in-out;
+}
+
+/*
+ * Dependency .f-navbar-flip`
+ */
+
+.f-navbar-flip .f-dropdown-search {
+	margin-top: $dropdown-search-navbar-margin-top;
+	margin-right: $dropdown-search-navbar-margin-right;
+}
+
+
+/* Nav modifier .f-nav-search`
+ ========================================================================== */
+
+/*
+ * Items
+ */
+
+.f-nav-search > li > a {
+	color: $nav-search-color;
+}
+
+/*
+ * Active
+ * 1. Remove default focus style
+ */
+
+.f-nav-search > li.f-active > a {
+	background: $nav-search-active-background;
+	color: $nav-search-active-color;
+	/* 1 */
+	outline: none;
+}
+
+/*
+ * Sub-object: .f-nav-header`
+ */
+
+.f-nav-search .f-nav-header {
+	color: $nav-search-header-color;
+}
+
+/*
+ * Sub-object: .f-nav-divider`
+ */
+
+.f-nav-search .f-nav-divider {
+	border-top: $nav-search-divider-border-width solid $nav-search-divider-border;
+}
+
+/*
+ * Nested items
+ */
+
+.f-nav-search ul a { color: $nav-search-nested-color; }
+.f-nav-search ul a:hover { color: $nav-search-nested-hover-color; }
+
+
+/* Search in offcanvas
+ ========================================================================== */
+
+.f-offcanvas .f-search {
+	display: block;
+	margin: $offcanvas-search-margin;
+}
+
+.f-offcanvas .f-search:before { color: $offcanvas-search-icon-color; }
+
+.f-offcanvas .f-search-field {
+	width: 100%;
+	border-color: $offcanvas-search-border;
+	background: $offcanvas-search-background;
+	color: $offcanvas-search-color;
+}
+
+.f-offcanvas .f-search-field:-ms-input-placeholder { color: $offcanvas-search-placeholder-color !important; }
+.f-offcanvas .f-search-field::-moz-placeholder { color: $offcanvas-search-placeholder-color; }
+.f-offcanvas .f-search-field::-webkit-input-placeholder { color: $offcanvas-search-placeholder-color; }

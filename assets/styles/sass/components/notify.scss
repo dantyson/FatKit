@@ -1,0 +1,171 @@
+// Name:            Notify
+// Description:     Defines styles for toggleable notifications
+//
+// Component:       .f-notify`
+//
+// Sub-objects:     .f-notify-message`
+//
+// Modifiers:       .f-notify-top-center`
+//                  .f-notify-top-right`
+//                  .f-notify-bottom-left`
+//                  .f-notify-bottom-center`
+//                  .f-notify-bottom-right`
+//                  .f-notify-message-primary`
+//                  .f-notify-message-success`
+//                  .f-notify-message-warning`
+//                  .f-notify-message-danger`
+//
+// Uses:            Close: .f-close`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+// Variables include
+@import "../base/variables";
+
+$notify-position:                               10px;
+$notify-z-index:                                1040;
+$notify-width:                                  350px;
+
+$notify-message-margin-bottom:                  10px;
+$notify-message-padding:                        15px;
+$notify-message-background:                     #444;
+$notify-message-color:                          #fff;
+$notify-message-font-size:                      16px;
+$notify-message-line-height:                    22px;
+
+$notify-message-primary-background:             #ebf7fd;
+$notify-message-primary-color:                  #2d7091;
+
+$notify-message-success-background:             #f2fae3;
+$notify-message-success-color:                  #659f13;
+
+$notify-message-warning-background:             #fffceb;
+$notify-message-warning-color:                  #e28327;
+
+$notify-message-danger-background:              #fff1f0;
+$notify-message-danger-color:                   #d85030;
+
+
+/* ========================================================================
+   Component: Notify
+ ========================================================================== */
+
+/*
+ * Message container for positioning
+ */
+
+.f-notify {
+	box-sizing: border-box;
+	left: $notify-position;
+	position: fixed;
+	top: $notify-position;
+	width: $notify-width;
+	z-index: $notify-z-index;
+}
+
+
+/* Position modifiers
+========================================================================== */
+
+.f-notify-top-right,
+.f-notify-bottom-right  {
+	left: auto;
+	right: $notify-position;
+}
+
+.f-notify-top-center,
+.f-notify-bottom-center {
+	left: 50%;
+	margin-left: ($notify-width / -2);
+}
+
+.f-notify-bottom-left,
+.f-notify-bottom-right,
+.f-notify-bottom-center {
+	bottom: $notify-position;
+	top: auto;
+}
+
+
+/* Responsiveness
+========================================================================== */
+
+/* Phones portrait and smaller */
+@media (max-width: $breakpoint-mini-max) {
+
+	/*
+	 * Fit in small screen
+	 */
+	.f-notify {
+		left: 10px;
+		right: 10px;
+		width: auto;
+		margin: 0;
+	}
+
+}
+
+
+/* Sub-object: .f-notify-message`
+========================================================================== */
+
+.f-notify-message {
+	background: $notify-message-background;
+	color: $notify-message-color;
+	cursor: pointer;
+	font-size: $notify-message-font-size;
+	line-height: $notify-message-line-height;
+	margin-bottom: $notify-message-margin-bottom;
+	padding: $notify-message-padding;
+	position: relative;
+
+	/* Modifier: .f-alert-info`
+	 ========================================================================== */
+
+	&-primary {
+		background: $notify-message-primary-background;
+		color: $notify-message-primary-color;
+	}
+
+
+	/* Modifier: .f-alert-success`
+	 ========================================================================== */
+
+	&-success {
+		background: $notify-message-success-background;
+		color: $notify-message-success-color;
+	}
+
+
+	/* Modifier: .f-notify-message-warning`
+	 ========================================================================== */
+
+	&-warning {
+		background: $notify-message-warning-background;
+		color: $notify-message-warning-color;
+	}
+
+
+	/* Modifier: .f-notify-message-danger`
+	 ========================================================================== */
+
+	&-danger {
+		background: $notify-message-danger-background;
+		color: $notify-message-danger-color;
+	}
+}
+
+
+/* Close in notify
+ ========================================================================== */
+
+.f-notify-message > .f-close {
+	float: right;
+	visibility: hidden;
+}
+
+.f-notify-message:hover > .f-close { visibility: visible; }

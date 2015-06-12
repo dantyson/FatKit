@@ -1,0 +1,151 @@
+// Name:            Form advanced
+// Description:     Custom appearance of radio and checkbox buttons
+//
+// Component:       .f-form`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$form-advanced-size:                          19px;
+$form-advanced-border:                        #bebebe;
+$form-advanced-border-width:                  1px;
+$form-advanced-margin-top:                    -4px;
+$form-advanced-color:                         #efefef;
+
+$form-advanced-checked-color:                 #00a8e6;
+
+$form-advanced-radio-size:                    11px;
+
+$form-advanced-checkbox-icon:                 "\f00c";
+$form-advanced-checkbox-font-size:            16px;
+
+$form-advanced-disabled-border:               #ddd;
+$form-advanced-disabled-color:                #aaa;
+
+
+/* ========================================================================
+   Component: Form advanced
+   Note: Only works in Webkit at the moment
+ ========================================================================== */
+
+/*
+ * 1. Style
+ * 2. Makes box more robust so it clips the child element
+ * 3. Vertical alignment
+ * 4. Remove default style
+ * 5. Fix black background on iOS
+ */
+
+.f-form input[type="radio"],
+.f-form input[type="checkbox"] {
+	/* 1 */
+	display: inline-block;
+	height: $form-advanced-size;
+	width: $form-advanced-size;
+	border: $form-advanced-border-width solid $form-advanced-border;
+	/* 2 */
+	overflow: hidden;
+	/* 3 */
+	margin-top: $form-advanced-margin-top;
+	vertical-align: middle;
+	/* 4 */
+	-webkit-appearance: none;
+	outline: 0;
+	/* 5 */
+	background: $form-advanced-color;
+}
+
+/* Radio */
+.f-form input[type="radio"] { border-radius: 50%; }
+
+/*
+ * Checked
+ */
+.f-form input[type=checkbox]:checked:before,
+.f-form input[type=radio]:checked:before {
+	display: block;
+}
+
+/* Radio */
+.f-form input[type=radio] {
+	&:before {
+		background: $form-advanced-checked-color;
+		border-radius: 50%;
+		content: '';
+		height: $form-advanced-radio-size;
+		margin: (($form-advanced-size - (2 * $form-advanced-border-width) - $form-advanced-radio-size) / 2) auto 0;
+		opacity: 0;
+		transition: opacity 0.3s linear;
+		width: $form-advanced-radio-size;
+	}
+
+	&:checked:before {
+		opacity: 1;
+	}
+}
+
+/* Checkbox */
+.f-form input[type=checkbox] {
+	&:before {
+		-webkit-font-smoothing: antialiased;
+		color: $form-advanced-checked-color;
+		content: $form-advanced-checkbox-icon;
+		font-family: FontAwesome;
+		font-size: $form-advanced-checkbox-font-size;
+		line-height: $form-advanced-size - (2 * $form-advanced-border-width);
+		opacity: 0;
+		transition: opacity 0.3s linear;
+		text-align: center;
+	}
+
+	&:checked:before {
+		opacity: 1;
+	}
+}
+
+/*
+ * Disabled
+ */
+.f-form input[type=radio]:disabled,
+.f-form input[type=checkbox]:disabled {
+	border-color: $form-advanced-disabled-border;
+}
+
+.f-form input[type=radio]:disabled:checked:before { background-color: $form-advanced-disabled-color; }
+.f-form input[type=checkbox]:disabled:checked:before { color: $form-advanced-disabled-color; }
+
+/**
+ * Fancy placeholders
+ */
+.f-form input.f-placeholder {
+	&::-webkit-input-placeholder {
+		left: 0;
+		position: relative;
+		top: 0;
+		transform-origin: left top;
+		transition: transform 0.2s ease-in-out;
+	}
+
+	&::placeholder {
+		left: 0;
+		position: relative;
+		top: 0;
+		transform-origin: left top;
+		transition: transform 0.2s ease-in-out;
+	}
+
+	&.f-placeholder-up::-webkit-input-placeholder[style*="hidden"] {
+		opacity: 1;
+		transform: translateY(-$form-height - 2) scale(0.8);
+		visibility: visible !important;
+	}
+
+	&.f-placeholder-down::-webkit-input-placeholder[style*="hidden"] {
+		opacity: 1;
+		transform: translateY($form-height + 2) scale(0.8);
+		visibility: visible !important;
+	}
+}

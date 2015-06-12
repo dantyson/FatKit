@@ -1,0 +1,17 @@
+/* =============================================================================
+	Opacity with IE8 fallback
+	========================================================================= */
+
+@mixin opacity($opacity: 0.5) {
+	opacity: $opacity;
+	-ms-filter: unquote("progid:DXImageTransform.Microsoft.Alpha(Opacity=#{round($opacity * 100)})");
+	filter: unquote("progid:DXImageTransform.Microsoft.Alpha(Opacity=#{round($opacity * 100)})");
+}
+
+/* Example
+
+.inactive {
+	@include opacity(0.24);
+}
+
+*/

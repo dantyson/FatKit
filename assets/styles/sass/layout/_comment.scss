@@ -1,0 +1,156 @@
+// Name:            Comment
+// Description:     Defines styles for comment threads
+//
+// Component:       .f-comment`
+//
+// Sub-objects:     .f-comment-header`
+//                  .f-comment-avatar`
+//                  .f-comment-title`
+//                  .f-comment-meta`
+//                  .f-comment-body`
+//                  .f-comment-list`
+//                  .f-comment-primary`
+//
+// Markup:
+//
+// <!--.f-comment -->
+// <article class="f-comment">
+//     <header class="f-comment-header">
+//         <img class="f-comment-avatar" src="avatar.svg" width="50" height="50" alt="">
+//         <h4 class="f-comment-title"></h4>
+//         <div class="f-comment-meta"></div>
+//     </header>
+//     <div class="f-comment-body">
+//         <p></p>
+//     </div>
+// </article>
+// 
+// Url:				http://fatkit.fmdev02.fatoffice.co.uk/core/comment.asp
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$comment-header-margin-bottom:                  15px;
+
+$comment-avatar-margin-right:                   15px;
+
+$comment-title-margin-top:                      5px;
+$comment-title-font-size:                       16px;
+$comment-title-line-height:                     22px;
+
+$comment-meta-margin-top:                       2px;
+$comment-meta-color:                            #999;
+$comment-meta-font-size:                        11px;
+$comment-meta-line-height:                      16px;
+
+$comment-list-margin-top:                       15px;
+$comment-list-padding-left:                     100px;
+
+$comment-primary-bg-color:						#ebf7fd;
+
+
+/* ========================================================================
+   Component: Comment
+ ========================================================================== */
+
+.f-comment {
+}
+
+
+/* Sub-object .f-comment-header`
+ ========================================================================== */
+
+.f-comment-header {
+    margin-bottom: $comment-header-margin-bottom;
+}
+
+/*
+ * Micro clearfix
+ */
+
+.f-comment-header:before,
+.f-comment-header:after {
+    content: "";
+    display: table;
+}
+
+.f-comment-header:after { clear: both; }
+
+
+/* Sub-object .f-comment-avatar`
+ ========================================================================== */
+
+.f-comment-avatar {
+    margin-right: $comment-avatar-margin-right;
+    float: left;
+}
+
+
+/* Sub-object .f-comment-title`
+ ========================================================================== */
+
+.f-comment-title {
+    margin: $comment-title-margin-top 0 0 0;
+    font-size: $comment-title-font-size;
+    line-height: $comment-title-line-height;
+}
+
+
+/* Sub-object .f-comment-meta`
+ ========================================================================== */
+
+.f-comment-meta {
+    margin: $comment-meta-margin-top 0 0 0;
+    font-size: $comment-meta-font-size;
+    line-height: $comment-meta-line-height;
+    color: $comment-meta-color;
+}
+
+
+/* Sub-object .f-comment-body`
+ ========================================================================== */
+
+.f-comment-body {
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+ .f-comment-body > :last-child { margin-bottom: 0; }
+
+
+/* Sub-object .f-comment-list`
+ ========================================================================== */
+
+.f-comment-list {
+    padding: 0;
+    list-style: none;
+}
+
+.f-comment-list .f-comment + ul {
+    margin: $comment-list-margin-top 0 0 0;
+    list-style: none;
+}
+
+.f-comment-list > li:nth-child(n+2),
+.f-comment-list .f-comment + ul > li:nth-child(n+2) { margin-top: $comment-list-margin-top; }
+
+/* Tablet and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .f-comment-list .f-comment + ul { padding-left: $comment-list-padding-left; }
+
+}
+
+
+/* Modifier .f-comment-primary`
+ ========================================================================== */
+
+.f-comment-primary {
+	background-color: $comment-primary-bg-color;
+	padding: $comment-header-margin-bottom;
+}

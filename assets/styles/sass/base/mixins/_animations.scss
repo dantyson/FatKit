@@ -1,0 +1,51 @@
+/* =============================================================================
+	Animations & Keyframes mixins
+	========================================================================= */
+
+@mixin hardwareAccel() {
+	// Improve performance on mobile/tablet devices
+	transform: translateZ(0);
+}
+
+@mixin improveAntiAlias() {
+	// Improve aliasing on mobile/tablet devices
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+@mixin animationperf() {
+	@include hardwareAccel();
+	@include improveAntiAlias();
+}
+
+// Keyframe mixin for prefixes
+@mixin keyframe ($animation_name) {
+	@keyframes $animation_name {
+		@content;
+	}
+}
+
+@mixin animation ($delay, $duration, $animation) {
+	animation-delay: $delay;
+	animation-duration: $duration;
+	animation-name: $animation;
+	animation-fill-mode: forwards;
+}
+
+/* Example
+
+@include keyframe(changecolour) {
+	0% {
+		color: #000;
+	}
+
+	100% {
+		color: #FFF;
+	}
+}
+
+a:hover {
+	@include animationperf;
+	@include animation(1s, 2s, changecolour);
+}
+
+*/

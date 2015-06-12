@@ -1,0 +1,360 @@
+// Name:            Contrast
+// Description:     Utility class to adjust colors for dark or colored blocks
+//
+// Component:       `f-contrast`
+//                  
+// Url:				http://fatkit.fmdev02.fatoffice.co.uk/core/contrast.asp
+//
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+$contrast-color:                                 #fff !default;
+$contrast-inverted-color:                        #444 !default;
+
+//
+// Components
+//
+
+$contrast-base-color:                            $contrast-color !default;
+
+$contrast-base-link-color:                       fade($contrast-color, 70%) !default;
+$contrast-base-link-text-decoration:             none !default;
+$contrast-base-link-hover-color:                 $contrast-color !default;
+$contrast-base-link-hover-text-decoration:       underline !default;
+
+$contrast-base-code-color:                       $contrast-color !default;
+$contrast-base-code-background-color:            $contrast-inverted-color !default;
+$contrast-base-em-color:                         $contrast-color !default;
+
+$contrast-base-heading-color:                    $contrast-color !default;
+
+$contrast-base-hr-border:                        fade($contrast-color, 20%) !default;
+
+$contrast-nav-side-color:                        $contrast-color !default;
+$contrast-nav-side-hover-background:             fade($contrast-color, 10%) !default;
+$contrast-nav-side-hover-color:                  $contrast-color !default;
+$contrast-nav-side-active-background:            $contrast-color !default;
+$contrast-nav-side-active-color:                 $contrast-inverted-color !default;
+$contrast-nav-side-header-color:                 $contrast-color !default;
+$contrast-nav-side-divider-border:               fade($contrast-color, 20%) !default;
+$contrast-nav-side-nested-color:                 fade($contrast-color, 70%) !default;
+$contrast-nav-side-nested-hover-color:           $contrast-color !default;
+
+$contrast-subnav-color:                          fade($contrast-color, 70%) !default;
+$contrast-subnav-hover-color:                    $contrast-color !default;
+$contrast-subnav-hover-text-decoration:          none !default;
+$contrast-subnav-active-color:                   $contrast-color !default;
+
+$contrast-subnav-line-border:                    fade($contrast-color, 20%) !default;
+
+$contrast-subnav-pill-hover-background:          fade($contrast-color, 70%) !default;
+$contrast-subnav-pill-hover-color:               $contrast-inverted-color !default;
+$contrast-subnav-pill-active-background:         $contrast-color !default;
+$contrast-subnav-pill-active-color:              $contrast-inverted-color !default;
+
+$contrast-list-line-border:                      fade($contrast-color, 20%) !default;
+
+$contrast-form-border:                           fade($contrast-color, 80%) !default;
+$contrast-form-background:                       fade($contrast-color, 80%) !default;
+$contrast-form-color:                            $contrast-inverted-color !default;
+$contrast-form-focus-border:                     $contrast-color !default;
+$contrast-form-focus-background:                 $contrast-color !default;
+$contrast-form-focus-color:                      $contrast-inverted-color !default;
+
+$contrast-form-placeholder-color:                fade($contrast-inverted-color, 70%) !default;
+
+$contrast-button-background:                     $contrast-color !default;
+$contrast-button-color:                          $contrast-inverted-color !default;
+$contrast-button-hover-background:               fade($contrast-color, 80%) !default;
+$contrast-button-hover-color:                    $contrast-inverted-color !default;
+$contrast-button-active-background:              fade($contrast-color, 70%) !default;
+$contrast-button-active-color:                   $contrast-inverted-color !default;
+
+$contrast-button-primary-background:             $button-primary-background !default;
+$contrast-button-primary-color:                  $contrast-color !default;
+$contrast-button-primary-hover-background:       $button-primary-hover-background !default;
+$contrast-button-primary-hover-color:            $contrast-color !default;
+$contrast-button-primary-active-background:      $button-primary-active-background !default;
+$contrast-button-primary-active-color:           $contrast-color !default;
+
+$contrast-icon-hover-color:                      fade($contrast-color, 70%) !default;
+$contrast-icon-hover-hover-color:                $contrast-color !default;
+
+$contrast-icon-button-background:                $contrast-color !default;
+$contrast-icon-button-color:                     $contrast-inverted-color !default;
+$contrast-icon-button-hover-background:          fade($contrast-color, 80%) !default;
+$contrast-icon-button-hover-color:               $contrast-inverted-color !default;
+$contrast-icon-button-active-background:         fade($contrast-color, 70%) !default;
+$contrast-icon-button-active-color:              $contrast-inverted-color !default;
+
+$contrast-text-muted-color:                      fade($contrast-color, 60%) !default;
+$contrast-text-primary-color:                    $text-primary-color !default;
+
+
+/* ========================================================================
+   Component: Contrast
+ ========================================================================== */
+
+.f-contrast {
+	color: $contrast-base-color;
+
+	// Base
+	// ========================================================================
+
+	//
+	// Link
+	//
+	a:not([class]),
+	.f-link  {
+		color: $contrast-base-link-color;
+		text-decoration: $contrast-base-link-text-decoration;
+	}
+
+	a:not([class]):hover,
+	.f-link:hover {
+		color: $contrast-base-link-hover-color;
+		text-decoration: $contrast-base-link-hover-text-decoration;
+	}
+
+	//
+	// Code
+	//
+	:not(pre) > code,
+	:not(pre) > kbd,
+	:not(pre) > samp {
+		background-color: $contrast-base-code-background-color;
+		color: $contrast-base-code-color;
+	}
+
+	//
+	// Emphasize
+	//
+	em { color: $contrast-base-em-color; }
+
+	//
+	// Headings
+	//
+	h1, h2, h3, h4, h5, h6 { color: $contrast-base-heading-color; }
+
+	//
+	// Horizontal rules
+	//
+	hr { border-top-color: $contrast-base-hr-border; }
+
+
+	// Nav
+	// ========================================================================
+
+	.f-nav li > a,
+	.f-nav li > a:hover { text-decoration: none; }
+
+	.f-nav-side > li > a {
+		color: $contrast-nav-side-color;
+	}
+
+	.f-nav-side > li > a:hover,
+	.f-nav-side > li > a:focus {
+		background: $contrast-nav-side-hover-background;
+		color: $contrast-nav-side-hover-color;
+	}
+
+	.f-nav-side > li.f-active > a {
+		background: $contrast-nav-side-active-background;
+		color: $contrast-nav-side-active-color;
+	}
+
+	//
+	// Nav header
+	//
+	.f-nav-side .f-nav-header {
+		color: $contrast-nav-side-header-color;
+	}
+
+	//
+	// Nav divider
+	//
+	.f-nav-side .f-nav-divider {
+		border-top-color: $contrast-nav-side-divider-border;
+	}
+
+	//
+	// Nested items
+	//
+	.f-nav-side ul a { color: $contrast-nav-side-nested-color; }
+	.f-nav-side ul a:hover { color: $contrast-nav-side-nested-hover-color; }
+
+
+	// Subnav
+	// ========================================================================
+
+	.f-subnav > * > a {
+		color: $contrast-subnav-color;
+		text-decoration: none;
+	}
+
+	.f-subnav > * > a:hover,
+	.f-subnav > * > a:focus {
+		color: $contrast-subnav-hover-color;
+		text-decoration: $contrast-subnav-hover-text-decoration;
+	}
+
+	.f-subnav > .f-active > a {
+		color: $contrast-subnav-active-color;
+	}
+
+	//
+	// Subnav line
+	//
+	.f-subnav-line > :nth-child(n+2):before {
+		border-left-color: $contrast-subnav-line-border;
+	}
+
+	//
+	// Subnav pill
+	//
+	.f-subnav-pill > * > a:hover,
+	.f-subnav-pill > * > a:focus {
+		background: $contrast-subnav-pill-hover-background;
+		color: $contrast-subnav-pill-hover-color;
+		text-decoration: none;
+	}
+
+	.f-subnav-pill > .f-active > a {
+		background: $contrast-subnav-pill-active-background;
+		color: $contrast-subnav-pill-active-color;
+	}
+
+
+	// List
+	// ========================================================================
+
+	.f-list-line > li:nth-child(n+2) {
+		border-top-color: $contrast-list-line-border;
+	}
+
+
+	// Form
+	// ========================================================================
+
+	.f-form select,
+	.f-form textarea,
+	.f-form input:not([type]),
+	.f-form input[type="text"],
+	.f-form input[type="password"],
+	.f-form input[type="datetime"],
+	.f-form input[type="datetime-local"],
+	.f-form input[type="date"],
+	.f-form input[type="month"],
+	.f-form input[type="time"],
+	.f-form input[type="week"],
+	.f-form input[type="number"],
+	.f-form input[type="email"],
+	.f-form input[type="url"],
+	.f-form input[type="search"],
+	.f-form input[type="tel"],
+	.f-form input[type="color"] {
+		border-color: $contrast-form-border;
+		background: $contrast-form-background;
+		color: $contrast-form-color;
+		background-clip: padding-box;
+
+		&:focus {
+			border-color: $contrast-form-focus-border;
+			background: $contrast-form-focus-background;
+			color: $contrast-form-focus-color;
+		}
+	}
+
+	//
+	// Placeholder
+	//
+	.f-form :-ms-input-placeholder { color: $contrast-form-placeholder-color !important; }
+	.f-form ::-moz-placeholder { color: $contrast-form-placeholder-color; }
+	.f-form ::-webkit-input-placeholder { color: $contrast-form-placeholder-color; }
+
+
+	// Button
+	// ========================================================================
+
+	.f-button {
+		color: $contrast-button-color;
+		background: $contrast-button-background;
+	}
+
+	.f-button:hover,
+	.f-button:focus {
+		background-color: $contrast-button-hover-background;
+		color: $contrast-button-hover-color;
+	}
+
+	.f-button:active,
+	.f-button.f-active {
+		background-color: $contrast-button-active-background;
+		color: $contrast-button-active-color;
+	}
+
+	//
+	// Button primary
+	//
+
+	.f-button-primary {
+		background-color: $contrast-button-primary-background;
+		color: $contrast-button-primary-color;
+	}
+
+	.f-button-primary:hover,
+	.f-button-primary:focus {
+		background-color: $contrast-button-primary-hover-background;
+		color: $contrast-button-primary-hover-color;
+	}
+
+	.f-button-primary:active,
+	.f-button-primary.f-active {
+		background-color: $contrast-button-primary-active-background;
+		color: $contrast-button-primary-active-color;
+	}
+
+
+	// Icon
+	// ========================================================================
+
+	//
+	// Icon hover
+	//
+	.f-icon-hover {
+		color: $contrast-icon-hover-color;
+	}
+
+	.f-icon-hover:hover {
+		color: $contrast-icon-hover-hover-color;
+	}
+
+	//
+	// Icon button
+	//
+	.f-icon-button {
+		background: $contrast-icon-button-background;
+		color: $contrast-icon-button-color;
+	}
+
+	.f-icon-button:hover,
+	.f-icon-button:focus {
+		background-color: $contrast-icon-button-hover-background;
+		color: $contrast-icon-button-hover-color;
+	}
+
+	.f-icon-button:active {
+		background-color: $contrast-icon-button-active-background;
+		color: $contrast-icon-button-active-color;
+	}
+
+
+	// Text
+	// ========================================================================
+
+	.f-text-muted { color: $contrast-text-muted-color !important; }
+	.f-text-primary { color: $contrast-text-primary-color !important; }
+
+}

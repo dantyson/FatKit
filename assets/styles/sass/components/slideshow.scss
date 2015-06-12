@@ -1,0 +1,177 @@
+// Name:            Slideshow
+// Description:     Defines styles for a slideshow
+//
+// Component:       .f-slideshow`
+//
+// Modifier:        .f-slideshow-fullscreen`
+//
+// Sub-modifier:    .f-slideshow-fade-out`
+//                  .f-slideshow-scroll-forward-in`
+//                  .f-slideshow-scroll-forward-out`
+//                  .f-slideshow-scroll-backward-in`
+//                  .f-slideshow-scroll-backward-out`
+//                  .f-slideshow-scale-out`
+//                  .f-slideshow-swipe-forward-in`
+//                  .f-slideshow-swipe-forward-out`
+//                  .f-slideshow-swipe-backward-in`
+//                  .f-slideshow-swipe-backward-out`
+//
+// States:          .f-active`
+//
+// Uses:            Cover (JS)
+//
+// ========================================================================
+
+
+/* ========================================================================
+   Component: Slideshow
+ ========================================================================== */
+
+/*
+ * 1. Create position context
+ * 2. Create stacking context to prevent z-index issues with other components
+ * 3. Set width because child elements are positioned absolute. Height is set via JS
+ * 4. Reset list style
+ * 5. Clip child elements
+ * 6. Deactivate browser history navigation in IE11
+ */
+
+.f-slideshow {
+	/* 1 */
+	position: relative;
+	/* 2 */
+	z-index: 0;
+	/* 3 */
+	width: 100%;
+	/* 4 */
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	/* 5 */
+	overflow: hidden;
+	/* 6 */
+	touch-action: pan-y;
+}
+
+/*
+ * Sub-object slides
+ * 1. Position items above each other
+ * 2. Expand to parent container width
+ * 3. Hide by default
+ */
+
+.f-slideshow > li {
+	/* 1 */
+	position: absolute;
+	top: 0;
+	left: 0;
+	/* 2 */
+	width: 100%;
+	/* 3 */
+	opacity: 0;
+}
+
+/*
+ * Active
+ * 1. Stack at first
+ * 2. Show slide
+ */
+
+.f-slideshow > .f-active {
+	/* 1 */
+	z-index: 10;
+	/* 2 */
+	opacity: 1;
+}
+
+/*
+ * Hide default images which is only relevant to keep existing proportions
+ */
+
+.f-slideshow > li > img { visibility: hidden; }
+
+/*
+ * Pointer for controls
+ */
+
+[data-f-slideshow-slide] { cursor: pointer; }
+
+
+/* Modifier: .f-slideshow-fullscreen`
+ ========================================================================== */
+
+.f-slideshow-fullscreen,
+.f-slideshow-fullscreen > li { height: 100vh; }
+
+
+/* Animations
+ ========================================================================== */
+
+/*
+ * Fade
+ */
+
+.f-slideshow-fade-out {
+	animation: f-fade 0.5s linear reverse;
+}
+
+/*
+ * Scroll
+ */
+
+.f-slideshow-scroll-forward-in {
+	animation: f-slide-right 0.5s ease-in-out;
+}
+
+.f-slideshow-scroll-forward-out {
+	animation: f-slide-left 0.5s ease-in-out reverse;
+}
+
+.f-slideshow-scroll-backward-in {
+	animation: f-slide-left 0.5s ease-in-out;
+}
+
+.f-slideshow-scroll-backward-out {
+	animation: f-slide-right 0.5s ease-in-out reverse;
+}
+
+/*
+ * Scale
+ */
+
+.f-slideshow-scale-out {
+	animation: f-fade-scale-15 0.5s ease-in-out reverse;
+}
+
+/*
+ * Swipe
+ */
+
+.f-slideshow-swipe-forward-in {
+	animation: f-slide-left-33 0.5s ease-in-out;
+}
+
+.f-slideshow-swipe-forward-out {
+	animation: f-slide-left 0.5s ease-in-out reverse;
+}
+
+.f-slideshow-swipe-backward-in {
+	animation: f-slide-right-33 0.5s ease-in-out;
+}
+
+.f-slideshow-swipe-backward-out {
+	animation: f-slide-right 0.5s ease-in-out reverse;
+}
+
+.f-slideshow-swipe-forward-in:before,
+.f-slideshow-swipe-backward-in:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	background: rgba(0,0,0,0.6);
+	animation: f-fade 0.5s ease-in-out reverse;
+}

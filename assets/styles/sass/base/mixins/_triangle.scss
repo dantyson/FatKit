@@ -1,0 +1,181 @@
+/**
+
+  @triangle mixin
+---------------------------------------------------------
+  base/mixins/_triangle.scss
+--------------------------------------------------------
+
+// Size
+// Takes one or two arguments, width and height
+// If one argument is given an equilateral triangle is made
+
+// Color
+// Takes one or two arguments, foreground color and background color
+// if one argument is given the background color is set to transparent
+
+// Direction
+// Many different directions of triangle
+
+// IsPsuedo
+// If this is "before" or "after" it will create an arrow for a tooltip
+
+Usage:
+	- For :before or :after psuedo arrows:
+		@include triangle(10px, #fff, 'down', 'after');
+	- For normal arrows@
+		@include triangle(10px, #fff, 'down');
+
+
+--------------------------------------------------------- */
+@mixin triangle($size, $color, $direction, $ofelement : false) {
+	$width: nth($size, 1);
+	$height: nth($size, length($size));
+	$fg: nth($color, 1);
+	$bg: if(length($color) == 2, nth($color, 2), transparent);
+	$colors: $fg, $bg;
+
+	@if ($ofelement == before) or ($ofelement == after) {
+
+		position: relative;
+
+		&:#{$ofelement} {
+			content: "";
+			position: absolute;
+			@include triangle($size, $color, $direction, true);
+		}
+
+	} @else if ($ofelement == true) or ($ofelement == false) {
+
+		border-style: solid;
+		display: inline-block;
+		height: 0;
+		width: 0;
+
+		@if ($direction == up) or ($direction == down) or ($direction == left) or ($direction == right) {
+			$width: $width / 2;
+			$height: if(length($size) > 1, $height, $height * 0.866);
+		}
+
+		@if $direction == up {
+			border-width: 0 $width $height $width;
+			border-color: foreground(3, $colors);
+
+			@if $ofelement == true {
+				bottom: 100%;
+				left: 50%;
+				margin-left: -$width;
+			}
+
+		} @else if $direction == right {
+
+			border-width: $width 0 $width $height;
+			border-color: foreground(4, $colors);
+
+			@if $ofelement == true {
+				left: 100%;
+				margin-top: -$width;
+				top: 50%;
+			}
+
+		} @else if $direction == down {
+			border-width: $height $width 0 $width;
+			border-color: foreground(1, $colors);
+
+			@if $ofelement == true {
+				left: 50%;
+				margin-left: -$width;
+				top: 100%;
+			}
+
+		} @else if $direction == left {
+
+			border-width: $width $height $width 0;
+			border-color: foreground(2, $colors);
+
+			@if $ofelement == true {
+				margin-top: -$width;
+				right: 100%;
+				top: 50%;
+			}
+
+		} @else if $direction == up-left {
+
+			border-width: $height $width 0 0;
+			border-color: foreground(1, $colors);
+
+			@if $ofelement == true {
+				left: 0;
+				top: 100%;
+			}
+
+		} @else if $direction == up-right {
+
+			border-width: 0 $width $height 0;
+			border-color: foreground(2, $colors);
+
+			@if $ofelement == true {
+				right: 0;
+				top: 100%;
+			}
+
+		} @else if $direction == down-left {
+			border-width: $height 0 0 $width;
+			border-color: foreground(4, $colors);
+
+			@if $ofelement == true {
+				bottom: 100%;
+				left: 0;
+			}
+
+		} @else if $direction == down-right {
+
+			border-width: 0 0 $width $height;
+			border-color: foreground(3, $colors);
+
+			@if $ofelement == true {
+				bottom: 100%;
+				right: 0;
+			}
+
+		} @else if $direction == inset-up {
+
+			border-width: $height $width;
+			border-color: foreground(3, $colors);
+
+		} @else if $direction == inset-down {
+
+			border-width: $height $width;
+			border-color: foreground(1, $colors);
+
+		} @else if $direction == inset-left {
+
+			border-width: $width $height;
+			border-color: foreground(2, $colors);
+
+		} @else if $direction == inset-right {
+
+			border-width: $width $height;
+			border-color: foreground(4, $colors);
+
+		}
+
+	}
+
+}
+
+
+// Returns the background-color.
+// Takes a number, the foreground, and the background color
+// The number represents the location of the foreground color
+// where 1, 2, 3, 4 maps to top, right, bottom, left
+@function foreground($number, $colors) {
+	$square: ();
+	@for $i from 1 through 4 {
+		@if $i == $number {
+			$square: append($square, nth($colors, 1))
+		} @else {
+			$square: append($square, nth($colors, 2))
+		}
+	}
+	@return $square;
+}
