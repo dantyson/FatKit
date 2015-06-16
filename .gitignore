@@ -1,4 +1,4 @@
 node_modules/
 /output-css
-/npm-debug.log
-*npm-debug.log
+*.log
+npm-debug.log

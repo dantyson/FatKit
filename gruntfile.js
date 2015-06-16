@@ -5,8 +5,6 @@ module.exports = function(grunt) {
     require('time-grunt')(grunt);
 
     'use strict';
-
-    var nodeServer = require('./grunt-node-server.js')(grunt).nodeServer;
     
     require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
     // All configuration goes here
@@ -167,7 +165,7 @@ module.exports = function(grunt) {
             ],
             options: {
                 bundleExec: true,
-                config: '.scss-lint-test.yml',
+                config: 'config/.scss-lint-test.yml',
                 reporterOutput: null,
                 colorizeOutput: true
             },
