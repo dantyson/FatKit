@@ -1,5 +1,5 @@
 {
-  "name": "FatKit",
+  "name": "fatkit",
   "description": "Fat Media Boilerplate",
   "author": "Alex Hall",
   "homepage": "http://fatkit.fmdev02.fatoffice.co.uk",
@@ -7,10 +7,16 @@
     "type": "git",
     "url": "https://github.com/FatMedia/FatKit"
   },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/FatMedia/FatKit/issues"
   },
-  "version": "0.1.0",
+  "keywords": [
+    "farmework",
+    "responsive",
+    "fat media",
+    "fat kit"
+  ],
   "devDependencies": {
     "bower": "^1.3.12",
     "chai": "^1.10.0",
@@ -40,5 +46,10 @@
     "kraken": "^0.2.1",
     "matchdep": "^0.3.0",
     "normalize.css": "^3.0.2"
+  },
+  "version": "1.0.1",
+  "main": "gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
