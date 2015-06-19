@@ -1,4 +1,6 @@
 node_modules/
+wwww/
 /output-css
 *.log
+*.min.js
 npm-debug.log
