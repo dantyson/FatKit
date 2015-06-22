@@ -78,7 +78,6 @@ $dropdown-scrollable-height:                    200px;
 	box-sizing: border-box;
 	/* 4 */
 	width: $dropdown-width;
-	margin-top: $dropdown-margin-top;
 	padding: $dropdown-padding;
 	background: $dropdown-background;
 	color: $dropdown-color;
@@ -86,6 +85,14 @@ $dropdown-scrollable-height:                    200px;
 	font-size: $dropdown-font-size;
 	vertical-align: top;
 	border: $dropdown-border-width solid $dropdown-border-color;
+
+	&.f-dropdown-enabled {
+		margin-top: $dropdown-margin-top;
+	}
+}
+
+[data-f-dropdown]:not(.f-dropdown-mode-click):hover > .f-dropdown {
+	display: block;
 }
 
 /*

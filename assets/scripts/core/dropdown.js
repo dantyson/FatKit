@@ -1,262 +1,265 @@
 (function(UI) {
 
-    "use strict";
+	"use strict";
 
-    var active = false, hoverIdle;
+	var active = false, hoverIdle;
 
-    UI.component('dropdown', {
+	UI.component('dropdown', {
 
-        defaults: {
-           'mode'       : 'hover',
-           'remaintime' : 800,
-           'justify'    : false,
-           'boundary'   : UI.$win,
-           'delay'      : 0
-        },
+		defaults: {
+		   'mode'       : 'hover',
+		   'remaintime' : 800,
+		   'justify'    : false,
+		   'boundary'   : UI.$win,
+		   'delay'      : 0
+		},
 
-        remainIdle: false,
+		remainIdle: false,
 
-        boot: function() {
+		boot: function() {
 
-            var triggerevent = UI.support.touch ? "click" : "mouseenter";
+			var triggerevent = UI.support.touch ? "click" : "mouseenter";
 
-            // init code
-            UI.$html.on(triggerevent+".dropdown.fatkit", "[data-f-dropdown]", function(e) {
+			// init code
+			UI.$html.on(triggerevent + ".dropdown.fatkit", "[data-f-dropdown]", function(e) {
 
-                var ele = UI.$(this);
+				var ele = UI.$(this);
 
-                if (!ele.data("dropdown")) {
+				if (!ele.data("dropdown")) {
 
-                    var dropdown = UI.dropdown(ele, UI.Utils.options(ele.attr("data-f-dropdown")));
+					var dropdown = UI.dropdown(ele, UI.Utils.options(ele.attr("data-f-dropdown")));
 
-                    if (triggerevent=="click" || (triggerevent=="mouseenter" && dropdown.options.mode=="hover")) {
-                        dropdown.element.trigger(triggerevent);
-                    }
+					if (triggerevent=="click" || (triggerevent=="mouseenter" && dropdown.options.mode=="hover")) {
+						dropdown.element.trigger(triggerevent);
+					}
 
-                    if(dropdown.element.find('.f-dropdown').length) {
-                        e.preventDefault();
-                    }
-                }
-            });
-        },
+					if(dropdown.element.find('.f-dropdown').length) {
+						e.preventDefault();
+					}
+				}
+			});
+		},
 
-        init: function() {
+		init: function() {
 
-            var $this = this;
+			var $this = this;
 
-            this.dropdown  = this.find('.f-dropdown');
+			this.dropdown  = this.find('.f-dropdown');
+			this.dropdown.addClass("f-dropdown-enabled");
 
-            this.centered  = this.dropdown.hasClass('f-dropdown-center');
-            this.justified = this.options.justify ? UI.$(this.options.justify) : false;
+			this.centered  = this.dropdown.hasClass('f-dropdown-center');
+			this.justified = this.options.justify ? UI.$(this.options.justify) : false;
 
-            this.boundary  = UI.$(this.options.boundary);
-            this.flipped   = this.dropdown.hasClass('f-dropdown-flip');
+			this.boundary  = UI.$(this.options.boundary);
+			this.flipped   = this.dropdown.hasClass('f-dropdown-flip');
 
-            if (!this.boundary.length) {
-                this.boundary = UI.$win;
-            }
+			if (!this.boundary.length) {
+				this.boundary = UI.$win;
+			}
 
-            if (this.options.mode == "click" || UI.support.touch) {
+			if (this.options.mode == "click" || UI.support.touch) {
 
-                this.on("click.fatkit.dropdown", function(e) {
+				this.dropdown.parent().addClass("f-dropdown-mode-click");
 
-                    var $target = UI.$(e.target);
+				this.on("click.fatkit.dropdown", function(e) {
 
-                    if (!$target.parents(".f-dropdown").length) {
+					var $target = UI.$(e.target);
 
-                        if ($target.is("a[href='#']") || $target.parent().is("a[href='#']") || ($this.dropdown.length && !$this.dropdown.is(":visible")) ){
-                            e.preventDefault();
-                        }
+					if (!$target.parents(".f-dropdown").length) {
 
-                        $target.blur();
-                    }
+						if ($target.is("a[href='#']") || $target.parent().is("a[href='#']") || ($this.dropdown.length && !$this.dropdown.is(":visible")) ){
+							e.preventDefault();
+						}
 
-                    if (!$this.element.hasClass('f-open')) {
+						$target.blur();
+					}
 
-                        $this.show();
+					if (!$this.element.hasClass('f-open')) {
 
-                    } else {
+						$this.show();
 
-                        if ($target.is("a:not(.js-f-prevent)") || $target.is(".f-dropdown-close") || !$this.dropdown.find(e.target).length) {
-                            $this.hide();
-                        }
-                    }
-                });
+					} else {
 
-            } else {
+						if ($target.is("a:not(.js-f-prevent)") || $target.is(".f-dropdown-close") || !$this.dropdown.find(e.target).length) {
+							$this.hide();
+						}
+					}
+				});
 
-                this.on("mouseenter", function(e) {
+			} else {
 
-                    if ($this.remainIdle) {
-                        clearTimeout($this.remainIdle);
-                    }
+				this.on("mouseenter", function(e) {
 
-                    if (hoverIdle) {
-                        clearTimeout(hoverIdle);
-                    }
+					if ($this.remainIdle) {
+						clearTimeout($this.remainIdle);
+					}
 
-                    hoverIdle = setTimeout($this.show.bind($this), $this.options.delay);
+					if (hoverIdle) {
+						clearTimeout(hoverIdle);
+					}
 
-                }).on("mouseleave", function() {
+					hoverIdle = setTimeout($this.show.bind($this), $this.options.delay);
 
-                    if (hoverIdle) {
-                        clearTimeout(hoverIdle);
-                    }
+				}).on("mouseleave", function() {
 
-                    $this.remainIdle = setTimeout(function() {
-                        $this.hide();
-                    }, $this.options.remaintime);
+					if (hoverIdle) {
+						clearTimeout(hoverIdle);
+					}
 
-                }).on("click", function(e){
+					$this.remainIdle = setTimeout(function() {
+						$this.hide();
+					}, $this.options.remaintime);
 
-                    var $target = UI.$(e.target);
+				}).on("click", function(e){
 
-                    if ($this.remainIdle) {
-                        clearTimeout($this.remainIdle);
-                    }
+					var $target = UI.$(e.target);
 
-                    if ($target.is("a[href='#']") || $target.parent().is("a[href='#']")){
-                        e.preventDefault();
-                    }
+					if ($this.remainIdle) {
+						clearTimeout($this.remainIdle);
+					}
 
-                    $this.show();
-                });
-            }
-        },
+					if ($target.is("a[href='#']") || $target.parent().is("a[href='#']")){
+						e.preventDefault();
+					}
 
-        show: function(){
+					$this.show();
+				});
+			}
+		},
 
-            UI.$html.off("click.outer.dropdown");
+		show: function(){
 
-            if (active && active[0] != this.element[0]) {
-                active.removeClass('f-open');
-            }
+			UI.$html.off("click.outer.dropdown");
 
-            if (hoverIdle) {
-                clearTimeout(hoverIdle);
-            }
+			if (active && active[0] != this.element[0]) {
+				active.removeClass('f-open');
+			}
 
-            this.checkDimensions();
-            this.element.addClass('f-open');
-            this.trigger('show.f.dropdown', [this]);
+			if (hoverIdle) {
+				clearTimeout(hoverIdle);
+			}
 
-            UI.Utils.checkDisplay(this.dropdown, true);
-            active = this.element;
+			this.checkDimensions();
+			this.element.addClass('f-open');
+			this.trigger('show.f.dropdown', [this]);
 
-            this.registerOuterClick();
-        },
+			UI.Utils.checkDisplay(this.dropdown, true);
+			active = this.element;
 
-        hide: function() {
-            this.element.removeClass('f-open');
-            this.remainIdle = false;
+			this.registerOuterClick();
+		},
 
-            if (active && active[0] == this.element[0]) active = false;
-        },
+		hide: function() {
+			this.element.removeClass('f-open');
+			this.remainIdle = false;
 
-        registerOuterClick: function(){
+			if (active && active[0] == this.element[0]) active = false;
+		},
 
-            var $this = this;
+		registerOuterClick: function(){
 
-            UI.$html.off("click.outer.dropdown");
+			var $this = this;
 
-            setTimeout(function() {
+			UI.$html.off("click.outer.dropdown");
 
-                UI.$html.on("click.outer.dropdown", function(e) {
+			setTimeout(function() {
 
-                    if (hoverIdle) {
-                        clearTimeout(hoverIdle);
-                    }
+				UI.$html.on("click.outer.dropdown", function(e) {
 
-                    var $target = UI.$(e.target);
+					if (hoverIdle) {
+						clearTimeout(hoverIdle);
+					}
 
-                    if (active && active[0] == $this.element[0] && ($target.is("a:not(.js-f-prevent)") || $target.is(".f-dropdown-close") || !$this.dropdown.find(e.target).length)) {
-                        $this.hide();
-                        UI.$html.off("click.outer.dropdown");
-                    }
-                });
-            }, 10);
-        },
+					var $target = UI.$(e.target);
 
-        checkDimensions: function() {
+					if (active && active[0] == $this.element[0] && ($target.is("a:not(.js-f-prevent)") || $target.is(".f-dropdown-close") || !$this.dropdown.find(e.target).length)) {
+						$this.hide();
+						UI.$html.off("click.outer.dropdown");
+					}
+				});
+			}, 10);
+		},
 
-            if (!this.dropdown.length) return;
+		checkDimensions: function() {
 
-            if (this.justified && this.justified.length) {
-                this.dropdown.css("min-width", "");
-            }
+			if (!this.dropdown.length) return;
 
-            var $this     = this,
-                dropdown  = this.dropdown.css("margin-" + UI.langdirection, ""),
-                offset    = dropdown.show().offset(),
-                width     = dropdown.outerWidth(),
-                boundarywidth  = this.boundary.width(),
-                boundaryoffset = this.boundary.offset() ? this.boundary.offset().left:0;
+			if (this.justified && this.justified.length) {
+				this.dropdown.css("min-width", "");
+			}
 
-            // centered dropdown
-            if (this.centered) {
-                dropdown.css("margin-" + UI.langdirection, (parseFloat(width) / 2 - dropdown.parent().width() / 2) * -1);
-                offset = dropdown.offset();
+			var $this     = this,
+				dropdown  = this.dropdown.css("margin-" + UI.langdirection, ""),
+				offset    = dropdown.show().offset(),
+				width     = dropdown.outerWidth(),
+				boundarywidth  = this.boundary.width(),
+				boundaryoffset = this.boundary.offset() ? this.boundary.offset().left:0;
 
-                // reset dropdown
-                if ((width + offset.left) > boundarywidth || offset.left < 0) {
-                    dropdown.css("margin-" + UI.langdirection, "");
-                    offset = dropdown.offset();
-                }
-            }
+			// centered dropdown
+			if (this.centered) {
+				dropdown.css("margin-" + UI.langdirection, (parseFloat(width) / 2 - dropdown.parent().width() / 2) * -1);
+				offset = dropdown.offset();
 
-            // justify dropdown
-            if (this.justified && this.justified.length) {
+				// reset dropdown
+				if ((width + offset.left) > boundarywidth || offset.left < 0) {
+					dropdown.css("margin-" + UI.langdirection, "");
+					offset = dropdown.offset();
+				}
+			}
 
-                var jwidth = this.justified.outerWidth();
+			// justify dropdown
+			if (this.justified && this.justified.length) {
 
-                dropdown.css("min-width", jwidth);
+				var jwidth = this.justified.outerWidth();
 
-                if (UI.langdirection == 'right') {
+				dropdown.css("min-width", jwidth);
 
-                    var right1   = boundarywidth - (this.justified.offset().left + jwidth),
-                        right2   = boundarywidth - (dropdown.offset().left + dropdown.outerWidth());
+				if (UI.langdirection == 'right') {
 
-                    dropdown.css("margin-right", right1 - right2);
+					var right1   = boundarywidth - (this.justified.offset().left + jwidth),
+						right2   = boundarywidth - (dropdown.offset().left + dropdown.outerWidth());
 
-                } else {
-                    dropdown.css("margin-left", this.justified.offset().left - offset.left);
-                }
+					dropdown.css("margin-right", right1 - right2);
 
-                offset = dropdown.offset();
+				} else {
+					dropdown.css("margin-left", this.justified.offset().left - offset.left);
+				}
 
-            }
+				offset = dropdown.offset();
 
-            if ((width + (offset.left-boundaryoffset)) > boundarywidth) {
-                dropdown.addClass('f-dropdown-flip');
-                offset = dropdown.offset();
-            }
+			}
 
-            if ((offset.left-boundaryoffset) < 0) {
+			if ((width + (offset.left-boundaryoffset)) > boundarywidth) {
+				dropdown.addClass('f-dropdown-flip');
+				offset = dropdown.offset();
+			}
 
-                dropdown.addClass("f-dropdown-stack");
+			if ((offset.left-boundaryoffset) < 0) {
 
-                if (dropdown.hasClass('f-dropdown-flip')) {
+				dropdown.addClass("f-dropdown-stack");
 
-                    if (!this.flipped) {
-                        dropdown.removeClass('f-dropdown-flip');
-                        offset = dropdown.offset();
-                        dropdown.addClass('f-dropdown-flip');
-                    }
+				if (dropdown.hasClass('f-dropdown-flip')) {
 
-                    setTimeout(function(){
+					if (!this.flipped) {
+						dropdown.removeClass('f-dropdown-flip');
+						offset = dropdown.offset();
+						dropdown.addClass('f-dropdown-flip');
+					}
 
-                        if ((dropdown.offset().left-boundaryoffset) < 0 || !$this.flipped && (dropdown.outerWidth() + (offset.left-boundaryoffset)) < boundarywidth) {
-                            dropdown.removeClass('f-dropdown-flip');
-                        }
-                    }, 0);
-                }
+					setTimeout(function(){
 
-                this.trigger('stack.f.dropdown', [this]);
-            }
+						if ((dropdown.offset().left-boundaryoffset) < 0 || !$this.flipped && (dropdown.outerWidth() + (offset.left-boundaryoffset)) < boundarywidth) {
+							dropdown.removeClass('f-dropdown-flip');
+						}
+					}, 0);
+				}
 
-            dropdown.css("display", "");
-        }
+				this.trigger('stack.f.dropdown', [this]);
+			}
 
-    });
+			dropdown.css("display", "");
+		}
+
+	});
 
 })(FatKit);
