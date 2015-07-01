@@ -44,8 +44,8 @@
 
             for (var i = 0; i < this.options.slices; i++) {
 
-                if (fromfx == 'slice-up-down') {
-                    pos = ((i % 2) + 2) % 2==0 ? '0':ghostHeight;
+                if (fromfx === 'slice-up-down') {
+                    pos = ((i % 2) + 2) % 2===0 ? '0':ghostHeight;
                 }
 
                 var width    = (i == this.options.slices-1) ? sliceWidth : sliceWidth,
@@ -55,7 +55,7 @@
                 //slice-down - default
                 clipfrom = ('rect(0px, '+(width*(i+1))+'px, 0px, '+(sliceWidth*i)+'px)');
 
-                if (fromfx == 'slice-up' || (fromfx == 'slice-up-down' && ((i % 2) + 2) % 2==0 )) {
+                if (fromfx === 'slice-up' || (fromfx === 'slice-up-down' && ((i % 2) + 2) % 2===0 )) {
                     clipfrom = ('rect('+ghostHeight+'px, '+(width*(i+1))+'px, '+ghostHeight+'px, '+(sliceWidth*i)+'px)');
                 }
 
