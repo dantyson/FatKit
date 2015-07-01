@@ -91,7 +91,8 @@ $dropdown-scrollable-height:                    200px;
 	}
 }
 
-[data-f-dropdown]:not(.f-dropdown-mode-click):hover > .f-dropdown {
+[data-f-dropdown]:not(.f-dropdown-mode-click):hover > .f-dropdown,
+[data-f-dropdown]:not(.f-dropdown-mode-click) > *:focus + .f-dropdown {
 	display: block;
 }
 

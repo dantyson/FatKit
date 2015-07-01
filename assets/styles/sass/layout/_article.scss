@@ -57,7 +57,7 @@ $article-divider-border:                        #ddd;
  * http://joelcalifa.com/blog/revisiting-visited
  */
 
-.f-article a[data-visited] {
+.f-article a[data-visited]:not(.f-thumbnail) {
 	color: $base-link-visited-color;
 	text-decoration: $base-link-visited-text-decoration;
 

@@ -252,7 +252,7 @@ for (i=0;i<links.length;i++)
 	if(link.host === window.location.host && localStorage.getItem('visited-' + link.pathname) && (link.getAttribute("href").charAt(0) !== "#" && link.getAttribute("href") !== ""))
 	{
 
-		link.dataset.visited = localStorage.getItem('visited-' + link.pathname);
+		link.dataset.visited = parseFloat(localStorage.getItem('visited-' + link.pathname)) > 10 ? "9+" : localStorage.getItem('visited-' + link.pathname);
 
 	}
 
