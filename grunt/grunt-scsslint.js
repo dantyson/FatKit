@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 			bundleExec: true,
 			config: "config/.scss-lint-test.yml",
 			reporterOutput: null,
-			colorizeOutput: true
+			colorizeOutput: false // TODO: work out how to make this easy
 		}
 	});
 
