@@ -30,7 +30,7 @@ module.exports = function(grunt) {
                     expand: true, 
                     flatten: true, 
                     cwd: 'assets/', 
-                    src: ['styles/css/style.css'], 
+                    src: ['styles/css/<%=config.css.rootFile%>.css'], 
                     dest: 'www/assets/styles/css', 
                     filter: 'isFile'
                 }

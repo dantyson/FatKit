@@ -22,10 +22,14 @@ module.exports = {
 	css : {
 		sassDir  : '<%=config.srcDir%>/styles/sass', // <%=config.css.sassDir%>
 		cssDir   : '<%=config.srcDir%>/styles/css', // <%=config.css.cssDir%>
+
+		// Renaming this changes the name of the generated CSS file
+		// Make sure you update your template file
+		rootFile : 'style', // <%=config.css.rootFile%>
 	},
 
 	img : {
-		rootDir	 : '<%=config.srcDir%>/images/', // <%=config.img.srcDir%>
+		rootDir	 : '<%=config.srcDir%>/images', // <%=config.img.rootDir%>
 	}
 
 };

@@ -8,7 +8,7 @@ module.exports = function(grunt) {
             ]
         },
         dist: {
-            src: '<%=config.css.cssDir%>/style.css'
+            src: '<%=config.css.cssDir%>/<%=config.css.rootFile%>.css'
         }
 	});
 
