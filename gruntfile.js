@@ -1,11 +1,11 @@
 module.exports = function(grunt) {
 
+	// Yeah do this
+	'use strict';
+
 	// Displays how long each task is taking when you run a build
 	// To see every task run: grunt --v
 	require('time-grunt')(grunt);
-
-	// Yeah do this
-	'use strict';
 
 	var options = {
 		// Global Grunt vars. Edit this file to change vars

@@ -1,18 +1,18 @@
 module.exports = function(grunt) {
 	grunt.config('browserSync', {
-        bsFiles: {
-            src : ['<%=config.css.cssDir%>/*.css',
-                   '*.html',
-                   '<%=config.js.rootDir%>/min/*.js'
-                  ]
+		bsFiles: {
+			src : ['<%=config.css.cssDir%>/*.css',
+				'*.html',
+				'<%=config.js.rootDir%>/min/*.js'
+			]
 
-        },
-        options: {
-            watchTask: true,
-            server: {
-                server: "./"
-            }
-        }
+		},
+		options: {
+			watchTask: true,
+			server: {
+				server: "./"
+			}
+		}
 	});
 
 	grunt.loadNpmTasks('grunt-browser-sync');
