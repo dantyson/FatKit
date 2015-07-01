@@ -9,8 +9,7 @@ module.exports = function(grunt) {
             force: true
         },
 
-        beforeconcat: ['gruntfile.js', '<%=config.js.compDir%>/*.js', '<%=config.js.coreDir%>/*.js', '<%=config.js.rootDir%>/*.js'],
-        afterconcat: ['<%=config.js.rootDir%>/min/*.min.js']
+        beforeconcat: ['gruntfile.js', '<%=config.js.compDir%>/*.js', '<%=config.js.coreDir%>/*.js']
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');

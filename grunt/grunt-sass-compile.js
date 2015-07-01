@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                 style: 'expanded',
             },
             files: {
-                '<%=config.css.cssDir%>/style.css': '<%=config.css.sassDir%>/style.scss'
+                '<%=config.css.cssDir%>/<%=config.css.rootFile%>.css': '<%=config.css.sassDir%>/<%=config.css.rootFile%>.scss'
             }
         }
 	});

@@ -16,6 +16,7 @@ module.exports = function(grunt) {
 	var configs = require('load-grunt-configs')(grunt, options);
 
 	// Define the configuration for all the tasks
+	// found in grunt/grunt-config.js
 	grunt.initConfig(configs);
 
 	// Load all our tasks from the grunt folder
@@ -27,14 +28,14 @@ module.exports = function(grunt) {
 	
 
 	/* ------------------------------------------------------------------
-		Build setups - Re-name / add more if you wish
+		Build setups - Re-name / add more / tweak if you wish
 	-------------------------------------------------------------------*/
 
 	// Dev grunt task - run grunt dev
-	grunt.registerTask('dev', ['concat', 'uglify:dev', 'browserSync', 'watch']);
+	grunt.registerTask('dev', ['concat', 'uglify:dev', 'sass', 'browserSync', 'watch']);
 
 	// Post to production - run grunt production
-	grunt.registerTask('production', ['concat', 'uglify:live', 'sass', 'postcss', 'cssmin', 'kraken', 'copy:css', 'copy:js']);
+	grunt.registerTask('production', ['concat', 'uglify:live', 'uglify:components', 'sass', 'postcss', 'cssmin', 'newer:kraken', 'copy:css', 'copy:js']);
 
 	// Validate scss / js files - run grunt check
 	grunt.registerTask('check', ['scsslint', 'jshint']);

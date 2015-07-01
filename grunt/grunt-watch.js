@@ -12,16 +12,17 @@ module.exports = function(grunt) {
         // Concatenates and uglifies all script files in the scripts directory, then copies minified files to www folder
         appScripts: {
             files: ['<%=config.js.rootDir%>/*.js', '<%=config.js.coreDir%>/*.js', '<%=config.js.compDir%>/*.js'],
-            tasks: ['concat', 'uglify:dev', 'uglify:components', 'newer:copy:js'],
+            tasks: ['concat', 'uglify:dev', 'uglify:components'],
             options: {
                 spawn: false,
             },
         },
 
         // Sorts and lints changed sass files, compliles, autoprefixes, minifies and then copies to www folder
+        // TODO: re-enable csscomb once v4.0 is released (watching on github for updates)
         css: {
-            files: ['<%=config.css.sassDir%>/**/*.scss', '<%=config.css.cssDir%>/style.css'],
-            tasks: ['newer:csscomb', 'sass', 'newer:postcss', 'newer:copy:css'],
+            files: ['<%=config.css.sassDir%>/**/*.scss', '<%=config.css.cssDir%>/<%=config.css.rootFile%>.css'],
+            tasks: [/*'newer:csscomb',*/'sass', 'newer:postcss'],
             options: {
                 spawn: false,
             }
