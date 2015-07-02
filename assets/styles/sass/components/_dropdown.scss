@@ -68,7 +68,7 @@ $dropdown-scrollable-height:                    200px;
 
 .f-dropdown {
 	/* 1 */
-	display: none;
+	visibility: hidden;
 	/* 2 */
 	position: absolute;
 	top: 100%;
@@ -85,6 +85,7 @@ $dropdown-scrollable-height:                    200px;
 	font-size: $dropdown-font-size;
 	vertical-align: top;
 	border: $dropdown-border-width solid $dropdown-border-color;
+	opacity: 0;
 
 	&.f-dropdown-enabled {
 		margin-top: $dropdown-margin-top;
@@ -93,7 +94,8 @@ $dropdown-scrollable-height:                    200px;
 
 [data-f-dropdown]:not(.f-dropdown-mode-click):hover > .f-dropdown,
 [data-f-dropdown]:not(.f-dropdown-mode-click) > *:focus + .f-dropdown {
-	display: block;
+	opacity: 1;
+	visibility: visible;
 }
 
 /*
@@ -104,9 +106,10 @@ $dropdown-scrollable-height:                    200px;
 
 .f-open > .f-dropdown {
 	/* 1 */
-	display: block;
+	visibility: visible;
+	opacity: 1;
 	/* 2 */
-	animation: $dropdown-animation 0.2s ease-in-out;
+	animation: $dropdown-animation .2s ease-in-out;
 	/* 3 */
 	transform-origin: 0 0;
 }
