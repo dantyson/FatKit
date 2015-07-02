@@ -13,9 +13,9 @@ module.exports = function(grunt) {
 			files: [
 				{
 					expand: true,
-					cwd: '<%=config.img.rootDir%>/',
+					cwd: '<%=config.images.rootDir%>/',
 					src: ['**/*.{png,jpg,jpeg,gif}'],
-					dest: '<%=config.img.rootDir%>/'
+					dest: '<%=config.images.rootDir%>/'
 				}
 			]
 		}
