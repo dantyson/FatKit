@@ -28,6 +28,11 @@ module.exports = {
 		rootFile : 'style', // <%=config.css.rootFile%>
 	},
 
+	// Font files
+	fonts : {
+		rootDir	 : '<%=config.srcDir%>/fonts' // <%=config.fonts.rootDir%>
+	},
+
 	img : {
 		rootDir	 : '<%=config.srcDir%>/images', // <%=config.img.rootDir%>
 	}

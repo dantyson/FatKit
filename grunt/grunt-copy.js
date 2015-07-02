@@ -6,20 +6,19 @@ module.exports = function(grunt) {
 		js: {
 			files: [
 				{
-					expand: true, 
-					flatten: true, 
-					cwd: 'assets/', 
-					src: ['scripts/min/<%=config.js.rootFile%>.min.js'], 
-					dest: 'www/<%=config.js.rootDir%>/', 
+					expand: true,
+					flatten: true,
+					cwd: 'assets/',
+					src: ['scripts/min/<%=config.js.rootFile%>.min.js'],
+					dest: 'www/<%=config.js.rootDir%>/',
 					filter: 'isFile'
 				},
-
 				{
-					expand: true, 
+					expand: true,
 					flatten: true,
-					cwd: 'assets/', 
-					src: ['scripts/components/min/*.js'], 
-					dest: 'www/<%=config.js.compDir%>/min', 
+					cwd: 'assets/',
+					src: ['scripts/components/min/*.js'],
+					dest: 'www/<%=config.js.compDir%>/min',
 					filter: 'isFile'
 				}
 			]
@@ -27,11 +26,35 @@ module.exports = function(grunt) {
 		css: {
 			files: [
 				{
-					expand: true, 
-					flatten: true, 
-					cwd: 'assets/', 
-					src: ['styles/css/<%=config.css.rootFile%>.css'], 
-					dest: 'www/assets/styles/css', 
+					expand: true,
+					flatten: true,
+					cwd: 'assets/',
+					src: ['styles/css/<%=config.css.rootFile%>.css'],
+					dest: 'www/assets/styles/css',
+					filter: 'isFile'
+				}
+			]
+		},
+		fonts: {
+			files: [
+				{
+					expand: true,
+					flatten: true,
+					cwd: 'assets/',
+					src: ['<%=config.font.rootDir%>/**/*.{woff,woff2,ttf,eot,otf}'],
+					dest: 'www/<%=config.font.rootDir%>',
+					filter: 'isFile'
+				}
+			]
+		},
+		images: {
+			files: [
+				{
+					expand: true,
+					flatten: true,
+					cwd: 'assets/',
+					src: ['<%=config.img.rootDir%>/**/*.{png,jpg,jpeg,gif,svg,bmp}'],
+					dest: 'www/<%=config.img.rootDir%>',
 					filter: 'isFile'
 				}
 			]
