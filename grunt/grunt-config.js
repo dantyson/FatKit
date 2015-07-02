@@ -33,8 +33,8 @@ module.exports = {
 		rootDir	 : '<%=config.srcDir%>/fonts' // <%=config.fonts.rootDir%>
 	},
 
-	img : {
-		rootDir	 : '<%=config.srcDir%>/images', // <%=config.img.rootDir%>
+	images : {
+		rootDir	 : '<%=config.srcDir%>/images', // <%=config.images.rootDir%>
 	}
 
 };
