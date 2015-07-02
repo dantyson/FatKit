@@ -40,8 +40,8 @@ module.exports = function(grunt) {
 				{
 					expand: true,
 					flatten: true,
-					cwd: 'assets/',
-					src: ['fonts/*'],
+					cwd: 'assets/fonts/',
+					src: ['**'],
 					dest: 'www/<%=config.fonts.rootDir%>',
 					filter: 'isFile'
 				}
@@ -52,8 +52,8 @@ module.exports = function(grunt) {
 				{
 					expand: true,
 					flatten: true,
-					cwd: 'assets/',
-					src: ['images/*'],
+					cwd: 'assets/fonts/',
+					src: ['**'],
 					dest: 'www/<%=config.images.rootDir%>',
 					filter: 'isFile'
 				}
