@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 		// Concatenates and uglifies all script files in the scripts directory, then copies minified files to www folder
 		appScripts: {
 			files: ['<%=config.js.rootDir%>/*.js', '<%=config.js.coreDir%>/*.js', '<%=config.js.compDir%>/*.js'],
-			tasks: ['concat', 'uglify:dev', 'uglify:components'],
+			tasks: ['concat', 'uglify:dev', 'uglify:componentDev'],
 			options: {
 				spawn: false,
 			},
