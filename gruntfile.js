@@ -32,10 +32,10 @@ module.exports = function(grunt) {
 	-------------------------------------------------------------------*/
 
 	// Dev grunt task - run grunt dev
-	grunt.registerTask('dev', ['concat', 'uglify:dev', 'sass', 'browserSync', 'watch']);
+	grunt.registerTask('dev', ['concat', 'uglify:dev', 'uglify:componentDev', 'sass', 'browserSync', 'watch']);
 
 	// Post to production - run grunt production
-	grunt.registerTask('production', ['concat', 'uglify:live', 'uglify:components', 'sass', 'postcss', 'cssmin', 'newer:kraken', 'copy:css', 'copy:js', 'copy:fonts', 'copy:images']);
+	grunt.registerTask('production', ['concat', 'uglify:live', 'uglify:componentLive', 'sass', 'postcss', 'cssmin', 'newer:kraken', 'copy:css', 'copy:js', 'copy:fonts', 'copy:images']);
 
 	// Validate scss / js files - run grunt check
 	grunt.registerTask('check', ['scsslint', 'jshint']);

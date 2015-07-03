@@ -26,12 +26,33 @@ module.exports = function(grunt) {
 
 		// The components js files, can just be included on a page by page basis
 		// so we dont need to roll these into fatkit.min.js, the can have their own .min.js
-		components: {
-			src: '*.js',
-			cwd: '<%=config.js.compDir%>',
-			dest: '<%=config.js.compDir%>/min/',
-			expand: true,
-			ext: '.min.js',
+
+		componentDev: {
+			options: {
+				// Create sourcemaps for debugging purposes
+				sourceMap: true
+			},
+			files: [{
+				expand: true,
+				cwd: '<%=config.js.compDir%>/',
+				src: '*.js',
+				dest: '<%=config.js.compDir%>//min/',
+				ext: '.min.js'
+			}]
+		},
+
+		componentLive: {
+			options: {
+				// Get rid of console logs for production
+				drop_console: true
+			},
+			files: [{
+				expand: true,
+				cwd: '<%=config.js.compDir%>/',
+				src: '*.js',
+				dest: '<%=config.js.compDir%>/min/',
+				ext: '.min.js'
+			}]
 		}
 	});
 
